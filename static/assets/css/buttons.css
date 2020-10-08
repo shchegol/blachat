@@ -65,10 +65,10 @@
 /**********************************************************/
 .btn-icon {
     display: inline-flex;
-    padding: 1rem;
+    padding: .5rem;
     border-radius: 100%;
     color: #424242;
-    font-size: 1rem;
+    font-size: 1.2rem;
     align-items: center;
     justify-content: center;
     background-color: transparent;

@@ -1,4 +1,5 @@
 .input {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -34,21 +35,54 @@
     font-size: .8rem;
 }
 
-.input.input_color_white {
+.input_color_white {
     color: white;
 }
 
-.input.input_color_white .input__field {
+.input_color_white .input__field {
     color: white;
     background-color: rgba(255, 255, 255, .1);
     border-bottom-color: rgba(255, 255, 255, .5);
 }
 
-.input.input_color_white .input__field:hover,
-.input.input_color_white .input__field:focus {
+.input_color_white .input__field:hover,
+.input_color_white .input__field:focus {
     border-bottom-color: #fff;
 }
 
-.input.input_color_white .input__field::placeholder {
+.input_color_white .input__field::placeholder {
     color: rgba(255, 255, 255, .5);
+}
+
+.input_inline {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+    width: 100%;
+    background-color: #EEEEEE;
+    border-radius: 4px;
+}
+
+.input_inline .input__field {
+    display: flex;
+    padding: 0;
+    width: 100%;
+    font-size: .8rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    transition: border .2s linear;
+}
+
+.input_inline .input__icon {
+    display: inline-flex;
+    margin-right: .5rem;
+    color: rgba(0, 0, 0, .5);
+}
+
+.input_textarea .input__field {
+    resize: vertical;
+    max-height: 5rem;
 }

@@ -1,10 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>BLABLA - чат</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/grid.css">
+    <link rel="stylesheet" href="/assets/css/chat.css">
+    <link rel="stylesheet" href="/assets/css/buttons.css">
+    <link rel="stylesheet" href="/assets/css/inputs.css">
 </head>
 <body>
-    <div>Hello2!</div>
+<div class="chat">
+    <aside class="chat__side">
+        <header class="chat__main-bar chat__main-bar_no-border">
+            <div class="avatar">
+                <img
+                        src="/assets/img/bg.jpg"
+                        alt="Александр Щеголь"
+                        class="avatar__img"
+                >
+            </div>
+            <div class="search">
+                <label class="input input_inline">
+                    <span class="input__icon">
+                        <i class="material-icons">search</i>
+                    </span>
+                    <input
+                            type="text"
+                            name="search"
+                            class="input__field"
+                            placeholder="Поиск по списку"
+                    >
+                </label>
+            </div>
+        </header>
+
+        <div class="chat__list">
+            <ul class="user-list">
+                <li class="user-list__item">
+                    <img
+                            src="/assets/img/bg.jpg"
+                            alt="Александр Щеголь"
+                            class="user-list__avatar"
+                    >
+                    <div class="user-list__main">
+                        <h5 class="user-list__title">Саша</h5>
+                        <p class="user-list__text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+                    </div>
+                    <div class="user-list__support">
+                        <time class="user-list__date">20:00</time>
+                        <span class="badge">
+                            2
+                        </span>
+                    </div>
+                </li>
+
+                <li class="user-list__item">
+                    <img
+                            src="/assets/img/bg.jpg"
+                            alt="Александр Щеголь"
+                            class="user-list__avatar"
+                    >
+                    <div class="user-list__main">
+                        <h5 class="user-list__title">Саша</h5>
+                        <p class="user-list__text">
+                            bla bla
+                        </p>
+                    </div>
+                    <div class="user-list__support">
+                        <time class="user-list__date">20:00</time>
+                        <span class="badge">
+                            2
+                        </span>
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+    </aside>
+
+    <main class="chat__main">
+        <header class="chat__main-bar">
+            <div class="avatar">
+                <img
+                        src="/assets/img/bg.jpg"
+                        alt="Александр Щеголь"
+                        class="avatar__img"
+                >
+            </div>
+            <div class="col">
+                <h5 class="title">Саша</h5>
+                <p class="subtitle">Был 5 минут назад</p>
+            </div>
+            <div>
+                <button
+                        type="button"
+                        class="btn-icon"
+                        title="Опции"
+                >
+                    <i class="material-icons">more_vert</i>
+                </button>
+            </div>
+        </header>
+
+        <section class="chat__messages">
+            <article class="message-pack">
+                <img
+                        src="/assets/img/bg.jpg"
+                        alt="Александр Щеголь"
+                        class="message-pack__avatar"
+                >
+
+                <div class="message-pack__content">
+                    <div class="message">
+                        <p class="message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <div class="message__support">
+                            <span class="message__status">
+                                <i class="material-icons">done_all</i>
+                            </span>
+                            <time class="message__date">10:00</time>
+                        </div>
+                    </div>
+
+                    <div class="message">
+                        <p class="message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto aut, consectetur doloribus eaque est excepturi fugit id libero nam pariatur
+                            provident quis sed sit ut. Architecto atque doloremque quia.</p>
+                        <div class="message__support">
+                            <span class="message__status">
+                                <i class="material-icons">done_all</i>
+                            </span>
+                            <time class="message__date">10:00</time>
+                        </div>
+                    </div>
+
+                    <div class="message message_status_read">
+                        <p class="message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <div class="message__support">
+                            <span class="message__status">
+                                <i class="material-icons">done_all</i>
+                            </span>
+                            <time class="message__date">10:00</time>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="message-pack message-pack_answer">
+                <img
+                        src="/assets/img/bg.jpg"
+                        alt="Александр Щеголь"
+                        class="message-pack__avatar"
+                >
+
+                <div class="message-pack__content">
+                    <div class="message message_status_read">
+                        <p class="message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium amet, cumque deleniti dolore dolorem, doloribus, ducimus eius eos illum ipsam
+                            non nostrum repudiandae rerum similique tenetur veniam veritatis voluptate.
+                        </p>
+                        <div class="message__support">
+                            <span class="message__status">
+                                <i class="material-icons">done_all</i>
+                            </span>
+                            <time class="message__date">10:00</time>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <div class="chat__bottom-bar">
+            <div>
+                <button
+                        type="button"
+                        class="btn-icon"
+                        title="Добавить файл"
+                >
+                    <i class="material-icons">attach_file</i>
+                </button>
+            </div>
+            <div class="col">
+                <label class="input input_inline input_textarea">
+                    <textarea
+                            cols="30"
+                            rows="1"
+                            class="input__field"
+                    ></textarea>
+                </label>
+            </div>
+            <div>
+                <button
+                        type="button"
+                        class="btn-icon"
+                        title="Отправить"
+                >
+                    <i class="material-icons">send</i>
+                </button>
+            </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>
