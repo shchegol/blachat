@@ -59,7 +59,8 @@
 
 /* avatar */
 .avatar {
-
+    display: flex;
+    text-decoration: none;
 }
 
 .avatar__img {
@@ -171,7 +172,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: auto;
-    max-width: 100%;
+    max-width: 50rem;
     min-width: 10rem;
     border-radius: 16px;
     background-color: #B3E5FC;
@@ -215,4 +216,20 @@
 
 .message-pack_answer .message:last-child::before {
     border-bottom-color: #DCEDC8;
+}
+
+.message-date {
+    position: relative;
+}
+.message-date__container {
+    z-index: 2;
+    position: sticky;
+    top: .5rem;
+    left: 50%;
+    padding: .2rem 1rem;
+    background-color: #F5F5F5;
+    color: #9E9E9E;
+    font-size: .8rem;
+    border-radius: 1000px;
+    transform: translate(-50%, 0);
 }
