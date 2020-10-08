@@ -2,9 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BLABLA - авторизация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/grid.css">
 </head>
-<body>
-<h1>Auth</h1>
+<body class="bg_color_auth">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-4">
+            <section class="row mt-50">
+                <div class="col-12">
+                    <header>
+                        <h1 class="logo logo_color_white">BLABLA</h1>
+                    </header>
+
+                    <form action="">
+                        <label class="input input_color_white">
+                            <span class="input__label">Логин</span>
+                            <input
+                                    type="text"
+                                    name="login"
+                                    class="input__field"
+                                    placeholder="Ваш логин"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+
+                        <label class="input input_color_white mt-20">
+                            <span class="input__label">Пароль</span>
+                            <input
+                                    type="password"
+                                    name="password"
+                                    class="input__field"
+                                    placeholder="Ваш пароль"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+
+                        <button
+                                type="submit"
+                                class="btn btn_type_outline btn_color_white mt-40"
+                        >
+                            ВОЙТИ
+                        </button>
+
+                        <p class="text_align_center">
+                            <a
+                                    href="/registration.html"
+                                    class="text_color_white"
+                            >Зарегестрироваться</a>
+                        </p>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
 </body>
 </html>

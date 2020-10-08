@@ -2,9 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BLABLA - регистрация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/grid.css">
 </head>
-<body>
+<body class="bg_color_auth">
+<section class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <div class="row mt-50">
+                <div class="col-12">
+                    <header>
+                        <h1 class="logo logo_color_white">BLABLA</h1>
+                    </header>
+                </div>
+            </div>
 
+            <form action="">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="input input_color_white">
+                            <span class="input__label">Имя</span>
+                            <input
+                                    type="text"
+                                    name="first_name"
+                                    class="input__field"
+                                    placeholder="Ваше имя"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+                    </div>
+
+                    <div class="col-6">
+                        <label class="input input_color_white">
+                            <span class="input__label">Фамилия</span>
+                            <input
+                                    type="text"
+                                    name="second_name"
+                                    class="input__field"
+                                    placeholder="Ваша фамилия"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row mt-20">
+                    <div class="col-12">
+                        <label class="input input_color_white">
+                            <span class="input__label">Логин</span>
+                            <input
+                                    type="text"
+                                    name="login"
+                                    class="input__field"
+                                    placeholder="Ваш логин"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row mt-20">
+                    <div class="col-6">
+                        <label class="input input_color_white">
+                            <span class="input__label">Почта</span>
+                            <input
+                                    type="text"
+                                    name="email"
+                                    class="input__field"
+                                    placeholder="Ваш email"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+                    </div>
+                    <div class="col-6">
+                        <label class="input input_color_white">
+                            <span class="input__label">Телефон</span>
+                            <input
+                                    type="text"
+                                    name="phone"
+                                    class="input__field"
+                                    placeholder="Ваш телефон"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row mt-20">
+                    <div class="col-6">
+                        <label class="input input_color_white">
+                            <span class="input__label">Пароль</span>
+                            <input
+                                    type="password"
+                                    name="password"
+                                    class="input__field"
+                                    placeholder="Ваш пароль"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+                    </div>
+                    <div class="col-6">
+                        <label class="input input_color_white">
+                            <span class="input__label">Повторите пароль</span>
+                            <input
+                                    type="password"
+                                    name="password"
+                                    class="input__field"
+                                    placeholder="Введите пароль ещё раз"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row mt-40">
+                    <div class="col-12">
+                        <button
+                                type="submit"
+                                class="btn btn_type_outline btn_color_white"
+                        >
+                            ЗАРЕГЕСТРИРОВАТЬСЯ
+                        </button>
+
+                        <p class="text_align_center">
+                            <a
+                                    href="/auth.html"
+                                    class="text_color_white"
+                            >
+                                Войти
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 </body>
 </html>
