@@ -1,9 +1,14 @@
-/* main */
-
+/* reset */
 * {
     box-sizing: border-box;
 }
 
+button:focus,
+input:focus {
+    outline: none;
+}
+
+/* main */
 html,
 body {
     padding: 0;
@@ -16,6 +21,7 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
+    color: #424242;
 }
 
 .bg_color_auth {
@@ -24,6 +30,9 @@ body {
     background-size: cover;
 }
 
+a {
+    color: #2196F3;
+}
 
 /* components */
 .logo {
@@ -34,116 +43,25 @@ body {
     color: #ffffff;
 }
 
-.card {
-    width: 20%;
-    min-width: 20rem;
-    max-width: 30rem;
-}
 
-
-.input {
-    display: flex;
-    flex-direction: column;
+.table {
     width: 100%;
+    text-align: left;
 }
 
-.input__label {
-    display: flex;
-    width: 100%;
-    font-size: .8rem;
-}
-
-.input__field {
-    display: flex;
-    padding: 1rem;
-    width: 100%;
-    font-size: 1rem;
-    background-color: rgba(255, 255, 255, .1);
-    border: none;
-    border-radius: 6px 6px 0 0;
-    border-bottom: 3px solid #9E9E9E;
-    transition: border .2s linear;
-}
-
-.input__field:hover,
-.input__field:focus {
-    outline: none;
-    border-bottom: 3px solid #2196F3;
-}
-
-.input__message {
-    display: flex;
-    width: 100%;
-    font-size: .8rem;
-}
-
-.input.input_color_white {
-    color: white;
-}
-
-.input.input_color_white .input__field {
-    color: white;
-    border-bottom-color: rgba(255, 255, 255, .5);
-}
-
-.input.input_color_white .input__field:hover,
-.input.input_color_white .input__field:focus {
-    border-bottom-color: #fff;
-}
-
-.input.input_color_white .input__field::placeholder {
-    color: rgba(255, 255, 255, .5);
-}
-
-.btn {
-    width: 100%;
-    padding: 1rem;
-    text-align: center;
-    font-size: 1rem;
+.table__title {
     font-weight: bold;
-    border: none;
-    color: #ffffff;
-    background-color: #2196F3;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all .2s linear;
 }
 
-.btn:hover,
-.btn:active,
-.btn.active {
-    background-color: #1976D2;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+.table_type_centered .table__title {
+    width: 50%;
+    padding-right: 1rem;
+    text-align: right;
 }
 
-.btn.btn_color_white {
-    color: #424242;
-    background-color: #ffffff;
-    border-color: #ffffff;
-}
-
-.btn.btn_color_white:hover,
-.btn.btn_color_white:active,
-.btn.btn_color_white.active {
-    border-color: #ECEFF1;
-}
-
-.btn.btn_type_outline {
-    background-color: transparent;
-    border: 2px solid;
-    box-shadow: none;
-}
-
-.btn.btn_type_outline.btn_color_white {
-    color: #ffffff;
-    border-color: #ffffff;
-}
-
-.btn.btn_type_outline.btn_color_white:hover,
-.btn.btn_type_outline.btn_color_white:active,
-.btn.btn_type_outline.btn_color_white.active {
-    background-color: rgba(255, 255, 255, .2);
-    border-color: #ffffff;
+.table_type_centered .table__text {
+    width: 50%;
+    text-align: left;
 }
 
 /* modificators */
@@ -175,3 +93,46 @@ body {
     text-align: center;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* vendors */
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: inherit;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-1 { font-size: 1rem; }
+.material-icons.md-2 { font-size: 2rem; }
+.material-icons.md-3 { font-size: 3rem; }
+.material-icons.md-4 { font-size: 4rem; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }

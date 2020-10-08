@@ -2,9 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BLABLA - профиль</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/grid.css">
+    <link rel="stylesheet" href="/assets/css/profile.css">
+    <link rel="stylesheet" href="/assets/css/buttons.css">
 </head>
 <body>
-<h1>Profile</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a
+                    href="/index.html"
+                    class="btn-icon btn-icon_size_l mt-20"
+                    title="К чату"
+            >
+                <i class="material-icons">arrow_back</i>
+            </a>
+        </div>
+    </div>
+
+    <section class="row justify-content-center profile">
+        <div class="col-4 text_align_center">
+            <img
+                    src="/assets/img/bg.jpg"
+                    alt="Александр Щеголь"
+                    class="profile__img"
+            >
+
+            <h1 class="profile__title">Александр Щеголь</h1>
+
+            <table class="table table_type_centered">
+                <tr>
+                    <td class="table__title">Почта:</td>
+                    <td class="table__text">bla@bla.com</td>
+                </tr>
+                <tr>
+                    <td class="table__title">Логин:</td>
+                    <td class="table__text">ashchegol</td>
+                </tr>
+            </table>
+
+            <a
+                    href="/profile-edit.html"
+                    class="btn btn_type_outline mt-40"
+            >
+                ИЗМЕНИТЬ ДАННЫЕ
+            </a>
+
+            <p class="text_align_center">
+                <a
+                        href="/auth.html"
+                        class="text_color_red"
+                >
+                    Выйти
+                </a>
+            </p>
+        </div>
+    </section>
+</div>
 </body>
 </html>
