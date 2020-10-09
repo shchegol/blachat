@@ -40,6 +40,7 @@
                             >
                             <input
                                     type="file"
+                                    name="avatar"
                                     hidden
                             >
                         </label>
@@ -130,26 +131,49 @@
                 </div>
 
                 <div class="row mt-20">
-                    <div class="col-6">
+                    <div class="col-12">
+                        <h5 class="text_align_left">
+                            Сменить пароль
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="row mt-10">
+                    <div class="col-12">
                         <label class="input">
                             <span class="input__label">Пароль</span>
                             <input
                                     type="password"
-                                    name="password"
+                                    name="oldPassword"
                                     class="input__field"
-                                    placeholder="Ваш пароль"
+                                    placeholder="Текущий пароль"
+                            >
+                            <span class="input__message"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row mt-20">
+                    <div class="col-6">
+                        <label class="input">
+                            <span class="input__label">Новый пароль</span>
+                            <input
+                                    type="password"
+                                    name="newPassword"
+                                    class="input__field"
+                                    placeholder="Новый пароль"
                             >
                             <span class="input__message"></span>
                         </label>
                     </div>
                     <div class="col-6">
                         <label class="input">
-                            <span class="input__label">Повторите пароль</span>
+                            <span class="input__label">Новый пароль ещё раз</span>
                             <input
                                     type="password"
-                                    name="password"
+                                    name="newPassword_check"
                                     class="input__field"
-                                    placeholder="Введите пароль ещё раз"
+                                    placeholder="Новый пароль ещё раз"
                             >
                             <span class="input__message"></span>
                         </label>
@@ -168,7 +192,7 @@
                 </div>
             </form>
 
-            <p class="text_align_center">
+            <p class="text_align_center mt-20">
                 <a
                         href="/profile.html"
                         class="text_color_red"
@@ -179,5 +203,7 @@
         </div>
     </section>
 </div>
+
+<script src="/assets/js/main.js"></script>
 </body>
 </html>

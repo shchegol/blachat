@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/assets/css/chat.css">
     <link rel="stylesheet" href="/assets/css/buttons.css">
     <link rel="stylesheet" href="/assets/css/inputs.css">
+    <link rel="stylesheet" href="/assets/css/lists.css">
+    <link rel="stylesheet" href="/assets/css/badges.css">
+    <link rel="stylesheet" href="/assets/css/dropdowns.css">
 </head>
 <body>
 <div class="chat">
@@ -90,6 +93,7 @@
 
     <main class="chat__main">
         <header class="chat__main-bar">
+            <!-- Обычное состояние -->
             <div class="avatar">
                 <img
                         src="/assets/img/bg.jpg"
@@ -99,7 +103,7 @@
             </div>
             <div class="col">
                 <h5 class="title">Саша</h5>
-                <p class="subtitle">Был ровно 5 минут назад</p>
+                <p class="subtitle">Ровно 5 минут назад он был здесь</p>
             </div>
             <div class="col-auto">
                 <div class="dropdown dropdown_open_bl">
@@ -113,8 +117,8 @@
 
                     <ul class="dropdown__content">
                         <li class="dropdown__item">
-                            <i class="material-icons">notifications_off</i>
-                            Отключить уведомления
+                            <i class="material-icons">edit</i>
+                            Переименовать
                         </li>
                         <li class="dropdown__item">
                             <i class="material-icons">delete</i>
@@ -123,8 +127,63 @@
                     </ul>
                 </div>
             </div>
+
+
+            <!-- Переименовать
+            <div class="col-6">
+                <label class="input input_inline">
+                    <span class="input__icon">
+                        <i class="material-icons">edit</i>
+                    </span>
+                    <input
+                            type="text"
+                            name="search"
+                            class="input__field"
+                            placeholder="Поиск по списку"
+                    >
+                </label>
+            </div>
+            <div class="col-auto">
+                <button
+                        type="button"
+                        class="btn btn_size_s btn_type_pill btn_color_green"
+                >
+                    СОХРАНИТЬ
+                </button>
+            </div>
+            -->
+
+
+            <!-- Подтверждение удаления
+            <div class="col-auto">
+                Удалить чат?
+            </div>
+            <div class="col-auto">
+                <span>
+                    <button
+                            type="button"
+                            class="btn btn_size_s btn_type_pill"
+                    >
+                        УДАЛИТЬ
+                    </button>
+                </span>
+            </div>
+            <div class="col-auto">
+                <button
+                        type="button"
+                        class="btn btn_size_s btn_type_pill btn_type_outline"
+                >
+                    ОТМЕНА
+                </button>
+            </div>
+            -->
         </header>
 
+        <!--
+            Если блок будет пустой, появится предложение выбрать чат.
+            Для вывода сообщения в блоке не должно быть пробелов и тп.
+            Пример: <section class="chat__messages"></section>
+         -->
         <section class="chat__messages">
             <div class="message-date">
                 <time class="message-date__container">7 октября</time>
@@ -863,7 +922,6 @@
                     </div>
                 </article>
             </div>
-
         </section>
 
         <div class="chat__bottom-bar">

@@ -8,6 +8,10 @@ input:focus {
     outline: none;
 }
 
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
 /* main */
 html,
 body {
@@ -34,7 +38,7 @@ a {
     color: #2196F3;
 }
 
-/* components */
+/* common components */
 .logo {
     text-align: center;
 }
@@ -42,103 +46,6 @@ a {
 .logo.logo_color_white {
     color: #ffffff;
 }
-
-
-.table {
-    width: 100%;
-    text-align: left;
-}
-
-.table__title {
-    font-weight: bold;
-}
-
-.table_type_centered .table__title {
-    width: 50%;
-    padding-right: 1rem;
-    text-align: right;
-}
-
-.table_type_centered .table__text {
-    width: 50%;
-    text-align: left;
-}
-
-.badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 1.2rem;
-    min-height: 1.2rem;
-    border-radius: 1000px;
-    font-size: .6rem;
-    line-height: 1;
-    color: #ffffff;
-    background-color: #2196F3;
-}
-
-.dropdown {
-    display: inline-block;
-    position: relative;
-}
-.dropdown:hover .dropdown__content  {
-    visibility: visible;
-    opacity: 1;
-}
-.dropdown__content {
-    visibility: hidden;
-    opacity: 0;
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    min-width: 15rem;
-    list-style: none;
-    background-color: #fff;
-    border-radius: 4px;
-    border: 1px solid #E0E0E0;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
-    transition: opacity .3s;
-}
-.dropdown__item {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    font-size: 1rem;
-    transition: background-color .2s;
-    cursor: pointer;
-}
-
-.dropdown__item .material-icons {
-    font-size: 1.4rem;
-    color: #2196F3;
-    margin-right: 1rem;
-}
-
-.dropdown__item:hover {
-    background-color: #F5F5F5;
-}
-
-.dropdown__item:not(:last-child) {
-    border-bottom: 1px solid #E0E0E0;;
-}
-
-.dropdown_open_bl .dropdown__content {
-    top: 0;
-    right: 0;
-    left: auto;
-    bottom: auto;
-}
-
-.dropdown_open_tr .dropdown__content {
-    top: auto;
-    right: auto;
-    left: 0;
-    bottom: 0;
-}
-
 
 .title {
     margin: 0;
@@ -154,6 +61,10 @@ a {
 }
 
 /* modificators */
+.mt-10 {
+    margin-top: 10px;
+}
+
 .mt-20 {
     margin-top: 20px;
 }
@@ -178,8 +89,16 @@ a {
     color: white;
 }
 
+.text_size_xxxl {
+    font-size: 10rem;
+}
+
 .text_align_center {
     text-align: center;
+}
+
+.text_align_left {
+    text-align: left;
 }
 
 .cursor-pointer {
