@@ -6,5 +6,5 @@ const PORT = 4000;
 app.use(express.static('./static'));
 
 app.listen(PORT, function () {
-  console.log(`Example app listening on port ${PORT}!`);
+  console.log(`BLABLA chat app listening on port ${PORT}!`);
 });

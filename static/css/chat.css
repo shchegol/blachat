@@ -33,7 +33,7 @@
 }
 
 .chat__messages:empty::before {
-    content: "Выберите час чтобы отправить сообщение";
+    content: "Выберите чат чтобы отправить сообщение";
     display: block;
     position: absolute;
     top: 50%;
