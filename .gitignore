@@ -2,5 +2,6 @@
 node_modules/
 
 doc/
+build/
 
 package-lock.json
