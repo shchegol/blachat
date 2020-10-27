@@ -1,8 +1,8 @@
-import sass from "sass"
-import pug from "pug"
+// import template404 from './src/pages/404/index.js'
 
-const compiledFunction = pug.compileFile('src/pages/404.pug');
+// собираем клиент
 
+// template404()
 
 
 let clientInfo = `
