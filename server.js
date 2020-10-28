@@ -7,7 +7,7 @@ const app = express();
 const router = express.Router();
 const PORT = 4000;
 const getPage = (pageName) => {
-  return `${__dirname}/src/pages/${pageName}/${pageName}.html`;
+  return `${__dirname}/static/pages/${pageName}/${pageName}.html`;
 };
 const pages = {
   '/': 'chat',
