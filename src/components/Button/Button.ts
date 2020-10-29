@@ -1,5 +1,5 @@
 import Block from '../../utils/block.js';
-import {IObjectString} from '../../utils/interfaces'
+import {IStringObject} from '../../utils/interfaces'
 // по другому с pug не получилось
 declare var require: any
 const pug = require('pug');
@@ -18,9 +18,9 @@ button(
 // }
 
 class Button extends Block {
-    props: IObjectString;
+    props: IStringObject;
 
-    constructor(props: IObjectString) {
+    constructor(props: IStringObject) {
         super('div', props);
     }
 

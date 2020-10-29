@@ -29,7 +29,7 @@ const submitButton: Button = new Button({
     type: 'submit',
     text: 'ВОЙТИ'
 });
-// todo узнать как передовать классы
+
 function render(query: string, block: Block): HTMLElement {
     const root: HTMLElement | null = document.querySelector(query);
     const elem: Node | null = block.getContent();

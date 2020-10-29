@@ -5,10 +5,13 @@
     "module": "es6",
     "esModuleInterop": true,
     "target": "es2016",
-    "noImplicitAny": true,
     "moduleResolution": "node",
-    "sourceMap": true,
     "declaration": false,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "alwaysStrict": true,
+    "sourceMap": true,
     "strictNullChecks": true
   }
 }

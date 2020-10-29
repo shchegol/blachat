@@ -1,6 +1,8 @@
+import {IArrayOfFunctionObject} from './interfaces'
+
 export default class EventBus {
     // todo разобрать как ещё это можно сделать
-    public listeners: any;
+    public listeners: IArrayOfFunctionObject;
 
     public constructor() {
         this.listeners = {};
@@ -19,10 +21,8 @@ export default class EventBus {
             throw new Error(`Нет события: ${event}`);
         }
 
-        this.listeners[event] = this.listeners[event].filter((listener: Function) => {
-            // todo понять как правильно сделать сравенение
-            // return listener !== callback
-            return true
+        this.listeners[event] = this.listeners[event].filter((listener: void) => {
+            return listener !== callback
         });
     }
 
@@ -31,7 +31,7 @@ export default class EventBus {
             throw new Error(`Нет события: ${event}`);
         }
 
-        this.listeners[event].forEach(function (listener: Function) {
+        this.listeners[event].forEach(function (listener: (...props: any[]) => void) {
             listener(...args);
         });
     }

@@ -1,5 +1,5 @@
 import EventBus from './event-bus.js'
-import {IObjectString} from './interfaces'
+import {IStringObject} from './interfaces'
 
 export default class Block {
     static EVENTS = {
@@ -9,13 +9,12 @@ export default class Block {
         FLOW_RENDER: 'flow:render',
     };
 
-    // todo понять почему выдаёт ошибку при определении HTMLElement | null
     protected _element: HTMLElement;
-    protected _meta: { tagName: string, props: IObjectString };
-    public props: IObjectString
+    protected _meta: { tagName: string, props: IStringObject };
+    public props: IStringObject
     public eventBus: Function
 
-    constructor(tagName: string = 'div', props: IObjectString) {
+    constructor(tagName: string = 'div', props: IStringObject) {
         console.log('constructor');
 
         const eventBus = new EventBus();
@@ -41,11 +40,11 @@ export default class Block {
     public componentDidMount() {
     }
 
-    componentDidUpdate(oldProps: IObjectString, newProps: IObjectString) {
+    public componentDidUpdate() {
         return true;
     }
 
-    setProps = (nextProps: IObjectString) => {
+    public setProps = (nextProps: IStringObject) => {
         console.log('setProps');
 
         if (!nextProps) {
@@ -55,15 +54,15 @@ export default class Block {
         Object.assign(this.props, nextProps);
     };
 
-    render(): string {
+    public render() {
         return '';
     }
 
-    getContent(): HTMLElement | null {
+    public getContent() {
         return this.element;
     }
 
-    get element() {
+    public get element() {
         return this._element;
     }
 
@@ -89,9 +88,8 @@ export default class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    // todo Как правилно объявить?
-    protected _componentDidUpdate(oldProps: IObjectString, newProps: IObjectString) {
-        const response = this.componentDidUpdate(oldProps, newProps);
+    protected _componentDidUpdate() {
+        const response = this.componentDidUpdate();
 
         console.log('_componentDidUpdate');
 
@@ -110,12 +108,11 @@ export default class Block {
         this._element.innerHTML = this.render();
     }
 
-    // todo узнать как здесь быть
-    protected _makePropsProxy(props: IObjectString) {
+    protected _makePropsProxy(props: IStringObject) {
         console.log('_makePropsProxy');
 
         return new Proxy(props, {
-            set: (target: IObjectString, prop: keyof IObjectString, value: string): boolean => {
+            set: (target: IStringObject, prop: keyof IStringObject, value: string): boolean => {
                 const oldProps = {...this._meta.props};
 
                 if (target[prop] !== value) {
@@ -126,7 +123,7 @@ export default class Block {
                     return false;
                 }
             },
-            deleteProperty(target, prop) {
+            deleteProperty() {
                 throw new Error('Нет прав');
             },
         });
