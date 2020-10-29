@@ -4,10 +4,9 @@ import {fileURLToPath} from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
-const router = express.Router();
 const PORT = 4000;
 const getPage = (pageName) => {
-  return `${__dirname}/static/pages/${pageName}/${pageName}.html`;
+  return `${__dirname}/static/${pageName}.html`;
 };
 const pages = {
   '/': 'chat',
@@ -37,9 +36,6 @@ app
 
 let serverInfo = `
   \x1b[32m###### server success ####### 
-  environment: ${process.env.NODE_ENV}
-  host:        localhost
-  port:        ${PORT}
   listen:      http://localhost:${PORT}/
   #############################\x1b[0m
   `;
