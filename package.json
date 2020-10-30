@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "prestart": "tsc",
     "start": "npm run server",
     "ts": "tsc",
     "server": "node server.js",
