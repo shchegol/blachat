@@ -39,6 +39,7 @@ section.row.justify-content-center.profile
                             name="first_name"
                             class="input__field"
                             placeholder="Ваше имя"
+                            data-validation-type="name"
                         )
                         span.input__message
 
@@ -50,6 +51,7 @@ section.row.justify-content-center.profile
                             name="second_name"
                             class="input__field"
                             placeholder="Ваша фамилия"
+                            data-validation-type="name"
                         )
                         span.input__message
 
@@ -62,6 +64,7 @@ section.row.justify-content-center.profile
                             name="login"
                             class="input__field"
                             placeholder="Ваш логин"
+                            data-validation-type="text"
                         )
                         span.input__message
 
@@ -73,6 +76,7 @@ section.row.justify-content-center.profile
                             name="display_name"
                             class="input__field"
                             placeholder="Как вас видят другие люди"
+                            data-validation-type="text"
                         )
                         span.input__message
 
@@ -85,6 +89,7 @@ section.row.justify-content-center.profile
                             name="email"
                             class="input__field"
                             placeholder="Ваш email"
+                            data-validation-type="email"
                         )
                         span.input__message
 
@@ -96,6 +101,7 @@ section.row.justify-content-center.profile
                             name="phone"
                             class="input__field"
                             placeholder="Ваш телефон"
+                            data-validation-type="phone"
                         )
                         span.input__message
 
@@ -112,6 +118,7 @@ section.row.justify-content-center.profile
                             name="oldPassword"
                             class="input__field"
                             placeholder="Текущий пароль"
+                            data-validation-type="password"
                         )
                         span.input__message
 
@@ -124,6 +131,7 @@ section.row.justify-content-center.profile
                             name="newPassword"
                             class="input__field"
                             placeholder="Новый пароль"
+                            data-validation-type="password"
                         )
                         span.input__message
 
@@ -135,16 +143,13 @@ section.row.justify-content-center.profile
                             name="newPassword_check"
                             class="input__field"
                             placeholder="Новый пароль ещё раз"
+                            data-validation-type="password"
                         )
                         span.input__message
 
             .row.mt-40
                 .col-12
-                    button(
-                        type="submit"
-                        class="btn btn_type_outline"
-                    )
-                      | СОХРАНИТЬ
+                    #button-3
 
         p.text_align_center.mt-20
             a(

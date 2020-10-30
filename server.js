@@ -36,7 +36,7 @@ app
 
 let serverInfo = `
   \x1b[32m###### server success ####### 
-  listen:      http://localhost:${PORT}/
+  listen: http://localhost:${PORT}/
   #############################\x1b[0m
   `;
 

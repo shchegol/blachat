@@ -16,6 +16,7 @@ export default `
                               name="first_name"
                               class="input__field"
                               placeholder="Ваше имя"
+                              data-validation-type="name"
                            )
                            span.input__message 
                    
@@ -28,6 +29,7 @@ export default `
                               name="second_name"
                               class="input__field"
                               placeholder="Ваша фамилия"
+                              data-validation-type="name"
                            )
                            span.input__message 
                    
@@ -42,6 +44,7 @@ export default `
                               name="login"
                               class="input__field"
                               placeholder="Ваш логин"
+                              data-validation-type="text"
                            )
                            span.input__message 
                    
@@ -56,6 +59,7 @@ export default `
                               name="email"
                               class="input__field"
                               placeholder="Ваш email"
+                              data-validation-type="email"
                            )
                            span.input__message 
                    
@@ -67,6 +71,7 @@ export default `
                               name="phone"
                               class="input__field"
                               placeholder="Ваш телефон"
+                              data-validation-type="phone"
                            )
                            span.input__message 
                    
@@ -81,6 +86,7 @@ export default `
                               name="password"
                               class="input__field"
                               placeholder="Ваш пароль"
+                              data-validation-type="password"
                            )
                            span.input__message 
                    
@@ -99,11 +105,7 @@ export default `
 
                .row.mt-40 
                    .col-12 
-                       button(
-                          type="submit"
-                          class="btn btn_type_outline btn_color_white"
-                       )
-                          | ЗАРЕГЕСТРИРОВАТЬСЯ
+                       #button-2
 
                        p.text_align_center.mt-20 
                            a(

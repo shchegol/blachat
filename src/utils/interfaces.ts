@@ -5,3 +5,8 @@ export interface IStringObject {
 export interface IArrayOfFunctionObject {
     [key: string]: any[];
 }
+
+export interface ValidationAnswer {
+    pass: boolean;
+    errMessage?: string;
+}

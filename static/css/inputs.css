@@ -16,7 +16,7 @@
     padding: 1rem;
     width: 100%;
     font-size: 1rem;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, .2);
     border: none;
     border-radius: 6px 6px 0 0;
     border-bottom: 3px solid #9E9E9E;
@@ -34,6 +34,7 @@
     display: flex;
     width: 100%;
     font-size: .8rem;
+    text-align: left;
 }
 
 /* white theme */
@@ -43,7 +44,7 @@
 
 .input_color_white .input__field {
     color: white;
-    background-color: rgba(255, 255, 255, .1);
+    background-color: rgba(255, 255, 255, .2);
     border-bottom-color: rgba(255, 255, 255, .5);
 }
 

@@ -12,17 +12,19 @@ aside.chat__side
                 class="avatar__img"
             )
         
-        div.search 
-            label.input.input_inline 
-                span.input__icon 
-                    i.material-icons search
-                
-                input(
-                    type="text"
-                    name="search"
-                    class="input__field"
-                    placeholder="Поиск по списку"
-                )
+        div.search
+            form
+                label.input.input_inline 
+                    span.input__icon 
+                        i.material-icons search
+                    
+                    input(
+                        type="text"
+                        name="search"
+                        class="input__field"
+                        placeholder="Поиск по списку"
+                        data-validation-type="text"
+                    )
             
     div.chat__list 
         ul.user-list 
@@ -206,15 +208,14 @@ main.chat__main
                     li.dropdown__item 
                         i.material-icons location_on
                         | Локация
-        div.col 
-            label.input.input_inline.input_textarea 
-                textarea(
-                    cols="30"
-                    rows="1"
-                    class="input__field"
-                )
-            
-        
+        div.col
+            form 
+                label.input.input_inline 
+                    input(
+                        class="input__field"
+                        data-validation-type="text"
+                    )
+                
         div
             button(
                 type="button"

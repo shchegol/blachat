@@ -10,43 +10,35 @@ export default class Block {
     };
 
     protected _element: HTMLElement;
-    protected _meta: { tagName: string, props: IStringObject };
+    protected _meta: { rootID: string, props: IStringObject };
     public props: IStringObject
     public eventBus: Function
 
-    constructor(tagName: string = 'div', props: IStringObject) {
-        console.log('constructor');
+    constructor(rootID: string, props: IStringObject) {
+        const eventBus: EventBus = new EventBus();
 
-        const eventBus = new EventBus();
+        this.props = this._makePropsProxy(props);
+        this._registerEvents(eventBus);
+        this.eventBus = () => eventBus;
         this._meta = {
-            tagName,
+            rootID,
             props,
         };
 
-        this.props = this._makePropsProxy(props);
-        this.eventBus = () => eventBus;
-
-        this._registerEvents(eventBus);
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    public init() {
-        console.log('init');
-
-        this._createResources();
-        this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    public init(): void {
     }
 
-    public componentDidMount() {
+    public componentDidMount(): void {
     }
 
-    public componentDidUpdate() {
+    public componentDidUpdate(): boolean {
         return true;
     }
 
-    public setProps = (nextProps: IStringObject) => {
-        console.log('setProps');
-
+    public setProps = (nextProps: IStringObject): void => {
         if (!nextProps) {
             return;
         }
@@ -54,63 +46,52 @@ export default class Block {
         Object.assign(this.props, nextProps);
     };
 
-    public render() {
-        return '';
+    public render(): string {
+        return ''
     }
 
-    public getContent() {
-        return this.element;
+    protected _init(): void {
+        this.init();
+        this._createResources();
+        this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
-    public get element() {
-        return this._element;
-    }
-
-    protected _registerEvents(eventBus: EventBus) {
-        console.log('_registerEvents');
-        eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+    protected _registerEvents(eventBus: EventBus): void {
+        eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
-    protected _createResources() {
-        console.log('_createResources');
+    protected _createResources(): void {
+        const {rootID} = this._meta
+        const root: HTMLElement | null = document.getElementById(rootID);
 
-        const {tagName} = this._meta;
-        this._element = this._createDocumentElement(tagName);
+        if (root === null) {
+            throw new Error(`Элемента с id="${rootID}" не существует`)
+        }
+
+        this._element = root;
     }
 
-    protected _componentDidMount() {
-        console.log('_componentDidMount');
-
+    protected _componentDidMount(): void {
         this.componentDidMount();
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    protected _componentDidUpdate() {
+    protected _componentDidUpdate(): void {
         const response = this.componentDidUpdate();
-
-        console.log('_componentDidUpdate');
 
         if (response) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
-    protected _render() {
-        console.log('_render');
-        // Этот небезопасный метод для упрощения логики
-        // Используйте шаблонизатор из npm или напишите свой безопасный
-        // Нужно не в строку компилировать (или делать это правильно),
-        // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-
+    protected _render(): void {
         this._element.innerHTML = this.render();
     }
 
     protected _makePropsProxy(props: IStringObject) {
-        console.log('_makePropsProxy');
-
         return new Proxy(props, {
             set: (target: IStringObject, prop: keyof IStringObject, value: string): boolean => {
                 const oldProps = {...this._meta.props};
@@ -127,11 +108,5 @@ export default class Block {
                 throw new Error('Нет прав');
             },
         });
-    }
-
-    protected _createDocumentElement(tagName: string): HTMLElement {
-        console.log('_createDocumentElement');
-        // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-        return document.createElement(tagName);
     }
 }
