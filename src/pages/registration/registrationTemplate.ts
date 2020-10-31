@@ -20,7 +20,6 @@ export default `
                            )
                            span.input__message 
                    
-
                    .col-6 
                        label.input.input_color_white 
                            span.input__label Фамилия
@@ -33,8 +32,6 @@ export default `
                            )
                            span.input__message 
                    
-               
-
                .row.mt-20 
                    .col-12 
                        label.input.input_color_white 
@@ -48,8 +45,6 @@ export default `
                            )
                            span.input__message 
                    
-               
-
                .row.mt-20 
                    .col-6 
                        label.input.input_color_white 

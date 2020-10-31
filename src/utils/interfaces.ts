@@ -2,11 +2,10 @@ export interface IStringObject {
     [key: string]: string;
 }
 
-export interface IArrayOfFunctionObject {
-    [key: string]: any[];
+export interface IRegExpObject {
+    [key: string]: RegExp;
 }
 
-export interface ValidationAnswer {
-    pass: boolean;
-    errMessage?: string;
+export interface IArrayOfFunctionObject {
+    [key: string]: any[];
 }

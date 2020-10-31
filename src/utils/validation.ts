@@ -1,5 +1,20 @@
-import {ValidationAnswer} from './interfaces.js'
+import {IRegExpObject} from './interfaces.js'
 
+/**
+ * @enum {string} - типы проверок
+ */
+enum ValidationTypes {
+    text = 'text',
+    name = 'name',
+    password = 'password',
+    email = 'email',
+    phone = 'phone',
+    equality = 'equality',
+}
+
+/**
+ * Валидация форм представленных на странице
+ */
 export function setFormsValidation() {
     const forms: HTMLCollection = document.getElementsByTagName('form');
 
@@ -7,7 +22,7 @@ export function setFormsValidation() {
         return
     }
 
-    [].forEach.call(forms, function (elem: HTMLElement) {
+    Array.from(forms, function (elem: HTMLElement) {
         elem.addEventListener('submit', formHandler);
     });
 
@@ -16,12 +31,15 @@ export function setFormsValidation() {
 
         const inputs: HTMLCollection = event.target.getElementsByTagName('input');
 
-        [].forEach.call(inputs, function (elem: HTMLInputElement) {
+        Array.from(inputs, function (elem: HTMLInputElement) {
             inputValidation(elem)
         });
     }
 }
 
+/**
+ * Валидация всех input на странице
+ */
 export function setInputsValidation() {
     const inputs: HTMLCollection = document.getElementsByTagName('input');
 
@@ -29,69 +47,79 @@ export function setInputsValidation() {
         return
     }
 
-    [].forEach.call(inputs, function (elem: HTMLElement) {
-        elem.addEventListener('focusin', inputHandler);
-        elem.addEventListener('focusout', inputHandler);
+    Array.from(inputs, function (elem: HTMLElement) {
+        elem.addEventListener('blur', inputHandler);
+        elem.addEventListener('focus', inputHandler);
     });
 
-    function inputHandler(event: any): void {
-        inputValidation(event.target);
+    function inputHandler(event: Event): void {
+        if (event.target instanceof HTMLInputElement) {
+            inputValidation(event.target);
+        }
     }
 }
 
-export function inputValidation(input: HTMLInputElement): boolean {
-    const value: string = input.value.trim();
-
+/**
+ * Валидация элемента input
+ * @param input {HTMLInputElement} - проверяемый input
+ * @return {string} - сообщение об ошибке, либо пустая строка
+ */
+export function inputValidation(input: HTMLInputElement): string {
+    const value: string = input.value;
     const validationType: string = input.dataset.validationType || 'text';
-    const validationAnswer: ValidationAnswer = validation(validationType, value)
+    const errMessage: string = validation((<any>ValidationTypes)[validationType], value)
     const inputBlock: Element | null = input.parentElement;
-    const errorBlock: Element | null  = input.nextElementSibling;
+    const errorBlock: Element | null = input.nextElementSibling;
 
     if (inputBlock === null) {
-        return validationAnswer.pass
+        return errMessage
     }
 
-    if (validationAnswer.pass) {
+    if (Boolean(errMessage)) {
+        inputBlock.classList.add('input_error');
+        if (errorBlock !== null) errorBlock.textContent = errMessage;
+    } else {
         inputBlock.classList.remove('input_error')
         if (errorBlock !== null) errorBlock.textContent = ''
-    } else {
-        inputBlock.classList.add('input_error');
-        if (errorBlock !== null) errorBlock.textContent = validationAnswer.errMessage || '';
     }
 
-    return validationAnswer.pass
+    return errMessage
 }
 
-export function validation (type: string, value: string, value2?: string): ValidationAnswer {
-    let answer: ValidationAnswer = {
-        errMessage: '',
-        pass: false
+/**
+ * Валидация
+ * @param {ValidationTypes} type - тип валидации
+ * @param {string} value - валидируемое значение
+ * @param {string} value2 - второе значение для сравнения
+ */
+export function validation(type: ValidationTypes, value: string, value2?: string): string {
+    const patterns: IRegExpObject = {
+        text: /[^\<\>\[\]%'`]+$/,
+        name: /^[а-яёА-ЯЁ]+$/,
+        password: /[^\<\>\[\]%'`]+$/,
+        email: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+        phone: /^\d[\d\(\)\ -]{4,14}\d$/
     }
+    let answer: string = ''
 
     switch (type) {
         case 'text':
-            answer.pass = check(/[^\<\>\[\]%'`]+$/, value);
-            if(!answer.pass) answer.errMessage = 'Только символы и цифры';
+            answer = check(patterns.text, value) ? '' : 'Только символы и цифры';
             break;
         case 'name':
-            answer.pass = check(/^[а-яёА-ЯЁ]+$/, value);
-            if(!answer.pass) answer.errMessage = 'Только русские буквы';
+            answer = check(patterns.name, value) ? '' : 'Только русские буквы';
             break;
         case 'password':
-            answer.pass = check(/[^\<\>\[\]%'`]+$/, value);
-            if(!answer.pass) answer.errMessage = 'Только символы и цифры';
+            answer = check(patterns.password, value) ? '' : 'Только символы и цифры';
             break;
         case 'email':
-            answer.pass = check(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, value);
-            if(!answer.pass) answer.errMessage = 'Адрес эл. почты введен неправильно!';
+            answer = check(patterns.email, value) ? '' : 'Адрес эл. почты введен неправильно!';
             break;
         case 'phone':
-            answer.pass = check(/^\d[\d\(\)\ -]{4,14}\d$/, value);
-            if(!answer.pass) answer.errMessage = 'Номер телефона введен неправильно!';
+            answer = check(patterns.phone, value) ? '' : 'Номер телефона введен неправильно!';
             break;
         case 'equality':
-            answer.pass = value === value2;
-            if(!answer.pass) answer.errMessage = 'Поля не равны';
+            answer = value === value2 ? '' : 'Поля не равны';
             break;
         default:
     }
@@ -99,6 +127,11 @@ export function validation (type: string, value: string, value2?: string): Valid
     return answer
 }
 
+/**
+ * Проверка значения по паттерну
+ * @param {RegExp} pattern - паттерн проверки
+ * @param {string} value - проверяемая строка
+ */
 function check(pattern: RegExp, value: string) {
     return pattern.test(value.trim())
 }
