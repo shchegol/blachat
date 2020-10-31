@@ -33,7 +33,7 @@ export default `
                
                     p.text_align_center.mt-20 
                         a(
-                            href="/registration"
+                            href="/registration.html"
                             class="text_color_white"
                         )
                             | Зарегестрироваться

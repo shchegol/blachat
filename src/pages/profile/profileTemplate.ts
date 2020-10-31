@@ -26,14 +26,14 @@ section.row.justify-content-center.profile
                  td.table__title Логин:
                  td.table__text ashchegol
          a(
-            href="/profile-edit"
+            href="/profile-edit.html"
             class="btn btn_type_outline mt-40"
          )
              | ИЗМЕНИТЬ ДАННЫЕ
          
          p.text_align_center.mt-20 
              a(
-                href="/auth"
+                href="/auth.html"
                 class="text_color_red"
              )
                | Выйти

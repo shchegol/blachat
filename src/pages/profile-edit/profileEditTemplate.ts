@@ -2,7 +2,7 @@ export default `
 .row
     .col
         a(
-            href="/"
+            href="/index.html"
             class="btn-icon btn-icon_size_l mt-20"
             title="К чату"
         )
@@ -153,7 +153,7 @@ section.row.justify-content-center.profile
 
         p.text_align_center.mt-20
             a(
-                href="/profile"
+                href="/profile.html"
                 class="text_color_red"
             )
               | Отмена

@@ -11,7 +11,7 @@ export default `
                 
                 p.mt-50
                     a(
-                        href="/"
+                        href="/index.html"
                         class="btn btn_type_outline btn_color_white"
                     )
                         | Вернуться к чату
