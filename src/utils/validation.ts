@@ -26,14 +26,16 @@ export function setFormsValidation() {
         elem.addEventListener('submit', formHandler);
     });
 
-    function formHandler(event: any): void {
+    function formHandler(event: Event): void {
         event.preventDefault();
 
-        const inputs: HTMLCollection = event.target.getElementsByTagName('input');
+        if (event.target instanceof HTMLFormElement) {
+            const inputs: HTMLCollection = event.target.getElementsByTagName('input');
 
-        Array.from(inputs, function (elem: HTMLInputElement) {
-            inputValidation(elem)
-        });
+            Array.from(inputs, function (elem: HTMLInputElement) {
+                inputValidation(elem)
+            });
+        }
     }
 }
 
@@ -94,11 +96,11 @@ export function inputValidation(input: HTMLInputElement): string {
  */
 export function validation(type: ValidationTypes, value: string, value2?: string): string {
     const patterns: IRegExpObject = {
-        text: /[^\<\>\[\]%'`]+$/,
+        text: /[^<>\[\]%'`]+$/,
         name: /^[а-яёА-ЯЁ]+$/,
-        password: /[^\<\>\[\]%'`]+$/,
+        password: /[^<>\[\]%'`]+$/,
         email: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-        phone: /^\d[\d\(\)\ -]{4,14}\d$/
+        phone: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/
     }
     let answer: string = ''
 
@@ -113,10 +115,10 @@ export function validation(type: ValidationTypes, value: string, value2?: string
             answer = check(patterns.password, value) ? '' : 'Только символы и цифры';
             break;
         case 'email':
-            answer = check(patterns.email, value) ? '' : 'Адрес эл. почты введен неправильно!';
+            answer = check(patterns.email, value) ? '' : 'Пример: name@site.ru';
             break;
         case 'phone':
-            answer = check(patterns.phone, value) ? '' : 'Номер телефона введен неправильно!';
+            answer = check(patterns.phone, value) ? '' : 'Можно так +7(903)888-88-88, или так 9261234567';
             break;
         case 'equality':
             answer = value === value2 ? '' : 'Поля не равны';

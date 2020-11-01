@@ -111,12 +111,10 @@ class Block {
     }
 
     protected _makePropsProxy(props: IAnyObject) {
-        // console.log('_makePropsProxy')
         return new Proxy(props, {
             set: (target: IAnyObject, prop: keyof IAnyObject, value: any): boolean => {
                 const oldProps = {...this._meta.props};
 
-                // if (target[prop] !== value) {
                 if (target[prop] !== value) {
                     target[prop] = value;
                     this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);

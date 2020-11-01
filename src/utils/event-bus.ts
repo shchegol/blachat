@@ -1,7 +1,6 @@
 import {IArrayOfListenersObject, IListener, IStringObject} from './interfaces'
 
 export default class EventBus {
-    // todo разобрать как ещё это можно сделать
     public listeners: IArrayOfListenersObject;
 
     public constructor() {
