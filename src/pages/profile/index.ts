@@ -1,12 +1,6 @@
-import template from './profileTemplate.js';
-// по другому с pug не получилось
-declare var require: any
-const pug = require('pug');
-const compiled: string = pug.render(template);
-const root: HTMLElement | null = document.getElementById('app');
+import PageProfile from "./PageProfile.js";
+import renderTo from "../../utils/renderTo.js";
 
-if (root === null) {
-    throw new Error('Элемента с id="app" не существует')
-}
+let pageProfile = new PageProfile();
 
-root.innerHTML = compiled;
+renderTo("#app", pageProfile);

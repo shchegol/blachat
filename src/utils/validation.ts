@@ -47,7 +47,7 @@ export function setInputsValidation() {
         return
     }
 
-    Array.from(inputs, function (elem: HTMLElement) {
+    Array.from(inputs, function (elem: HTMLInputElement) {
         elem.addEventListener('blur', inputHandler);
         elem.addEventListener('focus', inputHandler);
     });

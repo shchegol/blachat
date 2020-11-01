@@ -7,10 +7,12 @@ import {IStringObject} from './utils/interfaces.js'
         elem.addEventListener('submit', logFormData);
     });
 
-    function logFormData(e: any) {
+    function logFormData(e: Event) {
         e.preventDefault();
 
-        const formData: FormData = new FormData(e.target);
+        let form = e.target as HTMLFormElement
+
+        const formData = new FormData(form);
         let data: IStringObject = {};
 
         formData.forEach((value: string, key: string) => {

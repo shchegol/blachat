@@ -1,14 +1,14 @@
-import {IArrayOfFunctionObject} from './interfaces'
+import {IArrayOfListenersObject, IListener, IStringObject} from './interfaces'
 
 export default class EventBus {
     // todo разобрать как ещё это можно сделать
-    public listeners: IArrayOfFunctionObject;
+    public listeners: IArrayOfListenersObject;
 
     public constructor() {
         this.listeners = {};
     }
 
-    public on(event: string, callback: void) {
+    public on(event: string, callback: IListener) {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
@@ -16,22 +16,22 @@ export default class EventBus {
         this.listeners[event].push(callback);
     }
 
-    public off(event: string, callback: void) {
+    public off(event: string, callback: IListener) {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
 
-        this.listeners[event] = this.listeners[event].filter((listener: void) => {
+        this.listeners[event] = this.listeners[event].filter((listener) => {
             return listener !== callback
         });
     }
 
-    public emit<T>(event: string, ...args: T[]) {
+    public emit(event: string, ...args: IStringObject[]) {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
 
-        this.listeners[event].forEach(function (listener: (...props: any[]) => void) {
+        this.listeners[event].forEach((listener) => {
             listener(...args);
         });
     }

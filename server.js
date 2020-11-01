@@ -5,26 +5,20 @@ import {fileURLToPath} from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 4000;
+const pages = {
+  '/': 'chat',
+  '/auth': 'auth',
+  '/profile': 'profile',
+  '/profile-edit': 'profile-edit',
+  '/registration': 'registration',
+  '/404': '404',
+  '/500': '500',
+};
 const getPage = (pageName) => {
   return `${__dirname}/static/${pageName}.html`;
 };
-// const pages = {
-//   '/': 'chat',
-//   '/auth': 'auth',
-//   '/profile': 'profile',
-//   '/profile-edit': 'profile-edit',
-//   '/registration': 'registration',
-//   '/404': '404',
-//   '/500': '500',
-// };
 
 app.use(express.static('./static'));
-
-// for (let page in pages) {
-//   app.get(page, function(req, res) {
-//     res.sendFile(getPage(pages[page]));
-//   });
-// }
 
 app
     .get('/*', function(req, res) {

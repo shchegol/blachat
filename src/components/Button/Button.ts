@@ -21,7 +21,6 @@ class Button extends Block {
     }
 
     render(): string {
-        // console.log("Button render", pug.render(buttonTemplate, this.props), this.props)
         return pug.render(buttonTemplate, this.props);
     }
 }

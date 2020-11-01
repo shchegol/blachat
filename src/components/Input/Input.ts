@@ -3,7 +3,7 @@ declare var require: any
 const pug = require('pug');
 
 import Block from '../../utils/block.js';
-// import {IStringObject} from '../../utils/interfaces'
+import {IStringObject} from '../../utils/interfaces'
 
 const inputTemplate: string = `  
 label(
@@ -17,16 +17,14 @@ label(
         placeholder=placeholder
         data-validation-type=dataValidation
         class="input__field"
-        onFocus=focusHandler
-        onBlur=blurHandler
     )
     span.input__message #{message}
 `;
 
 class Input extends Block {
-    props: any;
+    props: IStringObject;
 
-    constructor(props: any) {
+    constructor(props: IStringObject) {
         super('div', props);
     }
 

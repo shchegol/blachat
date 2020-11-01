@@ -2,50 +2,54 @@ declare var require: any
 const pug = require('pug');
 
 import Block from "../../utils/block.js";
-// import Button from "../../components/Button/Button.js"
-// import Input from "../../components/Input/Input.js"
-// import {setFormsValidation, setInputsValidation, inputValidation} from '../../utils/validation.js';
+import Button from "../../components/Button/Button.js"
+import Input from "../../components/Input/Input.js"
+import {setFormsValidation, setInputsValidation} from '../../utils/validation.js';
 import {IAnyObject} from "../../utils/interfaces.js";
 import template from "./authTemplate.js";
 
 export default class PageAuth extends Block {
     props: IAnyObject;
 
-    constructor(tagName?: string, props?: any) {
-        super(tagName, {...props});
+    constructor(tagName?: string, props?: IAnyObject) {
+        super(tagName, {
+            ...props,
+            inputLogin: new Input({
+                classes: "input_color_white mt-20",
+                labelText: "Логин",
+                type: "text",
+                name: "login",
+                placeholder: "Ваш логин",
+                dataValidation: "text",
+            }),
+            inputPassword: new Input({
+                classes: "input_color_white mt-20",
+                labelText: "Пароль",
+                type: "password",
+                name: "password",
+                placeholder: "Ваш пароль",
+                dataValidation: "password"
+            }),
+            buttonSubmit: new Button({
+                classes: 'btn_type_outline btn_color_white mt-40',
+                type: 'submit',
+                text: 'ВОЙТИ'
+            }),
+        });
     }
 
-    componentDidMount() {
-        // console.log('componentDidMount')
-        // this.attachListeners();
+    componentDidRender() {
+        // Pug отдёт шаблон как строку.
+        // Долго мачался, но так и не получилось навешать события до отрисовки
+        setFormsValidation();
+        setInputsValidation();
     }
-
-    // attachListeners() {
-    //     // console.log(this)
-    //     console.log('attachListeners', document.getElementsByTagName('input'))
-    //
-    //     // inputValidation()
-    //
-    //     // setFormsValidation();
-    //     // setInputsValidation();
-    // }
 
     render(): string {
-        // console.log('PageAuth render', this.props.button)
-        // setFormsValidation();
-        // setInputsValidation();
-        const context = {
-            inputLogin: this.props.inputLogin.renderToString(),
-            inputPassword: this.props.inputPassword.renderToString(),
-            buttonSubmit: this.props.buttonSubmit.renderToString()
-        }
-
-        pug.render(template, context);
-
         return pug.render(template, {
-            inputLogin: this.props.inputLogin.renderToString(),
-            inputPassword: this.props.inputPassword.renderToString(),
-            buttonSubmit: this.props.buttonSubmit.renderToString()
+            inputLogin: this.props.inputLogin.render(),
+            inputPassword: this.props.inputPassword.render(),
+            buttonSubmit: this.props.buttonSubmit.render()
         });
     }
 }
