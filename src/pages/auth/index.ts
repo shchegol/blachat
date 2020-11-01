@@ -1,25 +1,67 @@
-// по другому с pug не получилось
-declare var require: any
-const pug = require('pug');
+// import {setFormsValidation, setInputsValidation} from '../../utils/validation.js';
+import PageAuth from "./PageAuth.js";
+import Button from "../../components/Button/Button.js"
+import Input from "../../components/Input/Input.js"
 
-import template from './authTemplate.js';
-import {setFormsValidation, setInputsValidation} from '../../utils/validation.js';
-import Button from '../../components/Button/Button.js'
+let login = new Input({
+    classes: "input input_color_white mt-20",
+    labelText: "Логин",
+    type: "text",
+    name: "login",
+    placeholder: "Ваш логин",
+    dataValidation: "text",
+    handlers: {
+        focusHandler: () => { console.log('ama click handler!!!'); },
+        blurHandler: () => { console.log('ama change handler!!!'); },
+    }
+})
 
-const compiled: string = pug.render(template);
-const root: HTMLElement | null = document.getElementById('app');
+let pageAuth = new PageAuth('div', {
+    inputLogin: login,
+    inputPassword: new Input({
+        classes: "input input_color_white mt-20",
+        labelText: "Пароль",
+        type: "password",
+        name: "password",
+        placeholder: "Ваш пароль",
+        dataValidation: "password"
+    }),
+    buttonSubmit: new Button({
+        classes: 'btn_type_outline btn_color_white mt-40',
+        type: 'submit',
+        text: 'ВОЙТИ'
+    })
+});
 
-if (root === null) {
-    throw new Error('Элемента с id="app" не существует')
+function render(query: string, block: any) {
+    const root: HTMLElement | null = document.querySelector(query);
+
+    if(root === null) {
+        throw new Error(`Элемента ${query} не существует`)
+    }
+
+    root.appendChild(block.getContent());
+    return root;
 }
 
-root.innerHTML = compiled;
+render("#app", pageAuth);
 
-setFormsValidation();
-setInputsValidation();
+Input.hydrate();
+login.attachListeners()
 
-new Button('button-1', {
-    classes: 'btn_type_outline btn_color_white mt-40',
-    type: 'submit',
-    text: 'ВОЙТИ'
-});
+// pageAuth.componentDidMount = () => {
+//     console.log(123)
+// }
+
+// Button.hydrate();
+// Input.hydrate();
+
+//
+// setFormsValidation();
+// setInputsValidation();
+//
+// new Button('button-1', {
+//     classes: 'btn_type_outline btn_color_white mt-40',
+//     type: 'submit',
+//     text: 'ВОЙТИ'
+// });

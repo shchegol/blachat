@@ -1,17 +1,10 @@
-import template from '../../layouts/errors.js';
-// по другому с pug не получилось
-declare var require: any
-const pug = require('pug');
+import {IStringObject} from "../../utils/interfaces.js";
+import Errors from "../../layouts/Errors/Errors.js";
 
-const props = {
+const props: IStringObject = {
   title: '404',
   textPrimary: 'Такой страницы не существует...',
 };
-const compiled: string = pug.render(template, props);
-const root: HTMLElement | null = document.getElementById('app');
 
-if (root === null) {
-  throw new Error('Компиляция страницы 404. Элемента с id="app" не существует')
-}
+new Errors('app', props);
 
-root.innerHTML = compiled;

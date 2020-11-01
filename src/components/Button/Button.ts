@@ -7,6 +7,7 @@ import {IStringObject} from '../../utils/interfaces'
 
 const buttonTemplate: string = `  
 button(
+    id=id
     type=type
     class="btn " + classes
 ) #{text}
@@ -15,11 +16,12 @@ button(
 class Button extends Block {
     props: IStringObject;
 
-    constructor(rootID: string, props: IStringObject) {
-        super(rootID, props);
+    constructor(props: IStringObject) {
+        super('div', props);
     }
 
     render(): string {
+        // console.log("Button render", pug.render(buttonTemplate, this.props), this.props)
         return pug.render(buttonTemplate, this.props);
     }
 }
