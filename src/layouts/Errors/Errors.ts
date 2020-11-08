@@ -2,19 +2,17 @@ declare var require: any
 const pug = require('pug');
 
 import Block from "../../utils/block.js";
-import {IStringObject} from "../../utils/interfaces.js";
+import {IAnyObject} from "../../utils/interfaces.js";
 import template from "./errorsTemplate.js";
 
-class Errors extends Block {
-    props: IStringObject;
+export default class Errors extends Block {
+    props: IAnyObject;
 
-    constructor(rootID: string, props: IStringObject) {
-        super(rootID, props);
+    constructor(tagName?: string, props?: IAnyObject) {
+        super(tagName, {...props});
     }
 
     render(): string {
         return pug.render(template, this.props);
     }
 }
-
-export default Errors;

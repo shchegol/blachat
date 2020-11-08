@@ -6,7 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 4000;
 const pages = {
-  '/': 'chat',
+  '/': 'index',
   '/auth': 'auth',
   '/profile': 'profile',
   '/profile-edit': 'profile-edit',
@@ -21,12 +21,15 @@ const getPage = (pageName) => {
 app.use(express.static('./static'));
 
 app
-    .get('/*', function(req, res) {
-      res.status(404).sendFile(getPage('/404'));
+    .get('*', (req, res) => {
+      res.sendFile(getPage('/index'))
     })
-    .get('/*', function(req, res) {
-      res.status(500).sendFile(getPage('/500'));
-    });
+    // .get('*', function(req, res) {
+    //   res.status(404).sendFile(getPage('/404'));
+    // })
+    // .get('/*', function(req, res) {
+    //   res.status(500).sendFile(getPage('/500'));
+    // });
 
 let serverInfo = `
   \x1b[32m###### server success ####### 

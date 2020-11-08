@@ -1,10 +1,13 @@
-import {IStringObject} from "../../utils/interfaces.js";
+import {IAnyObject} from "../../utils/interfaces.js";
 import Errors from "../../layouts/Errors/Errors.js";
+import renderTo from "../../utils/renderTo.js";
 
-const props: IStringObject = {
+const props: IAnyObject = {
   title: '404',
   textPrimary: 'Такой страницы не существует...',
 };
 
-new Errors('app', props);
+let error404 = new Errors('app', props);
+
+renderTo("#app", error404);
 
