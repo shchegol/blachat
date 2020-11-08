@@ -8,7 +8,7 @@
     "prestart": "npm run build",
     "start": "npm run server",
     "build": "npm run ts",
-    "netlify": "npm i && npm run build && npm run server",
+    "netlify": "npm run build",
     "ts": "tsc",
     "server": "node server.js",
     "sass": "sass src/styles/index.scss build/main.css",
