@@ -1,4 +1,4 @@
-import {IStringObject} from './utils/interfaces.js'
+import {IStringObject} from './utils/ts/interfaces.js'
 
 (function () {
     const forms: HTMLCollection = document.getElementsByTagName('form');

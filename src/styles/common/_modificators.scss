@@ -1,0 +1,51 @@
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text {
+  &_color {
+    &_white {
+      color: #ffffff;
+    }
+  }
+
+  &_size {
+    &_xxxl {
+      font-size: 10rem;
+    }
+  }
+
+  &_align {
+    &_center {
+      text-align: center;
+    }
+
+    &_left {
+      text-align: left;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-primary;
+  color: map_get($colors, text-main);
+}
+
+a {
+  color: map_get($colors, link-main);
+}
+
+.bg {
+  &_color {
+    &_auth {
+      min-height: 100vh;
+      background: map_get($colors, bg-main) url("../img/bg.jpg") no-repeat;
+      background-size: cover;
+    }
+  }
+}

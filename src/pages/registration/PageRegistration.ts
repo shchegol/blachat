@@ -1,14 +1,14 @@
 declare var require: any
 const pug = require('pug');
 
-import Block from "../../utils/block.js";
+import Component from "../../components/Component.js";
 import Button from "../../components/Button/Button.js"
 import Input from "../../components/Input/Input.js"
 import {setFormsValidation, setInputsValidation} from '../../utils/validation.js';
-import {IAnyObject} from "../../utils/interfaces.js";
+import {IAnyObject} from "../../utils/ts/interfaces.js";
 import template from "./registrationTemplate.js";
 
-export default class PageRegistration extends Block {
+export default class PageRegistration extends Component {
     props: IAnyObject;
 
     constructor(tagName?: string, props?: IAnyObject) {

@@ -1,11 +1,11 @@
 declare var require: any
 const pug = require('pug');
 
-import Block from "../../utils/block.js";
-import {IAnyObject} from "../../utils/interfaces.js";
+import Component from "../../components/Component.js";
+import {IAnyObject} from "../../utils/ts/interfaces.js";
 import template from "./profileTemplate.js";
 
-export default class PageProfile extends Block {
+export default class PageProfile extends Component {
     props: IAnyObject;
 
     constructor(tagName?: string, props?: IAnyObject) {

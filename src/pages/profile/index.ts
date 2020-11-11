@@ -1,5 +1,5 @@
 import PageProfile from "./PageProfile.js";
-import renderTo from "../../utils/renderTo.js";
+import {renderTo} from "../../utils/helpers";
 
 let pageProfile = new PageProfile();
 

@@ -1,4 +1,4 @@
-import {IRegExpObject} from './interfaces.js'
+import {IRegExpObject} from './ts/interfaces.js'
 
 /**
  * @enum {string} - типы проверок

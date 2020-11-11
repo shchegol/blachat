@@ -1,11 +1,11 @@
-import EventBus from './event-bus.js'
-import {IAnyObject} from './interfaces'
+import EventBus from './EventBus.js'
+import {IAnyObject} from '../utils/ts/interfaces'
 
 interface IEventBusFunction {
     (): EventBus;
 }
 
-class Block {
+export default class Component {
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',
@@ -30,7 +30,7 @@ class Block {
         };
         this.eventBus = () => eventBus;
 
-        eventBus.emit(Block.EVENTS.INIT);
+        eventBus.emit(Component.EVENTS.INIT);
     }
 
     public get element(): HTMLElement {
@@ -66,18 +66,26 @@ class Block {
         return ''
     }
 
+    public show() {
+        this.getContent().style.display = "block";
+    }
+
+    public hide() {
+        this.getContent().style.display = "none";
+    }
+
     protected _init(): void {
         this.init();
         this._createResources();
-        this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+        this.eventBus().emit(Component.EVENTS.FLOW_CDM);
     }
 
     protected _registerEvents(eventBus: EventBus): void {
-        eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDR, this._componentDidRender.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+        eventBus.on(Component.EVENTS.INIT, this._init.bind(this));
+        eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+        eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+        eventBus.on(Component.EVENTS.FLOW_CDR, this._componentDidRender.bind(this));
+        eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
     protected _createResources(): void {
@@ -87,14 +95,14 @@ class Block {
 
     protected _componentDidMount(): void {
         this.componentDidMount();
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+        this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
     }
 
     protected _componentDidUpdate(): void {
         const response = this.componentDidUpdate();
 
         if (response) {
-            this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+            this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
         }
     }
 
@@ -107,7 +115,7 @@ class Block {
 
     protected _render(): void {
         this._element.innerHTML = this.render();
-        this.eventBus().emit(Block.EVENTS.FLOW_CDR);
+        this.eventBus().emit(Component.EVENTS.FLOW_CDR);
     }
 
     protected _makePropsProxy(props: IAnyObject) {
@@ -117,7 +125,7 @@ class Block {
 
                 if (target[prop] !== value) {
                     target[prop] = value;
-                    this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
+                    this.eventBus().emit(Component.EVENTS.FLOW_CDU, oldProps, target);
                     return true;
                 }
 
@@ -129,9 +137,7 @@ class Block {
         });
     }
 
-    _createDocumentElement(tagName: string): HTMLElement {
+    protected _createDocumentElement(tagName: string): HTMLElement {
         return document.createElement(tagName);
     }
 }
-
-export default Block;

@@ -30,7 +30,7 @@ body {
 
 .bg_color_auth {
     min-height: 100vh;
-    background: #673AB7 url("../img/bg.jpg") no-repeat;
+    background: #673AB7 url("../../img/bg.jpg") no-repeat;
     background-size: cover;
 }
 

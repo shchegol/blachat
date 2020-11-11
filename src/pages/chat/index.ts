@@ -1,6 +1,6 @@
 import PageChat from "./PageChat.js";
-import renderTo from "../../utils/renderTo.js";
+import {renderTo} from "../../utils/helpers";
 
-let pageChat = new PageChat();
+const pageChat = new PageChat();
 
 renderTo("#app", pageChat);

@@ -1,5 +1,5 @@
 import PageRegistration from "./PageRegistration.js";
-import renderTo from "../../utils/renderTo.js";
+import {renderTo} from "../../utils/helpers";
 
 let pageRegistration = new PageRegistration();
 

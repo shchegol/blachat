@@ -2,8 +2,8 @@
 declare var require: any
 const pug = require('pug');
 
-import Block from '../../utils/block.js';
-import {IStringObject} from '../../utils/interfaces'
+import Component from '../Component.js';
+import {IStringObject} from '../../utils/ts/interfaces'
 
 const buttonTemplate: string = `  
 button(
@@ -13,7 +13,7 @@ button(
 ) #{text}
 `;
 
-class Button extends Block {
+class Button extends Component {
     props: IStringObject;
 
     constructor(props: IStringObject) {

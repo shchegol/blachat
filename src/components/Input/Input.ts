@@ -2,8 +2,8 @@
 declare var require: any
 const pug = require('pug');
 
-import Block from '../../utils/block.js';
-import {IStringObject} from '../../utils/interfaces'
+import Component from '../Component.js';
+import {IStringObject} from '../../utils/ts/interfaces'
 
 const inputTemplate: string = `  
 label(
@@ -21,7 +21,7 @@ label(
     span.input__message #{message}
 `;
 
-class Input extends Block {
+class Input extends Component {
     props: IStringObject;
 
     constructor(props: IStringObject) {

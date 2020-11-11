@@ -3,11 +3,11 @@ import {setInputsValidation} from "../../utils/validation.js";
 declare var require: any
 const pug = require('pug');
 
-import Block from "../../utils/block.js";
-import {IAnyObject} from "../../utils/interfaces.js";
+import Component from "../../components/Component.js";
+import {IAnyObject} from "../../utils/ts/interfaces.js";
 import template from "./chatTemplate.js";
 
-export default class PageProfile extends Block {
+export default class PageProfile extends Component {
     props: IAnyObject;
 
     constructor(tagName?: string, props?: IAnyObject) {
@@ -17,8 +17,6 @@ export default class PageProfile extends Block {
     }
 
     componentDidRender() {
-        // Pug отдёт шаблон как строку.
-        // Долго мачался, но так и не получилось навешать события до отрисовки
         setInputsValidation();
     }
 

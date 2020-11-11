@@ -1,6 +1,6 @@
 import PageAuth from "./PageAuth.js";
-import renderTo from "../../utils/renderTo.js";
+import {renderTo} from "../../utils/helpers";
 
-let pageAuth = new PageAuth();
+const pageAuth = new PageAuth();
 
 renderTo("#app", pageAuth);
