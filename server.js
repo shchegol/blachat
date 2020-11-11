@@ -5,31 +5,15 @@ import {fileURLToPath} from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = 4000;
-const pages = {
-  '/': 'index',
-  '/auth': 'auth',
-  '/profile': 'profile',
-  '/profile-edit': 'profile-edit',
-  '/registration': 'registration',
-  '/404': '404',
-  '/500': '500',
-};
+
 const getPage = (pageName) => {
   return `${__dirname}/static/${pageName}.html`;
 };
 
 app.use(express.static('./static'));
-
-app
-    .get('*', (req, res) => {
-      res.sendFile(getPage('/index'))
-    })
-    // .get('*', function(req, res) {
-    //   res.status(404).sendFile(getPage('/404'));
-    // })
-    // .get('/*', function(req, res) {
-    //   res.status(500).sendFile(getPage('/500'));
-    // });
+app.get('*', (req, res) => {
+  res.sendFile(getPage('/index'));
+});
 
 let serverInfo = `
   \x1b[32m###### server success ####### 

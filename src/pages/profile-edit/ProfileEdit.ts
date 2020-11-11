@@ -8,7 +8,7 @@ import {setFormsValidation, setInputsValidation} from '../../utils/validation.js
 import {IAnyObject} from "../../utils/ts/interfaces.js";
 import template from "./profileEditTemplate.js";
 
-export default class PageProfileEdit extends Component {
+export default class ProfileEdit extends Component {
     props: IAnyObject;
 
     constructor(tagName?: string, props?: IAnyObject) {

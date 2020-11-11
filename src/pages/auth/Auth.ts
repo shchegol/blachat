@@ -8,7 +8,7 @@ import {setFormsValidation, setInputsValidation} from '../../utils/validation.js
 import {IAnyObject} from "../../utils/ts/interfaces.js";
 import template from "./authTemplate.js";
 
-export default class PageAuth extends Component {
+export default class Auth extends Component {
     props: IAnyObject;
 
     constructor(tagName?: string, props?: IAnyObject) {
@@ -41,6 +41,9 @@ export default class PageAuth extends Component {
     componentDidRender() {
         setFormsValidation();
         setInputsValidation();
+
+        document.title = `BLABLA - авторизация`;
+        document.body.classList.add('bg_color_auth');
     }
 
     render(): string {

@@ -1,9 +1,11 @@
+import {setInputsValidation} from "../../utils/validation.js";
+
 declare var require: any
 const pug = require('pug');
 
 import Component from "../../components/Component.js";
 import {IAnyObject} from "../../utils/ts/interfaces.js";
-import template from "./profileTemplate.js";
+import template from "./chatTemplate.js";
 
 export default class PageProfile extends Component {
     props: IAnyObject;
@@ -12,6 +14,11 @@ export default class PageProfile extends Component {
         super(tagName, {
             ...props,
         });
+    }
+
+    componentDidRender() {
+        document.title = `BLABLA - авторизация`;
+        setInputsValidation();
     }
 
     render(): string {

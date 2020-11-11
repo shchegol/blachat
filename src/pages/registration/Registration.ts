@@ -8,7 +8,7 @@ import {setFormsValidation, setInputsValidation} from '../../utils/validation.js
 import {IAnyObject} from "../../utils/ts/interfaces.js";
 import template from "./registrationTemplate.js";
 
-export default class PageRegistration extends Component {
+export default class Registration extends Component {
     props: IAnyObject;
 
     constructor(tagName?: string, props?: IAnyObject) {
@@ -79,10 +79,10 @@ export default class PageRegistration extends Component {
     }
 
     componentDidRender() {
-        // Pug отдёт шаблон как строку.
-        // Долго мачался, но так и не получилось навешать события до отрисовки
         setFormsValidation();
         setInputsValidation();
+
+        document.body.classList.add('bg_color_auth')
     }
 
     render(): string {

@@ -15,7 +15,7 @@ a {
   &_color {
     &_auth {
       min-height: 100vh;
-      background: map_get($colors, bg-main) url("../img/bg.jpg") no-repeat;
+      background: map_get($colors, bg-main) url("/img/bg.jpg") no-repeat;
       background-size: cover;
     }
   }

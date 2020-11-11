@@ -1,6 +1,6 @@
-import {IAnyObject} from "../../utils/ts/interfaces.js";
-import Errors from "../../layouts/Errors/Errors.js";
-import {renderTo} from "../../utils/helpers";
+import {IAnyObject} from "../../../utils/ts/interfaces.js";
+import Errors from "../../../layouts/Errors/Errors.js";
+import {renderTo} from "../../../utils/helpers";
 
 const props: IAnyObject = {
   title: '404',

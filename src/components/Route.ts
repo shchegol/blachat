@@ -1,5 +1,5 @@
-import Component from "./Component";
-import {isEqual, renderTo} from "../utils/helpers";
+import Component from "./Component.js";
+import {isEqual, renderTo} from "../utils/helpers.js";
 import {IAnyObject} from "../utils/ts/interfaces";
 
 export default class Route {
