@@ -1,11 +1,11 @@
-import {setInputsValidation} from "../../utils/validation.js";
+import {setInputsValidation} from "../../utils/validation";
 
 declare var require: any
 const pug = require('pug');
 
-import Component from "../../components/Component.js";
-import {IAnyObject} from "../../utils/ts/interfaces.js";
-import template from "./chatTemplate.js";
+import Component from "../../components/Component";
+import {IAnyObject} from "../../utils/ts/interfaces";
+import template from "./chat.templ";
 
 export default class PageProfile extends Component {
     props: IAnyObject;

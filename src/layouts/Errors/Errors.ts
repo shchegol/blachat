@@ -1,9 +1,9 @@
 declare var require: any
 const pug = require('pug');
 
-import Component from "../../components/Component.js";
-import {IAnyObject} from "../../utils/ts/interfaces.js";
-import template from "./errorsTemplate.js";
+import Component from "../../components/Component";
+import {IAnyObject} from "../../utils/ts/interfaces";
+import template from "./errors.templ";
 
 export default class Errors extends Component {
     props: IAnyObject;

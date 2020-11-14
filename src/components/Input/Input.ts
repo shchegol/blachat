@@ -2,7 +2,7 @@
 declare var require: any
 const pug = require('pug');
 
-import Component from '../Component.js';
+import Component from '../Component';
 import {IStringObject} from '../../utils/ts/interfaces'
 
 const inputTemplate: string = `  

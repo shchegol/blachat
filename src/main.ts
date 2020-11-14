@@ -1,16 +1,17 @@
-import Router from './components/Router.js';
-import Chat from './pages/chat/Chat.js';
-import Auth from './pages/auth/Auth.js';
-import Registration from './pages/registration/Registration.js';
-import Profile from './pages/profile/Profile.js';
-import ProfileEdit from './pages/profile-edit/ProfileEdit.js';
+import Router from './components/Router';
+import Chat from './pages/chat/Chat';
+import Auth from './pages/auth/Auth';
+import Registration from './pages/registration/Registration';
+import Index from './pages/profile/Profile';
+import ProfileEdit from './pages/profile-edit/ProfileEdit';
+
 const router = new Router("#app");
 
 router
     .use("/", Chat)
     .use("/auth", Auth)
     .use("/registration", Registration)
-    .use("/profile", Profile)
+    .use("/profile", Index)
     .use("/profile-edit", ProfileEdit)
     .start();
 

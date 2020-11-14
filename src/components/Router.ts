@@ -1,5 +1,5 @@
-import Route from "./Route.js";
-import Component from "./Component.js";
+import Route from "./Route";
+import Component from "./Component";
 
 export default class Router {
     static __instance: Router;

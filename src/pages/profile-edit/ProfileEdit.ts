@@ -1,12 +1,12 @@
 declare var require: any
 const pug = require('pug');
 
-import Component from "../../components/Component.js";
-import Button from "../../components/Button/Button.js"
-import Input from "../../components/Input/Input.js"
-import {setFormsValidation, setInputsValidation} from '../../utils/validation.js';
-import {IAnyObject} from "../../utils/ts/interfaces.js";
-import template from "./profileEditTemplate.js";
+import Component from "../../components/Component";
+import Button from "../../components/Button/Button"
+import Input from "../../components/Input/Input"
+import {setFormsValidation, setInputsValidation} from '../../utils/validation';
+import {IAnyObject} from "../../utils/ts/interfaces";
+import template from "./profileEdit.templ";
 
 export default class ProfileEdit extends Component {
     props: IAnyObject;

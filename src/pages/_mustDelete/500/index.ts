@@ -1,5 +1,5 @@
-import {IAnyObject} from "../../../utils/ts/interfaces.js";
-import Errors from "../../../layouts/Errors/Errors.js";
+import {IAnyObject} from "../../../utils/ts/interfaces";
+import Errors from "../../../layouts/Errors/Errors";
 import {renderTo} from "../../../utils/helpers";
 
 const props: IAnyObject = {

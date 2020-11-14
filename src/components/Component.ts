@@ -1,4 +1,4 @@
-import EventBus from './EventBus.js'
+import EventBus from './EventBus'
 import {IAnyObject} from '../utils/ts/interfaces'
 
 interface IEventBusFunction {

@@ -3,5 +3,6 @@ node_modules/
 
 doc/
 build/
+static/build/
 
 package-lock.json

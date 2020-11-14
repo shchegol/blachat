@@ -1,4 +1,4 @@
-import Component from "../components/Component.js";
+import Component from "../components/Component";
 import {IRequestData} from './ts/interfaces'
 import {TRequestData} from "./ts/types";
 

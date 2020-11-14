@@ -7,12 +7,13 @@
   "scripts": {
     "prestart": "npm run build",
     "start": "npm run server",
-    "build": "npm run ts",
-    "netlify": "npm run build",
-    "ts": "tsc",
+    "build": " npm run ts && node importer.js",
+    "ts": "npm run clear && tsc",
     "server": "node server.js",
     "sass": "sass src/styles/index.scss static/build/styles/main.css",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clear": "rimraf static/build",
+    "netlify": "npm run build",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -32,13 +33,30 @@
   "bugs": {
     "url": "https://github.com/shchegol/mf.messenger.praktikum.yandex/issues"
   },
+  "directories": {
+    "src": "./src",
+    "test": "./test"
+  },
   "homepage": "https://github.com/shchegol/mf.messenger.praktikum.yandex#readme",
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-typescript": "^7.12.1",
+    "@babel/register": "^7.12.1",
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.0.4",
     "@types/pug": "^2.0.4",
+    "chai": "4.2.0",
     "express": "4.17.1",
+    "filehound": "1.17.4",
+    "mocha": "8.2.1",
     "pug": "3.0.0",
+    "rimraf": "3.0.2",
     "sass": "1.27.0",
     "typescript": "4.0.3"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
