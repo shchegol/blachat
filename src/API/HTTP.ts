@@ -1,7 +1,8 @@
-import {IRequestOptions} from '../utils/ts/interfaces';
+import {IRequestOptions, IAnyObject} from '../utils/ts/interfaces';
 import {queryStringify} from "../utils/helpers";
+import {HOST} from '../constants'
 
-export default class Request {
+class HTTP {
     static METHODS = {
         GET: 'GET',
         PUT: 'PUT',
@@ -9,36 +10,44 @@ export default class Request {
         DELETE: 'DELETE'
     };
 
+    public host: string;
+
+    constructor(host: string = '') {
+        this.host = host;
+    }
+
+
     public get(url: string, options: IRequestOptions = {}) {
         return this._request(url, {
             ...options,
-            method: Request.METHODS.GET,
+            method: HTTP.METHODS.GET,
         }, options.timeout);
     }
 
     public post(url: string, options: IRequestOptions = {}) {
         return this._request(url, {
             ...options,
-            method: Request.METHODS.POST,
+            method: HTTP.METHODS.POST,
         }, options.timeout);
     }
 
-    public put(url: string, options: IRequestOptions = {}) {
+    public put(url: string, options: IAnyObject = {}) {
         return this._request(url, {
             ...options,
-            method: Request.METHODS.PUT,
+            method: HTTP.METHODS.PUT,
         }, options.timeout);
     }
 
     public delete(url: string, options: IRequestOptions = {}) {
         return this._request(url, {
             ...options,
-            method: Request.METHODS.DELETE,
+            method: HTTP.METHODS.DELETE,
         }, options.timeout);
     }
 
     protected _request(url: string, options: IRequestOptions, timeout: number = 5000) {
-        let {method, headers, data} = options;
+        let {method, headers, body} = options;
+        url = `${this.host}${url}`;
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
@@ -47,18 +56,14 @@ export default class Request {
                 method = 'GET';
             }
 
-            if (method === Request.METHODS.GET && data) {
-                url += queryStringify(data)
+            if (method === HTTP.METHODS.GET && body) {
+                url += queryStringify(body)
             }
 
-            console.log(url)
-
             xhr.open(method, url);
-
             xhr.onload = function () {
                 resolve(xhr);
             };
-
             xhr.timeout = timeout;
             xhr.ontimeout = reject;
             xhr.onabort = reject;
@@ -71,13 +76,20 @@ export default class Request {
             }
 
             if (
-                (method === Request.METHODS.POST || method === Request.METHODS.PUT)
-                && data
+                (method === HTTP.METHODS.POST || method === HTTP.METHODS.PUT)
+                && body
             ) {
-                xhr.send(JSON.stringify(data));
+                xhr.send(JSON.stringify(body));
             } else {
                 xhr.send();
             }
         });
     }
 }
+
+export const APIInstance = new HTTP(`${HOST}`);
+export const authAPIInstance = new HTTP(`${HOST}/auth`);
+export const userAPIInstance = new HTTP(`${HOST}/user`);
+export const chatAPIInstance = new HTTP(`${HOST}/chats`);
+
+export default HTTP

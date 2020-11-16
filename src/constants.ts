@@ -1,0 +1,1 @@
+export const HOST: string = 'https://ya-praktikum.tech/api/v2'

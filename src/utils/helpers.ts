@@ -1,5 +1,5 @@
 import Component from "../components/Component";
-import {IRequestData} from './ts/interfaces'
+import {IRequestData, IStringObject} from './ts/interfaces'
 import {TRequestData} from "./ts/types";
 
 export function getType(value: any): string {
@@ -68,4 +68,16 @@ export function renderTo(query: string, component: Component) {
 
     root.appendChild(component.getContent());
     return root;
+}
+
+export function getFormData(e: Event) {
+    const form = e.target as HTMLFormElement
+    const formData = new FormData(form);
+    let data: IStringObject = {};
+
+    formData.forEach((value: string, key: string) => {
+        data[key] = value;
+    });
+
+    return data
 }

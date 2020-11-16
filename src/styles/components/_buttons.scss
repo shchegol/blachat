@@ -13,90 +13,122 @@
     cursor: pointer;
     text-decoration: none;
     transition: box-shadow .2s, background-color .2s;
-}
 
-.btn:hover,
-.btn:active,
-.btn.active {
-    background-color: #1976D2;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
-}
+    &:hover,
+    &:active,
+    &.active {
+        background-color: #1976D2;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    }
 
-/* color theme */
-.btn_color_white {
-    color: #424242;
-    background-color: #ffffff;
-    border-color: #ffffff;
-}
+    /* color theme */
+    &_color {
+        &_white {
+            color: #424242;
+            background-color: #ffffff;
+            border-color: #ffffff;
 
-.btn_color_white:hover,
-.btn_color_white:active,
-.btn_color_white.active {
-    border-color: #ECEFF1;
-}
+            &:hover,
+            &:active,
+            &.active {
+                border-color: #ECEFF1;
+            }
+        }
 
-.btn_color_green {
-    color: #ffffff;
-    background-color: #4CAF50;
-    border-color: #4CAF50;
-}
+        &_green {
+            color: #ffffff;
+            background-color: #4CAF50;
+            border-color: #4CAF50;
 
-.btn_color_green:hover,
-.btn_color_green:active,
-.btn_color_green.active {
-    border-color: #43A047;
-    background-color: #43A047;
-}
+            &:hover,
+            &:active,
+            &.active {
+                border-color: #43A047;
+                background-color: #43A047;
+            }
+        }
 
-.btn_color_red {
-    color: #ffffff;
-    background-color: #f44336;
-    box-shadow: 0 0 0 2px #f44336 inset;
-}
+        &_color_red {
+            color: #ffffff;
+            background-color: #f44336;
+            box-shadow: 0 0 0 2px #f44336 inset;
 
-.btn_color_red:hover,
-.btn_color_red:active,
-.btn_color_red.active {
-    border-color: #e53935;
-    box-shadow: 0 0 0 2px #e53935 inset;
-}
+            &:hover,
+            &:active,
+            &.active {
+                border-color: #e53935;
+                box-shadow: 0 0 0 2px #e53935 inset;
+            }
+        }
+    }
 
-/* types */
-.btn_type_outline {
-    color: #2196F3;
-    background-color: transparent;
-    border: none;
-    box-shadow: 0 0 0 2px #2196F3 inset;
-}
+    /* types */
+    &_type {
+        &_link {
+            display: inline-flex;
+            padding: 0;
+            font-size: 1rem;
+            font-weight: normal;
+            color: map_get($colors, link-main);
+            border: none;
+            background-color: transparent;
+            border-radius: 0;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: none;
 
-.btn_type_outline:hover,
-.btn_type_outline:active,
-.btn_type_outline.active {
-    color: #1976D2;
-    background-color: rgba(25, 118, 210, .1);
-    box-shadow: 0 0 0 2px #1976D2 inset;
-}
+            &:hover,
+            &:active,
+            &.active {
+                background-color: transparent;
+                box-shadow: none;
+                text-decoration: none;
+            }
 
-.btn_type_outline.btn_color_white {
-    color: #ffffff;
-    box-shadow: 0 0 0 2px #ffffff inset;
-}
+            &.btn_color_white {
+                color: #ffffff;
+            }
+        }
 
-.btn_type_outline.btn_color_white:hover,
-.btn_type_outline.btn_color_white:active,
-.btn_type_outline.btn_color_white.active {
-    background-color: rgba(255, 255, 255, .2);
-    box-shadow: 0 0 0 2px #ffffff inset;
-}
+        &_outline {
+            color: #2196F3;
+            background-color: transparent;
+            border: none;
+            box-shadow: 0 0 0 2px #2196F3 inset;
 
-.btn_type_pill {
-    border-radius: 1000px;
-}
+            &:hover,
+            &:active,
+            &.active {
+                color: #1976D2;
+                background-color: rgba(25, 118, 210, .1);
+                box-shadow: 0 0 0 2px #1976D2 inset;
+            }
 
-/* sizes */
-.btn_size_s {
-    padding: .6rem 1rem;
-    font-size: .7rem;
+            &.btn_color_white {
+                color: #ffffff;
+                box-shadow: 0 0 0 2px #ffffff inset;
+            }
+
+            &.btn_color_white:hover,
+            &.btn_color_white:active,
+            &.btn_color_white.active {
+                background-color: rgba(255, 255, 255, .2);
+                box-shadow: 0 0 0 2px #ffffff inset;
+            }
+        }
+
+        &_pill {
+            border-radius: 1000px;
+        }
+    }
+
+    /* sizes */
+    &_size {
+        &_s {
+            padding: .6rem 1rem;
+            font-size: .7rem;
+        }
+    }
 }
 
 /**********************************************************/

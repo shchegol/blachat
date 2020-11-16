@@ -24,12 +24,12 @@ export interface IRequestOptions {
     method?: string;
     ignoreCache?: boolean;
     headers?: { [key: string]: string; };
-    data?: IRequestData;
+    body?: IRequestData;
     timeout?: number;
 }
 
 export interface IRequestData {
-    [key: string]: TRequestData;
+    [name: string]: TRequestData;
 }
 
 export interface IRequestResult {

@@ -7,8 +7,9 @@
   "scripts": {
     "prestart": "npm run build",
     "start": "npm run server",
-    "build": " npm run ts && node importer.js",
-    "ts": "npm run clear && tsc",
+    "watch": "tsc -w",
+    "build": "npm run clear && npm run ts && npm run sass",
+    "ts": "tsc && node importer.js",
     "server": "node server.js",
     "sass": "sass src/styles/index.scss static/build/styles/main.css",
     "clear": "rimraf static/build",

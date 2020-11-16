@@ -2,21 +2,22 @@
 declare var require: any
 const pug = require('pug');
 
-import Component from '../Component';
-import {IStringObject} from '../../utils/ts/interfaces'
+import Component from './Component';
+import {IAnyObject} from '../utils/ts/interfaces'
 
 const buttonTemplate: string = `  
 button(
     id=id
+    key=key
     type=type
     class="btn " + classes
 ) #{text}
 `;
 
-class Button extends Component {
-    props: IStringObject;
+export default class Button extends Component {
+    props: IAnyObject;
 
-    constructor(props: IStringObject) {
+    constructor(props: IAnyObject) {
         super('div', props);
     }
 
@@ -24,5 +25,3 @@ class Button extends Component {
         return pug.render(buttonTemplate, this.props);
     }
 }
-
-export default Button;

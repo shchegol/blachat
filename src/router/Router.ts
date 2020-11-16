@@ -1,7 +1,7 @@
 import Route from "./Route";
-import Component from "./Component";
+import Component from "../components/Component";
 
-export default class Router {
+class Router {
     static __instance: Router;
     public routes: Route[];
     public history: History;
@@ -75,3 +75,5 @@ export default class Router {
         route.render();
     }
 }
+
+export const appRouter = new Router("#app");

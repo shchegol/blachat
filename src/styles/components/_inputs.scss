@@ -58,18 +58,16 @@
 }
 
 /* errors */
-.input_error {
+.input_error .input__message {
     color: #f44336;
 }
 
 .input_error .input__field {
-    color: red;
     border-color: rgba(244, 67, 54, .5);;
 }
 
 .input_error .input__field:hover,
 .input_error .input__field:focus {
-    color: #f44336;
     border-color: #f44336;
 }
 

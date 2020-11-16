@@ -1,4 +1,4 @@
-import Component from "./Component";
+import Component from "../components/Component";
 import {isEqual, renderTo} from "../utils/helpers";
 import {IAnyObject} from "../utils/ts/interfaces";
 
@@ -15,20 +15,20 @@ export default class Route {
         this._props = props;
     }
 
-    public navigate(pathname: string) {
+    public navigate(pathname: string): void {
         if (this.match(pathname)) {
             this._pathname = pathname;
             this.render();
         }
     }
 
-    public leave() {
+    public leave(): void {
         if (this._component) {
             this._component.hide();
         }
     }
 
-    public match(pathname: string) {
+    public match(pathname: string): boolean {
         return isEqual(pathname, this._pathname);
     }
 

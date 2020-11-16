@@ -15,6 +15,7 @@ export default class Component {
     };
 
     protected _element: HTMLElement;
+    protected _id: string;
     protected _meta: { tagName: string, props: IAnyObject };
     public props: IAnyObject;
     public eventBus: IEventBusFunction;
@@ -22,7 +23,8 @@ export default class Component {
     constructor(tagName: string = "div", props: IAnyObject) {
         const eventBus: EventBus = new EventBus();
 
-        this.props = this._makePropsProxy(props);
+        this._id = 'uniq' + parseInt(String(Math.random() * 1000000));
+        this.props = this._makePropsProxy({key: this._id, ...props});
         this._registerEvents(eventBus);
         this._meta = {
             tagName,
@@ -31,6 +33,10 @@ export default class Component {
         this.eventBus = () => eventBus;
 
         eventBus.emit(Component.EVENTS.INIT);
+    }
+
+    public get id(): string {
+        return this._id;
     }
 
     public get element(): HTMLElement {
@@ -109,13 +115,24 @@ export default class Component {
     protected _componentDidRender(): void {
         setTimeout(() => {
             this.componentDidRender();
+            this._setListeners();
         }, 0)
-
     }
 
     protected _render(): void {
         this._element.innerHTML = this.render();
         this.eventBus().emit(Component.EVENTS.FLOW_CDR);
+    }
+
+    // todo вариант не идеальный но нет времени. Переписать
+    protected _setListeners():void {
+        const el = document.querySelector(`[key=${this.id}]`)
+
+        if (!el || !this.props.listeners) return;
+
+        this.props.listeners.forEach((listener: {event: string, fn: () => {}}) => {
+            el.addEventListener(listener.event, listener.fn);
+        })
     }
 
     protected _makePropsProxy(props: IAnyObject) {
@@ -130,6 +147,11 @@ export default class Component {
                 }
 
                 return false
+            },
+            get(target: IAnyObject, prop: keyof IAnyObject, ) {
+                const value = target[prop];
+
+                return typeof value === "function" ? value.bind(target) : value;
             },
             deleteProperty() {
                 throw new Error('Нет прав');

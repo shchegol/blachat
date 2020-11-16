@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "rootDir": "./",
     "outDir": "static/build",
     "module": "es6",
     "esModuleInterop": true,

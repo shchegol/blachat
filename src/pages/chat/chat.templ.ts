@@ -1,17 +1,8 @@
 export default `
 .chat
     aside.chat__side 
-        header.chat__main-bar.chat__main-bar_no-border 
-            a(
-                href="profile.html"
-                class="avatar"
-                title="Профиль"
-            )
-                img(
-                    src="/img/bg.jpg"
-                    alt="Александр Щеголь"
-                    class="avatar__img"
-                )
+        header.chat__main-bar.chat__main-bar_no-border
+            | !{userAvatar}
             
             div.search
                 form
@@ -27,23 +18,8 @@ export default `
                             data-validation-type="text"
                         )
                 
-        div.chat__list 
-            ul.user-list 
-                li.user-list__item 
-                    img(
-                        src="/img/bg.jpg"
-                        alt="Александр Щеголь"
-                        class="user-list__avatar"
-                    )
-                    div.user-list__main 
-                        h5.user-list__title Саша
-                        p.user-list__text 
-                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        
-                    
-                    div.user-list__support 
-                        time.user-list__date 20:00
-                        span.badge 2
+        .chat__list
+            | !{chatsList}
     
     main.chat__main 
         header.chat__main-bar 

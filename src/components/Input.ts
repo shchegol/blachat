@@ -2,8 +2,8 @@
 declare var require: any
 const pug = require('pug');
 
-import Component from '../Component';
-import {IStringObject} from '../../utils/ts/interfaces'
+import Component from './Component';
+import {IAnyObject} from '../utils/ts/interfaces'
 
 const inputTemplate: string = `  
 label(
@@ -12,8 +12,10 @@ label(
     span.input__label #{labelText}
     input(
         id=id
+        key=key
         type=type
         name=name
+        value=value
         placeholder=placeholder
         data-validation-type=dataValidation
         class="input__field"
@@ -22,9 +24,9 @@ label(
 `;
 
 class Input extends Component {
-    props: IStringObject;
+    props: IAnyObject;
 
-    constructor(props: IStringObject) {
+    constructor(props: IAnyObject) {
         super('div', props);
     }
 
