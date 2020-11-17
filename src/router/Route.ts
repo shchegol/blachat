@@ -24,6 +24,7 @@ export default class Route {
 
     public leave(): void {
         if (this._component) {
+            // todo remove вместо hide
             this._component.hide();
         }
     }

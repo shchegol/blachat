@@ -1,5 +1,7 @@
 import {store} from "./store/Store";
 import routerStart from './router/routerStart';
+import {authApi} from "./API/AuthAPI";
+import {appRouter} from "./router/Router";
 
 
 // todo убрать как только данные из user будут присылаться
@@ -41,12 +43,13 @@ routerStart();
 
 // middleware для проверки регистрации пользователя
 // todo пока присылает 500 ошибку, доделать позже
-// authApi
-//     .getUser()
-//     .then((res: XMLHttpRequest) => {
-//         console.log(res)
-//         // if(res.response === "OK") {
-//         //     appRouter.go("/")
-//         // }
-//     })
-//     .catch(err => console.error(err))
+authApi
+    .getUser()
+    .then((res: XMLHttpRequest) => {
+        console.log(res)
+        if(res.response === "OK") {
+            appRouter.go("/")
+        } else {
+            appRouter.go("/auth")
+        }
+    })

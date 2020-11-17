@@ -32,7 +32,7 @@ li(
                 span.badge #{messageCount}
 `;
 
-export default class ChatUserItem extends Component {
+export default class ChatUserListItem extends Component {
     props: IAnyObject;
 
     constructor(props: IAnyObject) {

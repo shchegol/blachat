@@ -14,7 +14,7 @@
     "sass": "sass src/styles/index.scss static/build/styles/main.css",
     "clear": "rimraf static/build",
     "netlify": "npm run build",
-    "test": "mocha"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,7 @@
   "homepage": "https://github.com/shchegol/mf.messenger.praktikum.yandex#readme",
   "dependencies": {},
   "devDependencies": {
+    "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
@@ -48,11 +49,15 @@
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.0.4",
     "@types/pug": "^2.0.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "chai": "4.2.0",
     "express": "4.17.1",
     "filehound": "1.17.4",
+    "jsdom": "16.4.0",
+    "jsdom-global": "3.0.2",
     "mocha": "8.2.1",
     "pug": "3.0.0",
+    "regenerator-runtime": "^0.13.7",
     "rimraf": "3.0.2",
     "sass": "1.27.0",
     "typescript": "4.0.3"

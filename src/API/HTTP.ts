@@ -5,8 +5,8 @@ import {HOST} from '../constants'
 class HTTP {
     static METHODS = {
         GET: 'GET',
-        PUT: 'PUT',
         POST: 'POST',
+        PUT: 'PUT',
         DELETE: 'DELETE'
     };
 
@@ -76,7 +76,11 @@ class HTTP {
             }
 
             if (
-                (method === HTTP.METHODS.POST || method === HTTP.METHODS.PUT)
+                (
+                    method === HTTP.METHODS.POST
+                    || method === HTTP.METHODS.PUT
+                    || method === HTTP.METHODS.DELETE
+                )
                 && body
             ) {
                 xhr.send(JSON.stringify(body));

@@ -35,8 +35,10 @@ export default class Registration extends Component {
                                 authApi
                                     .signup(getFormData(e))
                                     .then((res: XMLHttpRequest) => {
-                                        if(res.response === "OK") {
+                                        if(typeof res.response.id === "number") {
                                             appRouter.go("/")
+                                        } else {
+                                            // todo обработка случая не зарегились
                                         }
                                     })
                                     .catch(err => console.error(err))

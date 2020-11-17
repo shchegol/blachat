@@ -16,14 +16,14 @@ class AuthApi {
     }
 
 // {
-//     "login": "login123456",
+//     "login": "яудутящщь",
 //     "password": "123456"
 // }
     signin(body: IStringObject) {
         return new Promise(resolve => {
             const headers = {
                 "accept": "application/json",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json; charset=utf-8"
             }
 
             authAPIInstance

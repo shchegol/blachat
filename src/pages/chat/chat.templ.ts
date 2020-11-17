@@ -4,7 +4,7 @@ export default `
         header.chat__main-bar.chat__main-bar_no-border
             | !{userAvatar}
             
-            div.search
+            .search
                 form
                     label.input.input_inline 
                         span.input__icon 
@@ -23,37 +23,22 @@ export default `
     
     main.chat__main 
         header.chat__main-bar 
-            div.avatar 
+            .avatar 
                 img(
                     src="/img/bg.jpg"
                     alt="Александр Щеголь"
                     class="avatar__img"
                 )
             
-            div.col 
+            .col 
                 h5.title Саша
                 p.subtitle Ровно 5 минут назад он был здесь
             
-            div.col-auto 
-                div.dropdown.dropdown_open_bl 
-                    button(
-                        type="button"
-                        class="btn-icon"
-                        title="Опции"
-                    )
-                        i.material-icons more_vert
-                    
-                    ul.dropdown__content 
-                        li.dropdown__item 
-                            i.material-icons edit
-                            | Переименовать
-                        
-                        li.dropdown__item 
-                            i.material-icons delete
-                            | Удалить
+            .col-auto
+                | !{dropdownOptions}
     
         section.chat__messages 
-            div.message-date 
+            .message-date 
                 time.message-date__container 7 октября
     
                 article.message-pack 
@@ -63,7 +48,7 @@ export default `
                         class="message-pack__avatar"
                     )
     
-                    div.message-pack__content 
+                    .message-pack__content 
                         div.message 
                             p.message__text Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             div.message__support 
@@ -164,27 +149,8 @@ export default `
     
         div.chat__bottom-bar 
             div
-                div.dropdown.dropdown_open_tr 
-                    button(
-                        type="button"
-                        class="btn-icon"
-                        title="Добавить файл"
-                    )
-                        i.material-icons attach_file
-                    
-    
-                    ul.dropdown__content 
-                        li.dropdown__item 
-                            i.material-icons insert_photo
-                            | Фото или Видео
-                        
-                        li.dropdown__item 
-                            i.material-icons insert_drive_file
-                            | Файл
-                        
-                        li.dropdown__item 
-                            i.material-icons location_on
-                            | Локация
+                | !{dropdownAdd}
+               
             div.col
                 form 
                     label.input.input_inline 

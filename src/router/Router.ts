@@ -29,7 +29,7 @@ class Router {
 
     public start() {
         // todo уточнить на счёт Window
-        window.onpopstate = ((event: {currentTarget: Window }) => {
+        window.onpopstate = ((event: { currentTarget: Window }) => {
             if (!event || !event.currentTarget) {
                 throw new Error('')
             }
@@ -70,10 +70,10 @@ class Router {
 
         this._currentRoute = route;
 
-        // todo не понятно почему в тренажёре так
-        // route.render(route, pathname);
         route.render();
     }
 }
 
 export const appRouter = new Router("#app");
+
+export default Router;

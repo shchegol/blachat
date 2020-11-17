@@ -1,4 +1,3 @@
-// по другому с pug не получилось
 declare var require: any
 const pug = require('pug');
 

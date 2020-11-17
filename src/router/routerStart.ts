@@ -7,7 +7,7 @@ import ProfileEdit from '../pages/profile-edit/ProfileEdit';
 
 export default function routerStart() {
     appRouter
-        .use("/chat", Chat)
+        .use("/", Chat)
         .use("/auth", Auth)
         .use("/registration", Registration)
         .use("/profile", Index)

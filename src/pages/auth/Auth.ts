@@ -36,7 +36,7 @@ export default class Auth extends Component {
                                     .signin(getFormData(e))
                                     .then((res: XMLHttpRequest) => {
                                         if(res.response === "OK") {
-                                            appRouter.go("/")
+                                            // appRouter.go("/")
                                         }
                                     })
                                     .catch(err => console.error(err))
@@ -51,6 +51,8 @@ export default class Auth extends Component {
                         name: "login",
                         placeholder: "Ваш логин",
                         dataValidation: "text",
+                        // todo сделано для отладки, убрать
+                        value: "zelenzoom"
                     }),
                     new Input({
                         ...inputCommonProps,
@@ -59,6 +61,8 @@ export default class Auth extends Component {
                         name: "password",
                         placeholder: "Ваш пароль",
                         dataValidation: "password",
+                        // todo сделано для отладки, убрать
+                        value: "123456"
                     }),
                     new Button({
                         classes: 'btn_type_outline btn_color_white mt-40',
