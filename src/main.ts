@@ -4,6 +4,7 @@ import {authApi} from "./API/AuthAPI";
 import {appRouter} from "./router/Router";
 
 // fake api
+// todo убрать после реализации store
 store.props = {
     user: {
         id: 469,

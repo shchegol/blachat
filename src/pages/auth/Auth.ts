@@ -36,7 +36,7 @@ export default class Auth extends Component {
                                     .signin(getFormData(e))
                                     .then((res: XMLHttpRequest) => {
                                         if(res.response === "OK") {
-                                            // appRouter.go("/")
+                                            appRouter.go("/")
                                         }
                                     })
                                     .catch(err => console.error(err))
