@@ -1,9 +1,5 @@
 import EventBus from './EventBus'
-import {IAnyObject} from '../utils/ts/interfaces'
-
-interface IEventBusFunction {
-    (): EventBus;
-}
+import {IAnyObject, IEventBusFunction} from '../utils/ts/interfaces'
 
 export default class Component {
     static EVENTS = {

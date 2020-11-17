@@ -1,6 +1,7 @@
 import Component from "../components/Component";
 import {IRequestData, IStringObject} from './ts/interfaces'
 import {TRequestData} from "./ts/types";
+import {IAnyObject} from "./ts/interfaces";
 
 export function getType(value: any): string {
     const regex: RegExp = /^\[object (\S+?)\]$/;
@@ -18,6 +19,20 @@ export function isEqual(a: any, b: any): boolean {
     let keys = Object.keys(a);
     if (keys.length !== Object.keys(b).length) return false;
     return keys.every(k => isEqual(a[k], b[k]));
+}
+
+export function merge(lhs: IAnyObject, rhs: IAnyObject): IAnyObject {
+    for (let prop in rhs) {
+        if (rhs.hasOwnProperty(prop)) {
+            if (typeof lhs[prop] != 'object') {
+                lhs[prop] = rhs[prop];
+            } else if (typeof rhs[prop] == 'object') {
+                lhs[prop] = merge(lhs[prop], rhs[prop]);
+            }
+        }
+    }
+
+    return lhs;
 }
 
 export function queryStringify(data: IRequestData): string | never {

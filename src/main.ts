@@ -3,19 +3,17 @@ import routerStart from './router/routerStart';
 import {authApi} from "./API/AuthAPI";
 import {appRouter} from "./router/Router";
 
-
-// todo убрать как только данные из user будут присылаться
-// fake store
-const tempData = {
+// fake api
+store.props = {
     user: {
-        id: 0,
-        first_name: "Алекс",
-        second_name: "Первый",
-        display_name: "zelenzoom",
-        login: "login123456",
-        email: "test2834528@test.ru",
-        phone: "+7555555555555",
+        id: 469,
         avatar: "/img/ava2.jpg",
+        display_name: "ZelenZoom",
+        email: "zelenzoom@gmail.com",
+        first_name: "Александр",
+        login: "zelenzoom",
+        phone: "+7(903)888-88-88",
+        second_name: "Щеголь"  ,
     },
     chats: [
         {
@@ -37,19 +35,18 @@ const tempData = {
     ]
 }
 
-store.props = tempData
-
-routerStart();
-
 // middleware для проверки регистрации пользователя
-// todo пока присылает 500 ошибку, доделать позже
+// todo доделать после реализации store
 authApi
     .getUser()
     .then((res: XMLHttpRequest) => {
-        console.log(res)
-        if(res.response === "OK") {
-            appRouter.go("/")
+        const data: JSON = JSON.parse(res.response);
+
+        if(data) {
+            console.log(data)
         } else {
             appRouter.go("/auth")
         }
-    })
+    });
+
+routerStart();

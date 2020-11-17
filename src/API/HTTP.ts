@@ -65,6 +65,7 @@ class HTTP {
                 resolve(xhr);
             };
             xhr.timeout = timeout;
+            xhr.withCredentials = true;
             xhr.ontimeout = reject;
             xhr.onabort = reject;
             xhr.onerror = reject;

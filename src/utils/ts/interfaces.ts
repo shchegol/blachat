@@ -1,7 +1,12 @@
 import {TRequestData} from './types'
+import EventBus from "../../components/EventBus";
 
 export interface IStringObject {
     [key: string]: string;
+}
+
+export interface IEventBusFunction {
+    (): EventBus;
 }
 
 export interface IRegExpObject {
