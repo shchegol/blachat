@@ -5,13 +5,13 @@ import {store} from "../static/build/store/Store.js";
 //
 // export const mochaHooks = {
 //   beforeAll(done) {
-//     console.log('Test #' + (tests++));
+//     console.log("Test #" + (tests++));
 //
 //     store.props = {
 //       user: {
 //         id: 0,
-//         first_name: 'Алекс',
-//         second_name: 'Первый',
+//         first_name: "Алекс",
+//         second_name: "Первый',
 //         display_name: 'zelenzoom',
 //         login: 'login123456',
 //         email: 'test2834528@test.ru',

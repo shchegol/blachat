@@ -1,8 +1,8 @@
-import {IStringObject} from '../utils/ts/interfaces'
+import {IStringObject} from "../utils/ts/interfaces"
 import {userAPIInstance} from "./HTTP";
 
 class UserApi {
-    update(body: IStringObject) {
+    change(body: IStringObject) {
         const headers = {
             "accept": "application/json",
             "Content-Type": "application/json"
@@ -15,7 +15,7 @@ class UserApi {
         })
     }
 
-    updateAvatar(body: FormData) {
+    changeAvatar(body: FormData) {
         const headers = {
             "accept": "application/json",
             "Content-Type": "multipart/form-data"
@@ -28,7 +28,7 @@ class UserApi {
         })
     }
 
-    updatePassword(oldPassword: string, newPassword: string) {
+    changePassword(oldPassword: string, newPassword: string) {
         const body = {oldPassword, newPassword}
         const headers = {
             "accept": "application/json",
@@ -42,7 +42,7 @@ class UserApi {
         })
     }
 
-    getUserByID(id: string) {
+    getById(id: string) {
         const headers = {
             "accept": "application/json",
         }
@@ -54,7 +54,7 @@ class UserApi {
         })
     }
 
-    serchUserByLogin(login: string) {
+    search(login: string) {
         const body = {login}
         const headers = {
             "accept": "application/json",
@@ -63,7 +63,7 @@ class UserApi {
 
         return new Promise(resolve => {
             userAPIInstance
-                .put(`/password`, {body, headers})
+                .post(`/search`, {body, headers})
                 .then((res: XMLHttpRequest) => resolve(res))
         })
     }

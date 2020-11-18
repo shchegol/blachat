@@ -1,6 +1,4 @@
-declare var require: any
-const pug = require('pug');
-
+const pug = require("pug");
 import Component from "../../components/Component";
 import {IAnyObject} from "../../utils/ts/interfaces";
 import template from "./errors.templ";

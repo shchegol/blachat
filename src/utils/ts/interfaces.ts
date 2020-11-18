@@ -1,4 +1,4 @@
-import {TRequestData} from './types'
+import {TRequestData} from "./types"
 import EventBus from "../../components/EventBus";
 
 export interface IStringObject {
@@ -29,7 +29,8 @@ export interface IRequestOptions {
     method?: string;
     ignoreCache?: boolean;
     headers?: { [key: string]: string; };
-    body?: IRequestData;
+    // todo разобраться с any
+    body?: any;
     timeout?: number;
 }
 
@@ -44,5 +45,19 @@ export interface IRequestResult {
     data: string;
     json: <T>() => T;
     headers: string;
+}
+
+export interface ISignup {
+    first_name: string;
+    second_name: string;
+    login: string;
+    email: string;
+    password: string;
+    phone: string;
+}
+
+export interface ISignin {
+    login: string;
+    password: string;
 }
 

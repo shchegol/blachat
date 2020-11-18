@@ -1,33 +1,33 @@
-@import 'utilities/variables';
-@import 'utilities/mixins/breakpoints';
-@import 'utilities/mixins/grid-framework';
-@import 'utilities/mixins/grid';
-@import 'utilities/spacing';
-@import 'utilities/flex';
+@import "utilities/variables";
+@import "utilities/mixins/breakpoints";
+@import "utilities/mixins/grid-framework";
+@import "utilities/mixins/grid";
+@import "utilities/spacing";
+@import "utilities/flex";
 
-@import 'common/reset';
-@import 'common/base';
-@import 'common/typography';
-@import 'common/grid';
+@import "common/reset";
+@import "common/base";
+@import "common/typography";
+@import "common/grid";
 
-@import 'layouts/chat';
-@import 'layouts/profile';
+@import "layouts/chat";
+@import "layouts/profile";
 
-@import 'vendors/material-icons';
+@import "vendors/material-icons";
 
-@import 'components/avatar';
-@import 'components/badges';
-@import 'components/buttons';
-@import 'components/dropdowns';
-@import 'components/inputs';
-@import 'components/lists';
-@import 'components/logo';
-@import 'components/message';
-@import 'components/message-date';
-@import 'components/message-pack';
-@import 'components/search';
-@import 'components/subtitle';
-@import 'components/tables';
-@import 'components/title';
+@import "components/avatar";
+@import "components/badges";
+@import "components/buttons";
+@import "components/dropdowns";
+@import "components/inputs";
+@import "components/lists";
+@import "components/logo";
+@import "components/message";
+@import "components/message-date";
+@import "components/message-pack";
+@import "components/search";
+@import "components/subtitle";
+@import "components/tables";
+@import "components/title";
 
-@import 'common/modificators';
+@import "common/modificators";

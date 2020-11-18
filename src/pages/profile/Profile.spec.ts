@@ -1,6 +1,6 @@
-import {expect} from 'chai';
+import {expect} from "chai";
 import {store} from "../../store/Store";
-import Profile from './Profile';
+import Profile from "./Profile";
 
 // todo переписать когда будет доступ к API
 store.props = {
@@ -18,13 +18,13 @@ store.props = {
 
 const profile = new Profile();
 
-describe('Page Profile', () => {
-    it('should has required keys in props', () => {
+describe("Page Profile", () => {
+    it("should has required keys in props", () => {
         expect(profile.props)
-            .to.have.keys('key', 'buttonBack', 'buttonEdit', 'buttonLogout')
+            .to.have.keys("key", "buttonBack", "buttonEdit", "buttonLogout")
     })
 
-    it('should render a string', () => {
-        expect(profile.render()).to.be.a('string')
+    it("should render a string", () => {
+        expect(profile.render()).to.be.a("string")
     })
 })

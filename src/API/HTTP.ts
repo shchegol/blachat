@@ -1,18 +1,18 @@
-import {IRequestOptions, IAnyObject} from '../utils/ts/interfaces';
+import {IRequestOptions, IAnyObject} from "../utils/ts/interfaces";
 import {queryStringify} from "../utils/helpers";
-import {HOST} from '../constants'
+import {HOST} from "../constants"
 
 class HTTP {
     static METHODS = {
-        GET: 'GET',
-        POST: 'POST',
-        PUT: 'PUT',
-        DELETE: 'DELETE'
+        GET: "GET",
+        POST: "POST",
+        PUT: "PUT",
+        DELETE: "DELETE"
     };
 
     public host: string;
 
-    constructor(host: string = '') {
+    constructor(host: string = "") {
         this.host = host;
     }
 
@@ -53,7 +53,7 @@ class HTTP {
             const xhr = new XMLHttpRequest();
 
             if (method === undefined) {
-                method = 'GET';
+                method = "GET";
             }
 
             if (method === HTTP.METHODS.GET && body) {

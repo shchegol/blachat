@@ -1,79 +1,46 @@
-import EventBus from '../components/EventBus'
-import {IAnyObject, IEventBusFunction} from "../utils/ts/interfaces";
-
 class Store {
-    static EVENTS = {
-        INIT: 'init',
-        FLOW_SDU: 'flow:store-did-update',
-    };
+    private state: { [key: string]: any };
+    private reducers: { [key: string]: any };
+    private subscribers: Function[];
 
-    protected _meta: { props: IAnyObject };
-    public props: IAnyObject;
-    public eventBus: IEventBusFunction;
-
-    constructor(props = {}) {
-        const eventBus: EventBus = new EventBus();
-
-        this.props = this._makePropsProxy(props);
-        this._registerEvents(eventBus);
-        this._meta = {props};
-
-        eventBus.emit(Store.EVENTS.INIT);
+    constructor(
+        reducers: { [key: string]: any } = {},
+        initialState: { [key: string]: any } = {}
+    ) {
+        this.reducers = reducers;
+        this.subscribers = [];
+        this.state = this.reduce(initialState, {});
     }
 
-    public init(): void {
+    get value() {
+        return this.state;
     }
 
-    protected _init(): void {
-        this.init();
+    dispatch(action: { [key: string]: any }) {
+        this.state = this.reduce(this.state, action);
+        this.subscribers.forEach(fn => fn(this.value));
     }
 
-    public storeDidUpdate(): boolean {
-        console.log('storeDidUpdate', this.props)
-        return true;
+    subscribe(fn: Function) {
+        this.subscribers = [...this.subscribers, fn];
+        fn(this.value);
+
+        // for unsubscribe
+        return () => {
+            this.subscribers = this.subscribers.filter(sub => sub !== fn);
+        };
     }
 
-    protected _storeDidUpdate(): void {
-        this.storeDidUpdate()
-    }
-
-    protected _registerEvents(eventBus: EventBus): void {
-        eventBus.on(Store.EVENTS.INIT, this._init.bind(this));
-        eventBus.on(Store.EVENTS.FLOW_SDU, this._storeDidUpdate.bind(this));
-    }
-
-    protected _makePropsProxy(props: IAnyObject) {
-        return new Proxy(props, {
-            set: (target: IAnyObject, prop: keyof IAnyObject, value: any): boolean => {
-                const oldProps = {...this._meta.props};
-
-                console.log('changed', oldProps, target)
-
-                if (target[prop] !== value) {
-                    target[prop] = value;
-
-                    this.eventBus().emit(Store.EVENTS.FLOW_SDU, oldProps, target);
-                    return true;
-                }
-
-                return false
-            },
-            get(target: IAnyObject, prop: keyof IAnyObject, ) {
-                const value = target[prop];
-
-                if (!target[prop]) {
-                    throw Error(`We have not value: ${prop} in store`)
-                }
-
-                return typeof value === "function" ? value.bind(target) : value;
-            },
-            deleteProperty() {
-                throw new Error('Нет прав');
-            },
-        });
+    private reduce(
+        state: { [key: string]: any },
+        action: { [key: string]: any }
+    ) {
+        const newState: { [key: string]: any } = {};
+        for (const prop in this.reducers) {
+            newState[prop] = this.reducers[prop](state[prop], action);
+        }
+        return newState;
     }
 }
-
-export const store = new Store({});
 
 export default Store;

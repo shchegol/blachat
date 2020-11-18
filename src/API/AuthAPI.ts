@@ -32,7 +32,7 @@ class AuthApi {
         })
     }
 
-    getUser() {
+    fetchtUser() {
         return new Promise(resolve => {
             const headers = {
                 "accept": "application/json",

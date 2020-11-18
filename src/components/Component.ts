@@ -1,13 +1,13 @@
-import EventBus from './EventBus'
-import {IAnyObject, IEventBusFunction} from '../utils/ts/interfaces'
+import EventBus from "./EventBus"
+import {IAnyObject, IEventBusFunction} from "../utils/ts/interfaces"
 
 export default class Component {
     static EVENTS = {
-        INIT: 'init',
-        FLOW_CDM: 'flow:component-did-mount',
-        FLOW_CDU: 'flow:component-did-update',
-        FLOW_CDR: 'flow:component-did-render',
-        FLOW_RENDER: 'flow:render',
+        INIT: "init",
+        FLOW_CDM: "flow:component-did-mount",
+        FLOW_CDU: "flow:component-did-update",
+        FLOW_CDR: "flow:component-did-render",
+        FLOW_RENDER: "flow:render",
     };
 
     protected _element: HTMLElement;
@@ -19,7 +19,7 @@ export default class Component {
     constructor(tagName: string = "div", props: IAnyObject) {
         const eventBus: EventBus = new EventBus();
 
-        this._id = 'uniq' + parseInt(String(Math.random() * 1000000));
+        this._id = "uniq" + parseInt(String(Math.random() * 1000000));
         this.props = this._makePropsProxy({key: this._id, ...props});
         this._registerEvents(eventBus);
         this._meta = {
@@ -65,7 +65,7 @@ export default class Component {
     };
 
     public render(): string {
-        return ''
+        return ""
     }
 
     public show() {
@@ -150,7 +150,7 @@ export default class Component {
                 return typeof value === "function" ? value.bind(target) : value;
             },
             deleteProperty() {
-                throw new Error('Нет прав');
+                throw new Error("Нет прав");
             },
         });
     }

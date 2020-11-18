@@ -1,15 +1,15 @@
-declare var require: any
+
 const pug = require('pug');
 
 import Component from "../../components/Component";
 import {appRouter} from '../../router/Router';
-import {authApi} from "../../API/AuthAPI";
+// import {authApi} from "../../API/AuthAPI";
 import Form from "../../components/Form"
 import Input from "../../components/Input"
 import Button from "../../components/Button"
 import {inputValidation, formValidation} from '../../utils/validation';
 import {IAnyObject} from "../../utils/ts/interfaces";
-import {getFormData} from "../../utils/helpers";
+// import {getFormData} from "../../utils/helpers";
 import template from "../../layouts/Auth/auth.templ";
 
 const inputCommonProps = {
@@ -32,16 +32,16 @@ export default class Registration extends Component {
                     {
                         event: 'submit', fn: (e: Event) => {
                             if (formValidation(e)) {
-                                authApi
-                                    .signup(getFormData(e))
-                                    .then((res: XMLHttpRequest) => {
-                                        if(typeof res.response.id === "number") {
-                                            appRouter.go("/")
-                                        } else {
-                                            // todo обработка случая не зарегились
-                                        }
-                                    })
-                                    .catch(err => console.error(err))
+                                // authApi
+                                //     .signup(getFormData(e))
+                                //     .then((res: XMLHttpRequest) => {
+                                //         if(typeof res.response.id === "number") {
+                                //             appRouter.go("/")
+                                //         } else {
+                                //             // todo обработка случая не зарегились
+                                //         }
+                                //     })
+                                //     .catch(err => console.error(err))
                             }
                         }
                     },
@@ -101,7 +101,7 @@ export default class Registration extends Component {
                     new Button({
                         classes: 'btn_type_outline btn_color_white mt-20',
                         type: 'submit',
-                        text: 'ЗАРЕГЕСТРИРОВАТЬСЯ'
+                        text: 'ЗАРЕГИСТРИРОВАТЬСЯ'
                     }),
                     new Button({
                         classes: 'btn_type_link btn_color_white mt-20',

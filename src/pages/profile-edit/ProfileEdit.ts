@@ -1,17 +1,17 @@
 import {formValidation} from "../../utils/validation";
 
-declare var require: any
+
 const pug = require('pug');
 
 import Component from "../../components/Component";
-import {store} from "../../store/Store";
+// import {store} from "../../store/Store";
 import Form from "../../components/Form"
 import Input from "../../components/Input"
 import Button from "../../components/Button"
 import {IAnyObject} from "../../utils/ts/interfaces";
 import template from "./profileEdit.templ";
-import {authApi} from "../../API/AuthAPI";
-import {getFormData} from "../../utils/helpers";
+// import {authApi} from "../../API/AuthAPI";
+// import {getFormData} from "../../utils/helpers";
 import {appRouter} from "../../router/Router";
 import ButtonIcon from "../../components/ButtonIcon";
 
@@ -34,14 +34,14 @@ export default class ProfileEdit extends Component {
                     {
                         event: 'submit', fn: (e: Event) => {
                             if (formValidation(e)) {
-                                authApi
-                                    .signin(getFormData(e))
-                                    .then((res: XMLHttpRequest) => {
-                                        if (res.response === "OK") {
-                                            appRouter.go("/")
-                                        }
-                                    })
-                                    .catch(err => console.error(err))
+                                // authApi
+                                //     .signin(getFormData(e))
+                                //     .then((res: XMLHttpRequest) => {
+                                //         if (res.response === "OK") {
+                                //             appRouter.go("/")
+                                //         }
+                                //     })
+                                //     .catch(err => console.error(err))
                             }
                         }
                     },
@@ -54,7 +54,7 @@ export default class ProfileEdit extends Component {
                         name: "first_name",
                         placeholder: "Ваше имя",
                         dataValidation: "name",
-                        value: store.props.user.first_name,
+                        // value: store.props.user.first_name,
                     }),
                     new Input({
                         classes: 'mt-20',
@@ -63,7 +63,7 @@ export default class ProfileEdit extends Component {
                         name: "second_name",
                         placeholder: "Ваша фамилия",
                         dataValidation: "name",
-                        value: store.props.user.second_name,
+                        // value: store.props.user.second_name,
                     }),
                     new Input({
                         classes: 'mt-20',
@@ -72,7 +72,7 @@ export default class ProfileEdit extends Component {
                         name: "login",
                         placeholder: "Ваш логин",
                         dataValidation: "text",
-                        value: store.props.user.login,
+                        // value: store.props.user.login,
                     }),
                     new Input({
                         classes: 'mt-20',
@@ -81,7 +81,7 @@ export default class ProfileEdit extends Component {
                         name: "display_name",
                         placeholder: "Как вас видят другие люди",
                         dataValidation: "text",
-                        value: store.props.user.display_name,
+                        // value: store.props.user.display_name,
                     }),
                     new Input({
                         classes: 'mt-20',
@@ -90,7 +90,7 @@ export default class ProfileEdit extends Component {
                         name: "email",
                         placeholder: "Ваш email",
                         dataValidation: "email",
-                        value: store.props.user.email,
+                        // value: store.props.user.email,
                     }),
                     new Input({
                         classes: 'mt-20',
@@ -99,7 +99,7 @@ export default class ProfileEdit extends Component {
                         name: "phone",
                         placeholder: "Ваш телефон",
                         dataValidation: "phone",
-                        value: store.props.user.phone,
+                        // value: store.props.user.phone,
                     }),
                     new Input({
                         classes: 'mt-20',

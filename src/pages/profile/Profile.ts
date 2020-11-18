@@ -1,8 +1,6 @@
-declare var require: any
-const pug = require('pug');
-
+const pug = require("pug");
 import Component from "../../components/Component";
-import {store} from "../../store/Store";
+// import {store} from "../../store/Store";
 import {IAnyObject} from "../../utils/ts/interfaces";
 import {appRouter} from "../../router/Router";
 import {authApi} from "../../API/AuthAPI";
@@ -16,31 +14,31 @@ export default class Profile extends Component {
     constructor(tagName?: string, props?: IAnyObject) {
         super(tagName, {
             ...props,
-            ...store.props,
+            // ...store.props,
             first_name: null,
             buttonBack: new ButtonIcon({
-                classes: 'btn-icon btn-icon_size_l mt-20',
-                type: 'button',
-                iconName: 'arrow_back',
+                classes: "btn-icon btn-icon_size_l mt-20",
+                type: "button",
+                iconName: "arrow_back",
                 listeners: [
-                    {event: 'click', fn: () => appRouter.go("/")}
+                    {event: "click", fn: () => appRouter.go("/")}
                 ]
             }),
             buttonEdit: new Button({
-                classes: 'btn_type_outline mt-40',
-                type: 'button',
-                text: 'ИЗМЕНИТЬ ДАННЫЕ',
+                classes: "btn_type_outline mt-40",
+                type: "button",
+                text: "ИЗМЕНИТЬ ДАННЫЕ",
                 listeners: [
-                    {event: 'click', fn: () => appRouter.go("/profile-edit")}
+                    {event: "click", fn: () => appRouter.go("/profile-edit")}
                 ]
             }),
             buttonLogout: new Button({
-                classes: 'btn_type_link btn_color_red mt-20',
-                type: 'button',
-                text: 'Выйти из аккаунта',
+                classes: "btn_type_link btn_color_red mt-20",
+                type: "button",
+                text: "Выйти из аккаунта",
                 listeners: [
                     {
-                        event: 'click', fn: () => {
+                        event: "click", fn: () => {
                             authApi
                                 .logout()
                                 .then((res: XMLHttpRequest) => {

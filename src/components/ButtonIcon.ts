@@ -1,8 +1,6 @@
-declare var require: any
-const pug = require('pug');
-
-import Component from './Component';
-import {IAnyObject} from '../utils/ts/interfaces'
+const pug = require("pug");
+import Component from "./Component";
+import {IAnyObject} from "../utils/ts/interfaces"
 
 const buttonIconTemplate: string = `
 if !classes
@@ -21,7 +19,7 @@ export default class Button extends Component {
     props: IAnyObject;
 
     constructor(props: IAnyObject) {
-        super('div', props);
+        super("div", props);
     }
 
     render(): string {

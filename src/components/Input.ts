@@ -1,9 +1,6 @@
-// по другому с pug не получилось
-declare var require: any
-const pug = require('pug');
-
-import Component from './Component';
-import {IAnyObject} from '../utils/ts/interfaces'
+const pug = require("pug");
+import Component from "./Component";
+import {IAnyObject} from "../utils/ts/interfaces"
 
 const inputTemplate: string = `  
 label(
@@ -27,7 +24,7 @@ class Input extends Component {
     props: IAnyObject;
 
     constructor(props: IAnyObject) {
-        super('div', props);
+        super("div", props);
     }
 
     render(): string {

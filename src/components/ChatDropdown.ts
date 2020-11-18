@@ -1,8 +1,6 @@
-declare var require: any
-const pug = require('pug');
-
-import Component from './Component';
-import {IAnyObject} from '../utils/ts/interfaces'
+import Component from "./Component";
+import {IAnyObject} from "../utils/ts/interfaces"
+const pug = require("pug");
 
 const chatDropdownTempl: string = `
 if !classes
@@ -42,7 +40,7 @@ export default class ChatDropdown extends Component {
     props: IAnyObject;
 
     constructor(props: IAnyObject) {
-        super('div', props);
+        super("div", props);
     }
 
     render(): string {
