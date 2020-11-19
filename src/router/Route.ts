@@ -1,5 +1,5 @@
 import Component from "../components/Component";
-import {isEqual, renderTo} from "../utils/helpers";
+import {isEqual, renderTo, removeFrom} from "../utils/helpers";
 import {IAnyObject} from "../utils/ts/interfaces";
 
 export default class Route {
@@ -24,8 +24,7 @@ export default class Route {
 
     public leave(): void {
         if (this._component) {
-            // todo remove вместо hide
-            this._component.hide();
+            removeFrom(this._props.rootQuery, this._component);
         }
     }
 
@@ -36,10 +35,8 @@ export default class Route {
     public render() {
         if (this._component === null) {
             this._component = new this._componentClass();
-            renderTo(this._props.rootQuery, this._component);
-            return;
         }
 
-        this._component.show();
+        renderTo(this._props.rootQuery, this._component);
     }
 }

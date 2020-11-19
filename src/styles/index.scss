@@ -7,7 +7,6 @@
 
 @import "common/reset";
 @import "common/base";
-@import "common/typography";
 @import "common/grid";
 
 @import "layouts/chat";
@@ -17,7 +16,8 @@
 
 @import "components/avatar";
 @import "components/badges";
-@import "components/buttons";
+@import "components/btn";
+@import "components/btn-icon";
 @import "components/dropdowns";
 @import "components/inputs";
 @import "components/lists";

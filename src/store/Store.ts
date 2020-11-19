@@ -12,18 +12,18 @@ class Store {
         this.state = this.reduce(initialState, {});
     }
 
-    get value() {
+    get props() {
         return this.state;
     }
 
     dispatch(action: { [key: string]: any }) {
         this.state = this.reduce(this.state, action);
-        this.subscribers.forEach(fn => fn(this.value));
+        this.subscribers.forEach(fn => fn(this.props));
     }
 
     subscribe(fn: Function) {
         this.subscribers = [...this.subscribers, fn];
-        fn(this.value);
+        fn(this.props);
 
         // for unsubscribe
         return () => {
@@ -36,10 +36,12 @@ class Store {
         action: { [key: string]: any }
     ) {
         const newState: { [key: string]: any } = {};
+
         for (const prop in this.reducers) {
             newState[prop] = this.reducers[prop](state[prop], action);
         }
-        return newState;
+
+        return {...state, ...newState};
     }
 }
 

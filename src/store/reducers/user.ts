@@ -6,6 +6,7 @@ export default function userReducer(
     action: { type: string, payload: any }
 ) {
     switch (action.type) {
+        case ACTION.USER_FETCH:
         case ACTION.USER_CHANGE_PROFILE:
         case ACTION.USER_CHANGE_AVATAR:
         case ACTION.USER_CHANGE_PASSWORD:

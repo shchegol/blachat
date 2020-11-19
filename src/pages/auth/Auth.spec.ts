@@ -1,9 +1,17 @@
-import {expect} from "chai";
-import Auth from "./Auth";
+import {expect}        from "chai";
+import Auth            from "./Auth";
+import {IStringObject} from '../../utils/ts/interfaces';
+import Form            from '../../components/Form';
 
-const auth = new Auth();
-const form = auth.props.form;
-const formProps = form.props;
+let auth: Auth;
+let form: Form;
+let formProps: IStringObject;
+
+beforeEach(() => {
+    auth = new Auth();
+    form = auth.props.form;
+    formProps = form.props;
+});
 
 describe("Page Auth", () => {
     it("should has required keys in props", () => {

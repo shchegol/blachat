@@ -40,7 +40,7 @@
   &_status {
     &_read {
       .message__status {
-        color: #4CAF50;
+        color: map_get($colors, success);
       }
     }
   }

@@ -1,19 +1,23 @@
 .table {
-    width: 100%;
-    text-align: left;
-}
+  width: 100%;
+  text-align: left;
 
-.table__title {
+  &__title {
     font-weight: bold;
-}
+  }
 
-.table_type_centered .table__title {
-    width: 50%;
-    padding-right: 1rem;
-    text-align: right;
-}
+  &_type {
+    &_centered {
+      .table__title {
+        width: 50%;
+        padding-right: 1rem;
+        text-align: right;
+      }
 
-.table_type_centered .table__text {
-    width: 50%;
-    text-align: left;
+      .table__text {
+        width: 50%;
+        text-align: left;
+      }
+    }
+  }
 }

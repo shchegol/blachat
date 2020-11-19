@@ -1,17 +1,16 @@
 .input {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
-.input__label {
+  &__label {
     display: flex;
     width: 100%;
     font-size: .8rem;
-}
+  }
 
-.input__field {
+  &__field {
     display: flex;
     padding: 1rem;
     width: 100%;
@@ -21,58 +20,61 @@
     border-radius: 6px 6px 0 0;
     border-bottom: 3px solid #9E9E9E;
     transition: border-color .2s;
-}
 
-.input__field:hover,
-.input__field:focus,
-.input_active .input__field {
-    outline: none;
-    border-bottom: 3px solid #2196F3;
-}
+    &:hover,
+    &:focus {
+      outline: none;
+      border-bottom: 3px solid map_get($colors, primary);
+    }
+  }
 
-.input__message {
+  &__message {
     display: flex;
     width: 100%;
     font-size: .8rem;
     text-align: left;
-}
+  }
 
-/* white theme */
-.input_color_white {
-    color: white;
-}
+  /* white theme */
+  &_color {
+    &_white {
+      color: white;
 
-.input_color_white .input__field {
-    color: white;
-    background-color: rgba(255, 255, 255, .2);
-    border-bottom-color: rgba(255, 255, 255, .5);
-}
+      .input__field {
+        color: white;
+        background-color: rgba(255, 255, 255, .2);
+        border-bottom-color: rgba(255, 255, 255, .5);
+      }
 
-.input_color_white .input__field:hover,
-.input_color_white .input__field:focus {
-    border-bottom-color: #fff;
-}
+      .input__field:hover,
+      .input__field:focus {
+        border-bottom-color: #fff;
+      }
 
-.input_color_white .input__field::placeholder {
-    color: rgba(255, 255, 255, .5);
-}
+      .input__field::placeholder {
+        color: rgba(255, 255, 255, .5);
+      }
+    }
+  }
 
-/* errors */
-.input_error .input__message {
-    color: #f44336;
-}
+  /* errors */
+  &_error {
+    .input__message {
+      color: map_get($colors, danger);
+    }
 
-.input_error .input__field {
-    border-color: rgba(244, 67, 54, .5);;
-}
+    .input__field {
+      border-color: rgba(244, 67, 54, .5);
 
-.input_error .input__field:hover,
-.input_error .input__field:focus {
-    border-color: #f44336;
-}
+      &:hover,
+      &:focus {
+        border-color: map_get($colors, danger);
+      }
+    }
+  }
 
-/* inline */
-.input_inline {
+  /* inline */
+  &_inline {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -81,27 +83,28 @@
     width: 100%;
     background-color: #EEEEEE;
     border-radius: 1000px;
-}
 
-.input_inline .input__field {
-    display: flex;
-    padding: 0;
-    width: 100%;
-    font-size: .8rem;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    transition: border-color .2s;
-}
+    .input__field {
+      display: flex;
+      padding: 0;
+      width: 100%;
+      font-size: .8rem;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      transition: border-color .2s;
+    }
 
-.input_inline .input__icon {
-    display: inline-flex;
-    margin-right: .5rem;
-    color: rgba(0, 0, 0, .5);
-}
+    .input__icon {
+      display: inline-flex;
+      margin-right: .5rem;
+      color: rgba(0, 0, 0, .5);
+    }
+  }
 
-/* textarea */
-.input_textarea .input__field {
+  /* textarea */
+  &_textarea .input__field {
     resize: vertical;
     max-height: 5rem;
+  }
 }

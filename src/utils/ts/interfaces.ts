@@ -29,8 +29,7 @@ export interface IRequestOptions {
     method?: string;
     ignoreCache?: boolean;
     headers?: { [key: string]: string; };
-    // todo разобраться с any
-    body?: any;
+    body?: any; // todo разобраться с any
     timeout?: number;
 }
 
