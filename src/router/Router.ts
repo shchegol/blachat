@@ -1,79 +1,102 @@
-import Route from "./Route";
-import Component from "../components/Component";
+import Route     from './Route';
+import Component from '../components/Component';
 
 class Router {
-    static __instance: Router;
-    public routes: Route[];
-    public history: History;
-    protected _currentRoute: Route | null;
-    protected _rootQuery: string;
+  static __instance: Router;
+  public routes: Route[];
+  public history: History;
+  protected _currentRoute: Route | null;
+  protected _rootQuery: string;
+  protected _middlewares: Function[];
 
-    constructor(rootQuery: string) {
-        if (Router.__instance) {
-            return Router.__instance;
-        }
-
-        this.routes = [];
-        this.history = window.history;
-        this._currentRoute = null;
-        this._rootQuery = rootQuery;
-
-        Router.__instance = this;
+  constructor(rootQuery: string) {
+    if (Router.__instance) {
+      return Router.__instance;
     }
 
-    public use(pathname: string, component: new () => Component) {
-        const route: Route = new Route(pathname, component, {rootQuery: this._rootQuery});
-        this.routes.push(route);
-        return this;
+    this.routes = [];
+    this.history = window.history;
+    this._currentRoute = null;
+    this._rootQuery = rootQuery;
+    this._middlewares = []
+
+    Router.__instance = this;
+  }
+
+  use(pathname: string, component: new () => Component) {
+    const route: Route = new Route(pathname, component,
+        {rootQuery: this._rootQuery});
+    this.routes.push(route);
+    return this;
+  }
+
+  clear() {
+    this.routes = [];
+  }
+
+  start() {
+    window.onpopstate = ((event: { currentTarget: Window }) => {
+      if (!event || !event.currentTarget) {
+        throw new Error('');
+      }
+
+      this._onRoute(event.currentTarget.location.pathname);
+    }).bind(this);
+
+    this._onRoute(window.location.pathname);
+  }
+
+  go(pathname: string): void {
+    this.history.pushState({}, '', pathname);
+    this._onRoute(pathname);
+  }
+
+  addMiddleware(fn: Function) {
+    this._middlewares = [...this._middlewares, fn.bind(this)];
+  }
+
+  back(): void {
+    window.history.back();
+  }
+
+  forward(): void {
+    window.history.forward();
+  }
+
+  getRoute(pathname: string): Route | undefined {
+    return this.routes.find(route => route.match(pathname));
+  }
+
+  protected _onRoute(pathname: string): void {
+    let doReturn = false;
+
+    this._middlewares.forEach(fn => {
+      if(fn({pathname})) {
+        doReturn = true;
+        return;
+      }
+    });
+
+    if (doReturn) {
+      return;
     }
 
-    public start() {
-        // todo уточнить на счёт Window
-        window.onpopstate = ((event: { currentTarget: Window }) => {
-            if (!event || !event.currentTarget) {
-                throw new Error('')
-            }
+    const route = this.getRoute(pathname);
 
-            this._onRoute(event.currentTarget.location.pathname);
-        }).bind(this);
-
-        this._onRoute(window.location.pathname);
+    if (!route) {
+      return;
     }
 
-    public go(pathname: string): void {
-        this.history.pushState({}, "", pathname);
-        this._onRoute(pathname);
+    if (this._currentRoute) {
+      this._currentRoute.leave();
     }
 
-    public back(): void {
-        window.history.back();
-    }
+    this._currentRoute = route;
 
-    public forward(): void {
-        window.history.forward();
-    }
-
-    public getRoute(pathname: string): Route | undefined {
-        return this.routes.find(route => route.match(pathname));
-    }
-
-    protected _onRoute(pathname: string): void {
-        const route = this.getRoute(pathname);
-
-        if (!route) {
-            return;
-        }
-
-        if (this._currentRoute) {
-            this._currentRoute.leave();
-        }
-
-        this._currentRoute = route;
-
-        route.render();
-    }
+    route.render();
+  }
 }
 
-export const appRouter = new Router("#app");
+export const appRouter = new Router('#app');
 
 export default Router;

@@ -15,10 +15,6 @@ class AuthApi {
         })
     }
 
-// {
-//     "login": "zelenzoom",
-//     "password": "123456"
-// }
     signin(body: IStringObject) {
         return new Promise(resolve => {
             const headers = {
@@ -32,7 +28,7 @@ class AuthApi {
         })
     }
 
-    getUser() {
+    fetchtUser() {
         return new Promise(resolve => {
             const headers = {
                 "accept": "application/json",

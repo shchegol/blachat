@@ -1,8 +1,8 @@
-import { expect } from 'chai';
-import { getType } from './helpers';
+import { expect } from "chai";
+import { getType } from "./helpers";
 
-describe('Helper getType', () => {
-    it('should return type string', () => {
+describe("Helper getType", () => {
+    it("should return type string", () => {
         expect(getType('')).to.equal('string');
         expect(getType('test')).to.equal('string');
         expect(getType(String('test'))).to.equal('string');

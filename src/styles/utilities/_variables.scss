@@ -9,15 +9,30 @@ $colors: (
 
         text-main: #424242,
         text-subtitle: #9E9E9E,
-        link-main: #2196F3,
-        bg-main: #673AB7,
+
+        link-primary: #2196F3,
+
+        primary: #2196F3,
+        primary-hover: #1E88E5,
+        secondary: #424242,
+        secondary-hover: #616161,
+        success: #4CAF50,
+        success-hover: #4CAF50,
+        danger: #f44336,
+        danger-hover: #e53935,
+
+        bg-primary: #673AB7,
         bg-secondary: #FAFAFA,
+
         border-secondary: #EEEEEE,
 );
 
 // fonts
-$font-primary: 'Roboto', Arial, sans-serif;
+$font-primary: "Roboto", Arial, sans-serif;
 $paragraph-margin-bottom: 0;
+
+// bg
+$bg-main-path: "/img/bg.jpg";
 
 // spacers
 $spacer: 1rem !default;
@@ -42,8 +57,8 @@ $spacers: map-merge(
 
 // grid
 $enable-grid-classes: true !default;
-$grid-columns:                12 !default;
-$grid-row-columns:            6 !default;
+$grid-columns: 12 !default;
+$grid-row-columns: 6 !default;
 $grid-gutter-width: 2.5rem; // 40px
 $grid-breakpoints: (
         xs: 0,

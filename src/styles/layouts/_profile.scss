@@ -1,7 +1,8 @@
-.profile {}
-.profile__img {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 100%;
+.profile {
+    &__img {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 100%;
+    }
 }
-.profile__title {}
+

@@ -1,4 +1,4 @@
-import {IArrayOfListenersObject, IListener, IStringObject} from '../utils/ts/interfaces'
+import {IArrayOfListenersObject, IListener, IStringObject} from "../utils/ts/interfaces"
 
 export default class EventBus {
     public listeners: IArrayOfListenersObject;
