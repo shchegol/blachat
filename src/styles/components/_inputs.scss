@@ -7,7 +7,7 @@
   &__label {
     display: flex;
     width: 100%;
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 
   &__field {
@@ -31,7 +31,7 @@
   &__message {
     display: flex;
     width: 100%;
-    font-size: .8rem;
+    font-size: 0.8rem;
     text-align: left;
   }
 
@@ -79,7 +79,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: .5rem;
+    padding: 0.5rem;
     width: 100%;
     background-color: #EEEEEE;
     border-radius: 1000px;
@@ -88,7 +88,7 @@
       display: flex;
       padding: 0;
       width: 100%;
-      font-size: .8rem;
+      font-size: 0.8rem;
       background-color: transparent;
       border: none;
       border-radius: 0;
@@ -97,7 +97,7 @@
 
     .input__icon {
       display: inline-flex;
-      margin-right: .5rem;
+      margin-right: 0.5rem;
       color: rgba(0, 0, 0, .5);
     }
   }

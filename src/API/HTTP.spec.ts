@@ -1,17 +1,25 @@
-import {expect} from "chai";
-import HTTP from "./HTTP";
+//@ts-nocheck
+import HTTP          from "./HTTP";
 import {APIInstance} from "./HTTP";
-import {HOST} from "../constants";
+import settings      from "../settings/base";
 
-// todo дописать как будет готово API
 describe("HTTP", () => {
-    it("should has required keys in METHODS", () => {
-        expect(HTTP.METHODS)
-            .to.have.all.keys("GET", "POST", "PUT", "DELETE")
-    })
+  it("should has required keys in METHODS", () => {
+    expect(HTTP.METHODS).toHaveProperty("GET");
+    expect(HTTP.METHODS).toHaveProperty("POST");
+    expect(HTTP.METHODS).toHaveProperty("PUT");
+    expect(HTTP.METHODS).toHaveProperty("DELETE");
+  });
 
-    it("should has host", () => {
-        expect(APIInstance.host)
-            .to.be.equal(HOST)
-    })
-})
+  it("should has host", () => {
+    expect(APIInstance.host).toEqual(settings.API.HOST);
+  });
+
+  it("should call HTTP._request with method: POST", () => {
+    const APIInstance = new HTTP(`${settings.API.HOST}`);
+    APIInstance._request = jest.fn().mockImplementation((opts) => Promise.resolve(opts));
+    APIInstance.post("/user");
+    expect(APIInstance._request)
+        .toBeCalledWith("/user", {method: "POST"}, undefined);
+  });
+});

@@ -1,13 +1,13 @@
-import EventBus                        from './EventBus';
-import {IAnyObject, IEventBusFunction} from '../utils/ts/interfaces';
+import EventBus                        from "./EventBus";
+import {IAnyObject, IEventBusFunction} from "../utils/ts/interfaces";
 
 export default class Component {
   static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_CDR: 'flow:component-did-render',
-    FLOW_RENDER: 'flow:render',
+    INIT: "init",
+    FLOW_CDM: "flow:component-did-mount",
+    FLOW_CDU: "flow:component-did-update",
+    FLOW_CDR: "flow:component-did-render",
+    FLOW_RENDER: "flow:render",
   };
 
   props: IAnyObject;
@@ -16,11 +16,11 @@ export default class Component {
   protected _id: string;
   protected _meta: { tagName: string, props: IAnyObject };
 
-  constructor(tagName: string = 'div', props: IAnyObject) {
+  constructor(tagName: string = "div", props: IAnyObject) {
     const eventBus: EventBus = new EventBus();
 
-    this._id = 'uniq' + parseInt(String(Math.random() * 1000000));
-    this.props = this._makePropsProxy({key: this._id, ...props});
+    this._id = "uniq" + parseInt(String(Math.random() * 1000000));
+    this.props = this._makePropsProxy({_key: this._id, ...props});
     this._registerEvents(eventBus);
     this._meta = {
       tagName,
@@ -65,20 +65,16 @@ export default class Component {
   };
 
   render(): string {
-    return '';
+    return "";
   }
 
   show() {
-    this.getContent().style.display = 'block';
+    this.getContent().style.display = "block";
   }
 
   hide() {
-    this.getContent().style.display = 'none';
+    this.getContent().style.display = "none";
   }
-
-  // remove() {
-  //   this._element
-  // }
 
   protected _init(): void {
     this.init();
@@ -126,9 +122,11 @@ export default class Component {
 
   // todo вариант не идеальный но нет времени. Переписать
   protected _setListeners(): void {
-    const el = document.querySelector(`[key=${this.id}]`);
+    if (!this.props.listeners) return;
 
-    if (!el || !this.props.listeners) return;
+    const el = document.querySelector(`[_key=${this.id}]`);
+
+    if (!el) return;
 
     this.props.listeners.forEach(
         (listener: { event: string, fn: () => {} }) => {
@@ -153,10 +151,10 @@ export default class Component {
       get(target: IAnyObject, prop: keyof IAnyObject) {
         const value = target[prop];
 
-        return typeof value === 'function' ? value.bind(target) : value;
+        return typeof value === "function" ? value.bind(target) : value;
       },
       deleteProperty() {
-        throw new Error('Нет прав');
+        throw new Error("Нет прав");
       },
     });
   }

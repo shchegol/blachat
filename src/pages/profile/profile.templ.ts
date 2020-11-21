@@ -7,8 +7,8 @@ export default `
     section.row.justify-content-center.profile 
         .col-4.text_align_center 
             img(
-               src="/img/bg.jpg"
-               alt="Александр Щеголь"
+               src=avatar || "/img/bg.jpg" 
+               alt=first_name+" "+second_name
                class="profile__img"
             )
             
@@ -28,4 +28,4 @@ export default `
                     
             | !{buttonEdit}
             | !{buttonLogout}
-`
+`;

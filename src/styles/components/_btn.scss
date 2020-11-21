@@ -1,132 +1,132 @@
 .btn {
-    display: inline-flex;
-    width: 100%;
-    padding: 1rem;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    color: #ffffff;
-    background-color: map_get($colors, primary);
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: box-shadow .2s, background-color .2s;
+  display: inline-flex;
+  width: 100%;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  color: #ffffff;
+  background-color: map_get($colors, primary);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: box-shadow .2s, background-color .2s;
 
-    &:hover,
-    &:active,
-    &.active {
-        background-color: map_get($colors, primary-hover);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  &:hover,
+  &:active,
+  &.active {
+    background-color: map_get($colors, primary-hover);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  }
+
+  /* color theme */
+  &_color {
+    &_white {
+      color: #424242;
+      background-color: #ffffff;
+      border-color: #ffffff;
+
+      &:hover,
+      &:active,
+      &.active {
+        border-color: #ECEFF1;
+      }
     }
 
-    /* color theme */
-    &_color {
-        &_white {
-            color: #424242;
-            background-color: #ffffff;
-            border-color: #ffffff;
+    &_green {
+      color: #ffffff;
+      background-color: map_get($colors, success);
+      border-color: map_get($colors, success);
 
-            &:hover,
-            &:active,
-            &.active {
-                border-color: #ECEFF1;
-            }
-        }
-
-        &_green {
-            color: #ffffff;
-            background-color: map_get($colors, success);
-            border-color: map_get($colors, success);
-
-            &:hover,
-            &:active,
-            &.active {
-                border-color: map_get($colors, success-hover);
-                background-color: map_get($colors, success-hover);
-            }
-        }
-
-        &_color_red {
-            color: #ffffff;
-            background-color: map_get($colors, danger);
-            box-shadow: 0 0 0 2px map_get($colors, danger) inset;
-
-            &:hover,
-            &:active,
-            &.active {
-                border-color: map_get($colors, danger-hover);
-                box-shadow: 0 0 0 2px map_get($colors, danger-hover) inset;
-            }
-        }
+      &:hover,
+      &:active,
+      &.active {
+        border-color: map_get($colors, success-hover);
+        background-color: map_get($colors, success-hover);
+      }
     }
 
-    /* types */
-    &_type {
-        &_link {
-            display: inline-flex;
-            padding: 0;
-            font-size: 1rem;
-            font-weight: normal;
-            color: map_get($colors, link-primary);
-            border: none;
-            background-color: transparent;
-            border-radius: 0;
-            cursor: pointer;
-            text-decoration: underline;
-            transition: none;
+    &_color_red {
+      color: #ffffff;
+      background-color: map_get($colors, danger);
+      box-shadow: 0 0 0 2px map_get($colors, danger) inset;
 
-            &:hover,
-            &:active,
-            &.active {
-                background-color: transparent;
-                box-shadow: none;
-                text-decoration: none;
-            }
+      &:hover,
+      &:active,
+      &.active {
+        border-color: map_get($colors, danger-hover);
+        box-shadow: 0 0 0 2px map_get($colors, danger-hover) inset;
+      }
+    }
+  }
 
-            &.btn_color_white {
-                color: #ffffff;
-            }
-        }
+  /* types */
+  &_type {
+    &_link {
+      display: inline-flex;
+      padding: 0;
+      font-size: 1rem;
+      font-weight: normal;
+      color: map_get($colors, link-primary);
+      border: none;
+      background-color: transparent;
+      border-radius: 0;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: none;
 
-        &_outline {
-            color: map_get($colors, primary);
-            background-color: transparent;
-            border: none;
-            box-shadow: 0 0 0 2px map_get($colors, primary) inset;
+      &:hover,
+      &:active,
+      &.active {
+        background-color: transparent;
+        box-shadow: none;
+        text-decoration: none;
+      }
 
-            &:hover,
-            &:active,
-            &.active {
-                color: map_get($colors, primary-hover);
-                background-color: rgba(25, 118, 210, .1);
-                box-shadow: 0 0 0 2px map_get($colors, primary-hover) inset;
-            }
-
-            &.btn_color_white {
-                color: #ffffff;
-                box-shadow: 0 0 0 2px #ffffff inset;
-            }
-
-            &.btn_color_white:hover,
-            &.btn_color_white:active,
-            &.btn_color_white.active {
-                background-color: rgba(255, 255, 255, .2);
-                box-shadow: 0 0 0 2px #ffffff inset;
-            }
-        }
-
-        &_pill {
-            border-radius: 1000px;
-        }
+      &.btn_color_white {
+        color: #ffffff;
+      }
     }
 
-    /* sizes */
-    &_size {
-        &_s {
-            padding: .6rem 1rem;
-            font-size: .7rem;
-        }
+    &_outline {
+      color: map_get($colors, primary);
+      background-color: transparent;
+      border: none;
+      box-shadow: 0 0 0 2px map_get($colors, primary) inset;
+
+      &:hover,
+      &:active,
+      &.active {
+        color: map_get($colors, primary-hover);
+        background-color: rgba(25, 118, 210, .1);
+        box-shadow: 0 0 0 2px map_get($colors, primary-hover) inset;
+      }
+
+      &.btn_color_white {
+        color: #ffffff;
+        box-shadow: 0 0 0 2px #ffffff inset;
+      }
+
+      &.btn_color_white:hover,
+      &.btn_color_white:active,
+      &.btn_color_white.active {
+        background-color: rgba(255, 255, 255, .2);
+        box-shadow: 0 0 0 2px #ffffff inset;
+      }
     }
+
+    &_pill {
+      border-radius: 1000px;
+    }
+  }
+
+  /* sizes */
+  &_size {
+    &_s {
+      padding: 0.6rem 1rem;
+      font-size: 0.7rem;
+    }
+  }
 }

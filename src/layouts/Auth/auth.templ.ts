@@ -1,7 +1,7 @@
 export default `
 .bg_color_auth
   .container(
-      key=key
+      _key=_key
   )
       .row.justify-content-center
           .col-12.col-sm-8.col-md-6.col-lg-4 
@@ -11,4 +11,4 @@ export default `
                           h1.logo.logo_color_white BLABLA
                           
                       | !{form}
-`
+`;

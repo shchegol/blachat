@@ -1,99 +1,41 @@
 import {authAPIInstance, chatAPIInstance} from "./HTTP";
 
 class ChatAPI {
-    getAll() {
-        const headers = {
-            "accept": "application/json",
-        }
+  getAll() {
+    return chatAPIInstance.get("/chats");
+  }
 
-        return new Promise(resolve => {
-            chatAPIInstance
-                .get(`/chats`, {headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
+  create(title: string) {
+    return authAPIInstance.post("/chats", {body: {title}});
+  }
 
-    create(title: string) {
-        const body = {title}
-        return new Promise(resolve => {
-            const headers = {
-                "accept": "application/json",
-                "Content-Type": "application/json"
-            }
+  getUsers(chatId: string) {
+    return chatAPIInstance.get(`/chats/${chatId}/users`);
+  }
 
-            authAPIInstance
-                .post(`/chats`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
+  getNewMessageCount(chatId: string) {
+    return chatAPIInstance.get(`/chats/new/${chatId}`);
+  }
 
-    getUsers(chatId: string) {
-        const headers = {
-            "accept": "application/json",
-        }
+  addAvatar(body: FormData) {
+    const headers = {
+      "accept": "application/json",
+      "Content-Type": "multipart/form-data",
+    };
 
-        return new Promise(resolve => {
-            chatAPIInstance
-                .get(`/chats/${chatId}/users`, {headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
+    return chatAPIInstance.put("/chats/avatar", {body, headers});
+  }
 
-    getNewMessageCount(chatId: string) {
-        const headers = {
-            "accept": "application/json",
-        }
+  addUser(users: number[], chatId: string) {
+    return chatAPIInstance.put("/users", {body: {users, chatId}});
+  }
 
-        return new Promise(resolve => {
-            chatAPIInstance
-                .get(`/chats/new/${chatId}`, {headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
-
-    addAvatar(body: FormData) {
-        const headers = {
-            "accept": "application/json",
-            "Content-Type": "multipart/form-data"
-        }
-
-        return new Promise(resolve => {
-            chatAPIInstance
-                .put(`/chats/avatar`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
-
-    addUser(users: number[], chatId: string) {
-        const body = {users, chatId}
-        const headers = {
-            "accept": "application/json",
-            "Content-Type": "application/json"
-        }
-
-        return new Promise(resolve => {
-            chatAPIInstance
-                .put(`/users`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
-
-    deleteUser(chatId: string) {
-        const body = {chatId}
-        const headers = {
-            "accept": "application/json",
-            "Content-Type": "application/json"
-        }
-
-        return new Promise(resolve => {
-            chatAPIInstance
-                .delete(`/users`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
+  deleteUser(chatId: string) {
+    return chatAPIInstance.delete("/users", {body: {chatId}});
+  }
 }
 
-export const chatApi = new ChatAPI()
+export const chatApi = new ChatAPI();
 
 export default ChatAPI;
 

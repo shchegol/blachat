@@ -2,67 +2,67 @@
   display: inline-block;
   position: relative;
 
+  &:hover {
+    .dropdown__content {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__content {
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 15rem;
+    list-style: none;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #E0E0E0;;
+    }
+
     &:hover {
-        .dropdown__content {
-            visibility: visible;
-            opacity: 1;
-        }
+      background-color: #F5F5F5;
     }
 
-    &__content {
-        visibility: hidden;
-        opacity: 0;
-        z-index: 2;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 0;
-        padding: 0;
-        min-width: 15rem;
-        list-style: none;
-        background-color: #fff;
-        border-radius: 4px;
-        border: 1px solid #E0E0E0;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
-        transition: opacity .3s;
+    .material-icons {
+      font-size: 1.4rem;
+      color: map_get($colors, primary);
+      margin-right: 1rem;
+    }
+  }
+
+  &_open {
+    &_bl .dropdown__content {
+      top: 0;
+      right: 0;
+      left: auto;
+      bottom: auto;
     }
 
-    &__item {
-        display: flex;
-        align-items: center;
-        padding: 1rem;
-        font-size: 1rem;
-        transition: background-color .2s;
-        cursor: pointer;
-
-        &:not(:last-child) {
-            border-bottom: 1px solid #E0E0E0;;
-        }
-
-        &:hover {
-            background-color: #F5F5F5;
-        }
-
-        .material-icons {
-            font-size: 1.4rem;
-            color: map_get($colors, primary);
-            margin-right: 1rem;
-        }
+    &_tr .dropdown__content {
+      top: auto;
+      right: auto;
+      left: 0;
+      bottom: 0;
     }
-
-    &_open {
-        &_bl .dropdown__content {
-            top: 0;
-            right: 0;
-            left: auto;
-            bottom: auto;
-        }
-
-        &_tr .dropdown__content {
-            top: auto;
-            right: auto;
-            left: 0;
-            bottom: 0;
-        }
-    }
+  }
 }

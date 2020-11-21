@@ -1,16 +1,16 @@
-import {authApi}        from '../../API/AuthAPI';
-import {IStringObject}  from '../../utils/ts/interfaces';
-import {store}          from '../initStore';
-import * as ACTION      from '../actions/auth';
-import * as ACTION_USER from '../actions/user';
-import {appRouter}      from '../../router/Router';
+import {authApi}        from "../../API/AuthAPI";
+import {IStringObject, IRequestResult}  from "../../utils/ts/interfaces";
+import {store}          from "../initStore";
+import * as ACTION      from "../actions/auth";
+import * as ACTION_USER from "../actions/user";
+import {appRouter}      from "../../router/Router";
 
 export const fetchtUser = () => {
   return new Promise(resolve => {
     authApi
         .fetchtUser()
-        .then((res: XMLHttpRequest) => {
-          if (res.status === 200) {
+        .then((res: IRequestResult) => {
+          if (res.ok) {
             store.dispatch({
               type: ACTION.AUTH_FETCH,
               payload: {
@@ -20,7 +20,7 @@ export const fetchtUser = () => {
 
             store.dispatch({
               type: ACTION_USER.USER_FETCH,
-              payload: JSON.parse(res.response),
+              payload: res.data,
             });
           }
 
@@ -30,45 +30,36 @@ export const fetchtUser = () => {
 };
 
 export const signup = (props: IStringObject) => {
-  return new Promise(resolve => {
-    authApi
+  return authApi
         .signup(props)
-        .then((res: XMLHttpRequest) => {
-          if (res.status === 200) {
+        .then((res: IRequestResult) => {
+          if (res.ok) {
             fetchtUser()
                 .then(() => {
-                  appRouter.go('/');
+                  appRouter.go("/");
                 });
           }
-
-          resolve();
         });
-  });
 };
 
 export const signin = (props: IStringObject) => {
-  return new Promise(resolve => {
-    authApi
+  return authApi
         .signin(props)
-        .then((res: XMLHttpRequest) => {
-          if (res.status === 200) {
+        .then((res: IRequestResult) => {
+          if (res.ok) {
             fetchtUser()
                 .then(() => {
-                  appRouter.go('/');
+                  appRouter.go("/");
                 });
           }
-
-          resolve();
         });
-  });
 };
 
 export const logout = () => {
-  return new Promise(resolve => {
-    authApi
+  return authApi
         .logout()
-        .then((res: XMLHttpRequest) => {
-          if (res.status === 200) {
+        .then((res: IRequestResult) => {
+          if (res.ok) {
             store.dispatch({
               type: ACTION.AUTH_LOGOUT,
               payload: {
@@ -76,10 +67,7 @@ export const logout = () => {
               },
             });
 
-            appRouter.go('/auth');
+            appRouter.go("/auth");
           }
-
-          resolve();
         });
-  });
 };

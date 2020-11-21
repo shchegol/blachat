@@ -1,5 +1,5 @@
-import Route     from './Route';
-import Component from '../components/Component';
+import Route     from "./Route";
+import Component from "../components/Component";
 
 class Router {
   static __instance: Router;
@@ -18,7 +18,7 @@ class Router {
     this.history = window.history;
     this._currentRoute = null;
     this._rootQuery = rootQuery;
-    this._middlewares = []
+    this._middlewares = [];
 
     Router.__instance = this;
   }
@@ -37,7 +37,7 @@ class Router {
   start() {
     window.onpopstate = ((event: { currentTarget: Window }) => {
       if (!event || !event.currentTarget) {
-        throw new Error('');
+        throw new Error("");
       }
 
       this._onRoute(event.currentTarget.location.pathname);
@@ -47,10 +47,17 @@ class Router {
   }
 
   go(pathname: string): void {
-    this.history.pushState({}, '', pathname);
+    this.history.pushState({}, "", pathname);
     this._onRoute(pathname);
   }
 
+  /**
+   * Add some middleware function
+   * @param fn - the function that is called before rendering
+   *
+   * IMPORTANT
+   * If the middleware function returns true, rendering will not happen.
+   */
   addMiddleware(fn: Function) {
     this._middlewares = [...this._middlewares, fn.bind(this)];
   }
@@ -68,16 +75,8 @@ class Router {
   }
 
   protected _onRoute(pathname: string): void {
-    let doReturn = false;
-
-    this._middlewares.forEach(fn => {
-      if(fn({pathname})) {
-        doReturn = true;
-        return;
-      }
-    });
-
-    if (doReturn) {
+    /** Start middleware and if some fn returns true stop rendering */
+    if (this._middlewares.some(fn => fn({pathname}))) {
       return;
     }
 
@@ -97,6 +96,6 @@ class Router {
   }
 }
 
-export const appRouter = new Router('#app');
+export const appRouter = new Router("#app");
 
 export default Router;

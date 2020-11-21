@@ -1,78 +1,77 @@
-import { expect } from "chai";
-import { getType } from "./helpers";
+import {getType} from "./helpers";
 
 describe("Helper getType", () => {
-    it("should return type string", () => {
-        expect(getType('')).to.equal('string');
-        expect(getType('test')).to.equal('string');
-        expect(getType(String('test'))).to.equal('string');
-        expect(getType(new String('test'))).to.equal('string');
-    });
+  it("should return type string", () => {
+    expect(getType("")).toEqual("string");
+    expect(getType("test")).toEqual("string");
+    expect(getType(String("test"))).toEqual("string");
+    expect(getType(new String("test"))).toEqual("string");
+  });
 
-    it('should return type number', () => {
-        expect(getType(0)).to.equal('number');
-        expect(getType(-0)).to.equal('number');
-        expect(getType(0xff)).to.equal('number');
-        expect(getType(-3.142)).to.equal('number');
-        expect(getType(Infinity)).to.equal('number');
-        expect(getType(-Infinity)).to.equal('number');
-        expect(getType(NaN)).to.equal('number');
-        expect(getType(Number(42))).to.equal('number');
-        expect(getType(new Number(42))).to.equal('number');
-    });
+  it("should return type number", () => {
+    expect(getType(0)).toEqual("number");
+    expect(getType(-0)).toEqual("number");
+    expect(getType(0xff)).toEqual("number");
+    expect(getType(-3.142)).toEqual("number");
+    expect(getType(Infinity)).toEqual("number");
+    expect(getType(-Infinity)).toEqual("number");
+    expect(getType(NaN)).toEqual("number");
+    expect(getType(Number(42))).toEqual("number");
+    expect(getType(new Number(42))).toEqual("number");
+  });
 
-    it('should return type boolean', () => {
-        expect(getType(true)).to.equal('boolean');
-        expect(getType(false)).to.equal('boolean');
-        expect(getType(new Boolean(true))).to.equal('boolean');
-    });
+  it("should return type boolean", () => {
+    expect(getType(true)).toEqual("boolean");
+    expect(getType(false)).toEqual("boolean");
+    expect(getType(new Boolean(true))).toEqual("boolean");
+  });
 
-    it('should return type undefined', () => {
-        expect(getType(undefined)).to.equal('undefined');
-    });
+  it("should return type undefined", () => {
+    expect(getType(undefined)).toEqual("undefined");
+  });
 
-    it('should return type null', () => {
-        expect(getType(null)).to.equal('null');
-    });
+  it("should return type null", () => {
+    expect(getType(null)).toEqual("null");
+  });
 
-    it('should return type arguments', () => {
-        const testArgs = (function() { return getType(arguments) })();
-        expect(testArgs).to.equal('arguments');
-    });
+  it("should return type arguments", () => {
+    const testArgs = (function() { return getType(arguments); })();
+    expect(testArgs).toEqual("arguments");
+  });
 
-    it('should return type function', () => {
-        expect(getType(function() {})).to.equal('function');
-        expect(getType(new Function)).to.equal('function');
-        expect(getType(class {})).to.equal('function');
-    });
+  it("should return type function", () => {
+    expect(getType(function() {})).toEqual("function");
+    expect(getType(new Function)).toEqual("function");
+    expect(getType(class {})).toEqual("function");
+  });
 
-    it('should return type object', () => {
-        expect(getType({})).to.equal('object');
-        expect(getType(new Object)).to.equal('object');
-    });
+  it("should return type object", () => {
+    expect(getType({})).toEqual("object");
+    expect(getType(new Object)).toEqual("object");
+  });
 
-    it('should return type object', () => {
-        expect(getType(/^(.+)$/)).to.equal('regexp');
-        expect(getType(new RegExp("^(.+)$"))).to.equal('regexp');
-    });
+  it("should return type object", () => {
+    expect(getType(/^(.+)$/)).toEqual("regexp");
+    expect(getType(new RegExp("^(.+)$"))).toEqual("regexp");
+  });
 
-    it('should return type date', () => {
-        expect(getType(new Date)).to.equal('date');
-    });
+  it("should return type date", () => {
+    expect(getType(new Date)).toEqual("date");
+  });
 
-    it('should return type set', () => {
-        expect(getType(new Set)).to.equal('set');
-    });
+  it("should return type set", () => {
+    expect(getType(new Set)).toEqual("set");
+  });
 
-    it('should return type map', () => {
-        expect(getType(new Map)).to.equal('map');
-    });
+  it("should return type map", () => {
+    expect(getType(new Map)).toEqual("map");
+  });
 
-    it('should return type weakset', () => {
-        expect(getType(new WeakSet)).to.equal('weakset');
-    });
+  it("should return type weakset", () => {
+    expect(getType(new WeakSet)).toEqual("weakset");
+  });
 
-    it('should return type weakmap', () => {
-        expect(getType(new WeakMap)).to.equal('weakmap');
-    });
+  it("should return type weakmap", () => {
+    expect(getType(new WeakMap)).toEqual("weakmap");
+  });
 });

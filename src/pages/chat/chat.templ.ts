@@ -166,4 +166,4 @@ export default `
                     title="Отправить"
                 )
                     i.material-icons send
-`
+`;

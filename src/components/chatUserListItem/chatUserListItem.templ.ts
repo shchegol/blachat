@@ -1,16 +1,12 @@
-import Component from "./Component";
-import {IAnyObject} from "../utils/ts/interfaces"
-const pug = require("pug");
-
-const itemTemplate: string = `
+export default `
 if !classes
     - classes = ""
     
 li(
     id=id
-    key=key
+    _key=_key
     class="user-list__item " + classes
-    data-chat-id=chatId
+    data-chat-id=_chatId
 ) 
     img(
         src=avatar
@@ -28,15 +24,3 @@ li(
             if messageCount > 0
                 span.badge #{messageCount}
 `;
-
-export default class ChatUserListItem extends Component {
-    props: IAnyObject;
-
-    constructor(props: IAnyObject) {
-        super("div", props);
-    }
-
-    render(): string {
-        return pug.render(itemTemplate, this.props);
-    }
-}

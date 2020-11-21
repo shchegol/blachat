@@ -1,75 +1,34 @@
-import {IStringObject} from "../utils/ts/interfaces"
+import {IStringObject}   from "../utils/ts/interfaces";
 import {userAPIInstance} from "./HTTP";
 
 class UserApi {
-    change(body: IStringObject) {
-        const headers = {
-            "accept": "application/json",
-            "Content-Type": "application/json"
-        }
+  change(body: IStringObject) {
+    return userAPIInstance.put("/profile", {body});
+  }
 
-        return new Promise(resolve => {
-            userAPIInstance
-                .put(`/profile`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
+  changeAvatar(body: FormData) {
+    const headers = {
+      "accept": "application/json",
+      "Content-Type": "multipart/form-data",
+    };
+    return userAPIInstance.put("/profile/avatar", {body, headers});
+  }
 
-    changeAvatar(body: FormData) {
-        const headers = {
-            "accept": "application/json",
-            "Content-Type": "multipart/form-data"
-        }
+  changePassword(oldPassword: string, newPassword: string) {
+    return userAPIInstance.put("/password", {body: {oldPassword, newPassword}});
 
-        return new Promise(resolve => {
-            userAPIInstance
-                .put(`/profile/avatar`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
+  }
 
-    changePassword(oldPassword: string, newPassword: string) {
-        const body = {oldPassword, newPassword}
-        const headers = {
-            "accept": "application/json",
-            "Content-Type": "application/json"
-        }
+  getById(id: string) {
+    return userAPIInstance.get(`/${id}`);
+  }
 
-        return new Promise(resolve => {
-            userAPIInstance
-                .put(`/password`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
-
-    getById(id: string) {
-        const headers = {
-            "accept": "application/json",
-        }
-
-        return new Promise(resolve => {
-            userAPIInstance
-                .get(`/${id}`, {headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
-
-    search(login: string) {
-        const body = {login}
-        const headers = {
-            "accept": "application/json",
-            "Content-Type": "application/json"
-        }
-
-        return new Promise(resolve => {
-            userAPIInstance
-                .post(`/search`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
+  search(login: string) {
+    return userAPIInstance.post("/search", {body: {login}});
+  }
 }
 
-export const userApi = new UserApi()
+export const userApi = new UserApi();
 
 export default UserApi;
 

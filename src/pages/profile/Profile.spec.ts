@@ -1,19 +1,21 @@
-import {expect}        from "chai";
-import Profile         from "./Profile";
+import Profile  from "./Profile";
+import {getType}       from "../../utils/helpers";
 
 let profile: Profile;
 
 beforeEach(() => {
-    profile = new Profile();
+  profile = new Profile();
 });
 
 describe("Page Profile", () => {
-    it("should has required keys in props", () => {
-        expect(profile.props)
-            .to.include.all.keys("key", "buttonBack", "buttonEdit", "buttonLogout")
-    })
+  it("should has required keys in props", () => {
+    expect(profile.props).toHaveProperty("_key")
+    expect(profile.props).toHaveProperty("buttonBack")
+    expect(profile.props).toHaveProperty("buttonEdit")
+    expect(profile.props).toHaveProperty("buttonLogout")
+  });
 
-    it("should render a string", () => {
-        expect(profile.render()).to.be.a("string")
-    })
-})
+  it("should render a string", () => {
+    expect(getType(profile.render())).toEqual("string");
+  });
+});

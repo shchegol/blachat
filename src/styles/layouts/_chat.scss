@@ -28,7 +28,7 @@
     overflow-y: auto;
     flex-grow: 1;
     max-width: 100%;
-    padding: .5rem;
+    padding: 0.5rem;
 
     &:empty {
       &::before {
@@ -46,7 +46,7 @@
   &__main-bar {
     display: flex;
     align-items: center;
-    padding: .5rem;
+    padding: 0.5rem;
     min-height: 3rem;
     border-bottom: 1px solid map_get($colors, border-secondary);
 
@@ -58,7 +58,7 @@
   &__bottom-bar {
     display: flex;
     align-items: center;
-    padding: .5rem;
+    padding: 0.5rem;
     min-height: 3rem;
     border-top: 1px solid map_get($colors, border-secondary);
   }

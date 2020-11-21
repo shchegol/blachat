@@ -1,55 +1,25 @@
-import {IStringObject} from '../utils/ts/interfaces'
+import {IStringObject}   from "../utils/ts/interfaces";
 import {authAPIInstance} from "./HTTP";
 
 class AuthApi {
-    signup(body: IStringObject) {
-        return new Promise(resolve => {
-            const headers = {
-                "accept": "application/json",
-                "Content-Type": "application/json"
-            }
+  signup(body: IStringObject) {
+    return authAPIInstance.post("/signup", {body});
+  }
 
-            authAPIInstance
-                .post(`/signup`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
+  signin(body: IStringObject) {
+    return authAPIInstance.post("/signin", {body});
+  }
 
-    signin(body: IStringObject) {
-        return new Promise(resolve => {
-            const headers = {
-                "accept": "application/json",
-                "Content-Type": "application/json",
-            }
+  fetchtUser() {
+    return authAPIInstance.get("/user");
+  }
 
-            authAPIInstance
-                .post(`/signin`, {body, headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
-
-    fetchtUser() {
-        return new Promise(resolve => {
-            const headers = {
-                "accept": "application/json",
-            }
-
-            authAPIInstance
-                .get(`/user`, {headers})
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
-
-    logout() {
-        return new Promise(resolve => {
-            authAPIInstance
-                .post(`/logout`)
-                .then((res: XMLHttpRequest) => resolve(res))
-        })
-    }
+  logout() {
+    return authAPIInstance.post("/logout");
+  }
 }
 
-export const authApi = new AuthApi()
+export const authApi = new AuthApi();
 
 export default AuthApi;
 

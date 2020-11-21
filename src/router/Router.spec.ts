@@ -1,20 +1,18 @@
-import {expect} from "chai";
 import {appRouter} from "./Router";
-import Chat from "../pages/chat/Chat";
+import Chat        from "../pages/chat/Chat";
+import {getType}   from "../utils/helpers";
 
 describe("Router", () => {
-    describe("before add route", () => {
-        it("appRouter should return empty array in routes", () => {
-            expect(appRouter.routes)
-                .to.be.an("array")
-                .that.is.empty;
-        })
-    })
+  describe("before add route", () => {
+    test("appRouter should return empty array in routes", () => {
+      expect(getType(appRouter.routes)).toEqual("array");
+    });
+  });
 
-    describe("after add route", () => {
-        it("should return 1 routes", () => {
-            appRouter.use("/", Chat)
-            expect(appRouter.routes.length).to.equal(1)
-        })
-    })
-})
+  describe("after add route", () => {
+    test("should return 1 routes", () => {
+      appRouter.use("/", Chat);
+      expect(appRouter.routes.length).toEqual(1);
+    });
+  });
+});

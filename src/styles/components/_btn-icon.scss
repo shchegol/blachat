@@ -1,6 +1,6 @@
 .btn-icon {
   display: inline-flex;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 100%;
   color: map_get($colors, secondary);
   font-size: 1.2rem;
@@ -15,7 +15,7 @@
   &:hover,
   &:active,
   &_active {
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
   &_size {
