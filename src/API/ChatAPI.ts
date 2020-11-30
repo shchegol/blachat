@@ -18,11 +18,7 @@ class ChatAPI {
   }
 
   addAvatar(body: FormData) {
-    const headers = {
-      "accept": "application/json",
-      "Content-Type": "multipart/form-data",
-    };
-
+    const headers = {"Content-Type": "multipart/form-data"};
     return chatAPIInstance.put("/chats/avatar", {body, headers});
   }
 

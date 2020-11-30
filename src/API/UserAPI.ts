@@ -7,10 +7,7 @@ class UserApi {
   }
 
   changeAvatar(body: FormData) {
-    const headers = {
-      "accept": "application/json",
-      "Content-Type": "multipart/form-data",
-    };
+    const headers = {"Content-Type": "multipart/form-data"};
     return userAPIInstance.put("/profile/avatar", {body, headers});
   }
 

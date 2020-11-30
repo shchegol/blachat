@@ -2,6 +2,10 @@ import {IRequestOptions, IAnyObject} from "../utils/ts/interfaces";
 import {queryStringify}              from "../utils/helpers";
 import settings                      from "../settings/base";
 
+interface IHTTPOptions {
+  headers?: { [key: string]: string; }
+}
+
 class HTTP {
   static METHODS = {
     GET: "GET",
@@ -11,9 +15,21 @@ class HTTP {
   };
 
   host: string;
+  options: IHTTPOptions;
 
-  constructor(host: string = "") {
+  constructor(host: string = "", options: IHTTPOptions = {}) {
+    const _defaults: IHTTPOptions = {
+      headers: {
+        "accept": "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+
     this.host = host;
+    this.options = {
+      ..._defaults,
+      ...options,
+    };
   }
 
   get(url: string, options: IRequestOptions = {}) {
@@ -44,14 +60,8 @@ class HTTP {
   }
 
   protected _request(url: string, options: IRequestOptions, timeout: number = 5000) {
-    const {
-      method = HTTP.METHODS.GET,
-      headers = {
-        "accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body,
-    } = options;
+    const {method = HTTP.METHODS.GET, headers, body} = options;
+    const mergedHeaders = {...this.options.headers, ...headers};
     url = `${this.host}${url}`;
 
     return new Promise((resolve, reject) => {
@@ -83,10 +93,8 @@ class HTTP {
       xhr.onabort = reject;
       xhr.onerror = reject;
 
-      if (headers) {
-        for (let header in headers) {
-          xhr.setRequestHeader(header, headers[header]);
-        }
+      for (let header in mergedHeaders) {
+        xhr.setRequestHeader(header, mergedHeaders[header]);
       }
 
       if (

@@ -24,8 +24,11 @@ class Router {
   }
 
   use(pathname: string, component: new () => Component) {
-    const route: Route = new Route(pathname, component,
-        {rootQuery: this._rootQuery});
+    const route: Route = new Route(
+        pathname,
+        component,
+        {rootQuery: this._rootQuery},
+    );
     this.routes.push(route);
     return this;
   }
