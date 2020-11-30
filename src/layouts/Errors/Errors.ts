@@ -1,7 +1,7 @@
-const pug = require("pug");
 import Component    from "../../components/Component";
 import {IAnyObject} from "../../utils/ts/interfaces";
-import template     from "./errors.templ";
+
+const tempFn = require("pug-loader!./errors.templ.pug");
 
 export default class Errors extends Component {
   props: IAnyObject;
@@ -11,6 +11,6 @@ export default class Errors extends Component {
   }
 
   render(): string {
-    return pug.render(template, this.props);
+    return tempFn(this.props);
   }
 }

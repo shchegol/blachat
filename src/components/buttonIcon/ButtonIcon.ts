@@ -1,6 +1,5 @@
-const pug = require("pug");
 import Component from "../Component";
-import template  from "./buttonIcon.templ";
+const tempFn = require("pug-loader!./buttonIcon.templ.pug");
 
 /**
  * Button with icon
@@ -29,6 +28,6 @@ export default class ButtonIcon extends Component {
   }
 
   render(): string {
-    return pug.render(template, this.props);
+    return tempFn(this.props);
   }
 }

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "static/build",
     "module": "es6",
     "esModuleInterop": true,
     "target": "es2017",
@@ -12,7 +11,5 @@
     "alwaysStrict": true,
     "sourceMap": false,
     "strictNullChecks": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "src/**/*.spec.ts", "test"]
+  }
 }

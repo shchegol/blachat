@@ -1,6 +1,5 @@
-const pug = require("pug");
 import Component from "../Component";
-import template  from "./chatDropdownItem.templ";
+const tempFn = require("pug-loader!./chatDropdownItem.templ.pug");
 
 /**
  * Chat dropdown item
@@ -29,6 +28,6 @@ export default class ChatDropdownItem extends Component {
   }
 
   render(): string {
-    return pug.render(template, this.props);
+    return tempFn(this.props);
   }
 }

@@ -1,6 +1,6 @@
-const pug = require("pug");
-import Component    from "../Component";
-import template     from "./chatUserListItem.templ";
+import Component from "../Component";
+
+const tempFn = require("pug-loader!./chatUserListItem.templ.pug");
 
 /**
  * Chats list item
@@ -37,6 +37,6 @@ export default class ChatUserListItem extends Component {
   }
 
   render(): string {
-    return pug.render(template, this.props);
+    return tempFn(this.props);
   }
 }

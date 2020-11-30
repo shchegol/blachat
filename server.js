@@ -1,8 +1,4 @@
-import express         from "express";
-import {dirname}       from "path";
-import {fileURLToPath} from "url";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const express = require("express");
 const app = express();
 const PORT = 4000;
 const serverInfo = `
@@ -11,10 +7,10 @@ const serverInfo = `
   #############################\x1b[0m
   `;
 const getPage = (pageName) => {
-  return `${__dirname}/static/${pageName}.html`;
+  return `${__dirname}/dist/${pageName}.html`;
 };
 
-app.use(express.static("./static"));
+app.use(express.static("./dist"));
 app.get("*", (req, res) => {
   res.sendFile(getPage("/index"));
 });

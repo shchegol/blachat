@@ -1,6 +1,5 @@
-export default `
 if !classes
-    - classes = ""
+  - classes = ""
 
 ul(
     id=id
@@ -8,6 +7,5 @@ ul(
     class="user-list " + classes
 )
     if renderedItems.length > 0
-        each item in renderedItems
-            | !{item}
-`;
+      each item in renderedItems
+          | !{item}

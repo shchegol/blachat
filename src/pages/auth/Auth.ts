@@ -1,15 +1,14 @@
 import {IAnyObject}                      from "../../utils/ts/interfaces";
 import Component                         from "../../components/Component";
-import {appRouter} from "../../router/Router";
-import Form   from "../../components/form/Form";
-import Input  from "../../components/input/Input";
-import Button from "../../components/button/Button";
+import {appRouter}                       from "../../router/Router";
+import Form                              from "../../components/form/Form";
+import Input                             from "../../components/input/Input";
+import Button                            from "../../components/button/Button";
 import {inputValidation, formValidation} from "../../utils/validation";
-import template                          from "../../layouts/Auth/auth.templ";
 import {getFormData}                     from "../../utils/helpers";
 import {signin}                          from "../../store/actionCreators/auth";
 
-const pug = require("pug");
+const tempFn = require("pug-loader!../../layouts/Auth/auth.templ.pug");
 
 const inputCommonProps = {
   classes: "input_color_white mt-20",
@@ -71,7 +70,7 @@ export default class Auth extends Component {
   }
 
   render(): string {
-    return pug.render(template, {
+    return tempFn({
       _key: this.props._key,
       form: this.props.form.render(),
     });

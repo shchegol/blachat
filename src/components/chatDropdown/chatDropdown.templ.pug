@@ -1,7 +1,6 @@
-export default `
 if !classes
-    - classes = ""
-    
+  - classes = ""
+
 div(
     id=id
     _key=_key
@@ -15,10 +14,9 @@ div(
             i.material-icons #{iconName}
         else
             #{text}
-            
-    
+
+
     ul.dropdown__content
         if renderedItems.length > 0
-        each item in renderedItems
-            | !{item}
-`;
+            each item in renderedItems
+                | !{item}

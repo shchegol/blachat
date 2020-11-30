@@ -1,19 +1,18 @@
-export default `
 .container
-    .row 
+    .row
         .col
             | !{buttonBack}
-             
-    section.row.justify-content-center.profile 
-        .col-4.text_align_center 
+
+    section.row.justify-content-center.profile
+        .col-4.text_align_center
             img(
-               src=avatar || "/img/bg.jpg" 
-               alt=first_name+" "+second_name
-               class="profile__img"
+                src=avatar || "/img/bg.jpg"
+                alt=first_name + " " + second_name
+                class="profile__img"
             )
-            
+
             h1.profile__title.mt-20 #{first_name} #{second_name}
-    
+
             table.table.table_type_centered.mt-20
                 tr
                     td.table__title Логин:
@@ -21,11 +20,10 @@ export default `
                 tr
                     td.table__title Почта:
                     td.table__text #{email}
-                
+
                 tr
                     td.table__title Телефон:
                     td.table__text #{phone}
-                    
+
             | !{buttonEdit}
             | !{buttonLogout}
-`;

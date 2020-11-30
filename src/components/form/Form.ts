@@ -1,9 +1,9 @@
-const pug = require("pug");
 import Component    from "../Component";
 import {IAnyObject} from "../../utils/ts/interfaces";
-import template     from "./form.templ";
 import Input        from "../input/Input";
 import Button       from "../button/Button";
+
+const tempFn = require("pug-loader!./form.templ.pug");
 
 /**
  * Form
@@ -36,6 +36,7 @@ export default class Form extends Component {
       });
     }
 
-    return pug.render(template, {renderedItems, ...this.props});
+    // return pug.render(template, {renderedItems, ...this.props});
+    return tempFn({renderedItems, ...this.props});
   }
 }

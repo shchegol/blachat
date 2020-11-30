@@ -1,6 +1,6 @@
-const pug = require("pug");
 import Component from "../Component";
-import template  from "./input.templ";
+
+const tempFn = require("pug-loader!./input.templ.pug");
 
 /**
  * Input
@@ -39,7 +39,7 @@ class Input extends Component {
   }
 
   render(): string {
-    return pug.render(template, this.props);
+    return tempFn(this.props);
   }
 }
 

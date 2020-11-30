@@ -1,12 +1,12 @@
-const pug = require("pug");
 import Component    from "../../components/Component";
 import {store}      from "../../store/initStore";
 import {IAnyObject} from "../../utils/ts/interfaces";
-import {appRouter} from "../../router/Router";
-import Button     from "../../components/button/Button";
-import ButtonIcon from "../../components/buttonIcon/ButtonIcon";
-import template   from "./profile.templ";
+import {appRouter}  from "../../router/Router";
+import Button       from "../../components/button/Button";
+import ButtonIcon   from "../../components/buttonIcon/ButtonIcon";
 import {logout}     from "../../store/actionCreators/auth";
+
+const tempFn = require("pug-loader!./profile.templ.pug");
 
 export default class Profile extends Component {
   props: IAnyObject;
@@ -45,7 +45,7 @@ export default class Profile extends Component {
   }
 
   render(): string {
-    return pug.render(template, {
+    return tempFn({
       _key: this.props._key,
       first_name: this.props.first_name,
       second_name: this.props.second_name,

@@ -1,13 +1,13 @@
-const pug = require("pug");
 import {formValidation} from "../../utils/validation";
-import Component from "../../components/Component";
-import Form   from "../../components/form/Form";
-import Input  from "../../components/input/Input";
-import Button from "../../components/button/Button";
-import {IAnyObject} from "../../utils/ts/interfaces";
-import template         from "./profileEdit.templ";
-import {appRouter} from "../../router/Router";
-import ButtonIcon  from "../../components/buttonIcon/ButtonIcon";
+import Component        from "../../components/Component";
+import Form             from "../../components/form/Form";
+import Input            from "../../components/input/Input";
+import Button           from "../../components/button/Button";
+import {IAnyObject}     from "../../utils/ts/interfaces";
+import {appRouter}      from "../../router/Router";
+import ButtonIcon       from "../../components/buttonIcon/ButtonIcon";
+
+const tempFn = require("pug-loader!./profileEdit.templ.pug");
 
 export default class ProfileEdit extends Component {
   props: IAnyObject;
@@ -130,7 +130,7 @@ export default class ProfileEdit extends Component {
   }
 
   render(): string {
-    return pug.render(template, {
+    return tempFn({
       _key: this.props._key,
       buttonBack: this.props.buttonBack.render(),
       form: this.props.form.render(),

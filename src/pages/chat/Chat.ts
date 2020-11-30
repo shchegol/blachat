@@ -7,9 +7,8 @@ import ChatUserAvatar   from "../../components/chatUserAvatar/ChatUserAvatar";
 import ChatDropdown     from "../../components/chatDropdown/ChatDropdown";
 import ChatDropdownItem from "../../components/chatDropdownItem/ChatDropdownItem";
 import {IAnyObject}     from "../../utils/ts/interfaces";
-import template         from "./chat.templ";
 
-const pug = require("pug");
+const tempFn = require("pug-loader!./chat.templ.pug");
 
 export default class PageChat extends Component {
   props: IAnyObject;
@@ -78,7 +77,7 @@ export default class PageChat extends Component {
   }
 
   render(): string {
-    return pug.render(template, {
+    return tempFn({
       _key: this.props._key,
       userAvatar: this.props.userAvatar.render(),
       chatsList: this.props.chatsList.render(),

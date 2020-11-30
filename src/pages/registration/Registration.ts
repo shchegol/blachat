@@ -1,15 +1,14 @@
-const pug = require("pug");
 import Component                         from "../../components/Component";
 import {appRouter}                       from "../../router/Router";
-import {signup} from "../../store/actionCreators/auth";
-import Form   from "../../components/form/Form";
-import Input  from "../../components/input/Input";
-import Button from "../../components/button/Button";
+import {signup}                          from "../../store/actionCreators/auth";
+import Form                              from "../../components/form/Form";
+import Input                             from "../../components/input/Input";
+import Button                            from "../../components/button/Button";
 import {inputValidation, formValidation} from "../../utils/validation";
 import {IAnyObject}                      from "../../utils/ts/interfaces";
-import template                          from "../../layouts/Auth/auth.templ";
 import {getFormData}                     from "../../utils/helpers";
 
+const tempFn = require("pug-loader!../../layouts/Auth/auth.templ.pug");
 const inputCommonProps = {
   classes: "input_color_white mt-20",
   type: "text",
@@ -106,7 +105,7 @@ export default class Registration extends Component {
   }
 
   render(): string {
-    return pug.render(template, {
+    return tempFn({
       _key: this.props._key,
       form: this.props.form.render(),
     });

@@ -3,6 +3,7 @@ node_modules/
 
 docs/
 build/
+dist/
 static/build/
 
 package-lock.json

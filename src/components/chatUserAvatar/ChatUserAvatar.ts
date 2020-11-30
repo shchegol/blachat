@@ -1,6 +1,6 @@
-const pug = require("pug");
-import Component    from "../Component";
-import template from "./chatUserAvatar.templ"
+import Component from "../Component";
+
+const tempFn = require("pug-loader!./chatUserAvatar.templ.pug");
 
 /**
  * Chat avatar
@@ -31,6 +31,6 @@ export default class ChatUserAvatar extends Component {
   }
 
   render(): string {
-    return pug.render(template, this.props);
+    return tempFn(this.props);
   }
 }
