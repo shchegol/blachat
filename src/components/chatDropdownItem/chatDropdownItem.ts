@@ -1,5 +1,6 @@
 import Component from "../Component";
-const tempFn = require("pug-loader!./chatDropdownItem.templ.pug");
+
+const tempFn = require("./chatDropdownItem.templ.pug");
 
 /**
  * Chat dropdown item

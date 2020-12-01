@@ -1,3 +1,5 @@
+/* eslint no-empty-function: false */
+
 import EventBus                        from "./EventBus";
 import {IAnyObject, IEventBusFunction} from "../utils/ts/interfaces";
 
@@ -16,10 +18,10 @@ export default class Component {
   protected _id: string;
   protected _meta: { tagName: string, props: IAnyObject };
 
-  constructor(tagName: string = "div", props: IAnyObject) {
+  constructor(tagName = "div", props: IAnyObject) {
     const eventBus: EventBus = new EventBus();
 
-    this._id = "uniq" + parseInt(String(Math.random() * 1000000));
+    this._id = `uniq${parseInt(String(Math.random() * 1000000))}`;
     this.props = this._makePropsProxy({_key: this._id, ...props});
     this._registerEvents(eventBus);
     this._meta = {
@@ -39,20 +41,17 @@ export default class Component {
     return this._element;
   }
 
-  init(): void {
-  }
+  init(): void {}
 
-  componentDidMount(): void {
-  }
+  componentDidMount(): void {}
 
   componentDidUpdate(): boolean {
     return true;
   }
 
-  componentDidRender(): void {
-  }
+  componentDidRender(): void {}
 
-  getContent() {
+  getContent(): HTMLElement {
     return this.element;
   }
 
@@ -68,11 +67,11 @@ export default class Component {
     return "";
   }
 
-  show() {
+  show(): void {
     this.getContent().style.display = "block";
   }
 
-  hide() {
+  hide(): void {
     this.getContent().style.display = "none";
   }
 
@@ -128,16 +127,14 @@ export default class Component {
 
     if (!el) return;
 
-    this.props.listeners.forEach(
-        (listener: { event: string, fn: () => {} }) => {
-          el.addEventListener(listener.event, listener.fn);
-        });
+    this.props.listeners.forEach((listener: { event: string, fn: () => Record<string, unknown> }) => {
+      el.addEventListener(listener.event, listener.fn);
+    });
   }
 
-  protected _makePropsProxy(props: IAnyObject) {
+  protected _makePropsProxy(props: IAnyObject): IAnyObject {
     return new Proxy(props, {
-      set: (
-          target: IAnyObject, prop: keyof IAnyObject, value: any): boolean => {
+      set: (target: IAnyObject, prop: keyof IAnyObject, value: keyof IAnyObject): boolean => {
         const oldProps = {...this._meta.props};
 
         if (target[prop] !== value) {
@@ -148,12 +145,12 @@ export default class Component {
 
         return false;
       },
-      get(target: IAnyObject, prop: keyof IAnyObject) {
+      get(target: IAnyObject, prop: keyof IAnyObject): boolean {
         const value = target[prop];
 
         return typeof value === "function" ? value.bind(target) : value;
       },
-      deleteProperty() {
+      deleteProperty(): boolean {
         throw new Error("Нет прав");
       },
     });

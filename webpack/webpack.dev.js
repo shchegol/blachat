@@ -1,9 +1,11 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {merge} = require("webpack-merge");
+const webpack = require("webpack");
+const common = require("./webpack.common.js");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = merge(common, {
-  mode: 'development',
+  mode: "development",
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -14,56 +16,22 @@ module.exports = merge(common, {
           "css-loader",
           "resolve-url-loader",
           "sass-loader",
-          // {
-          //   loader: 'style-loader',
-          //   options: {
-          //     sourceMap: true
-          //   },
-          // },
-          // {
-          //   loader: 'css-loader',
-          //   options: {
-          //     sourceMap: true
-          //   },
-          // },
-          // {
-          //   loader: 'postcss-loader',
-          //   options: {
-          //     sourceMap: true,
-          //     // plugins: [
-          //     //   require('autoprefixer')({
-          //     //     browsers: ['last 2 versions'],
-          //     //   }),
-          //     // ],
-          //   },
-          // },
-          // {
-          //   loader: 'resolve-url-loader',
-          //   options: {
-          //     sourceMap: true,
-          //   }
-          // },
-          // {
-          //   loader: 'sass-loader',
-          //   options: {
-          //     sourceMap: true,
-          //   },
-          // },
         ],
       },
     ],
   },
+  devServer: {
+    contentBase: "./build",
+    port: 4000,
+    historyApiFallback: {
+      index: './build/index.html'
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      favicon: 'src/favicon.ico',
+      template: "src/index.html",
+      filename: "./index.html",
+      favicon: "src/favicon.ico",
     }),
   ],
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    port: 4000,
-    compress: true,
-    // open: true,
-  },
 });

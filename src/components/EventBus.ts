@@ -11,7 +11,7 @@ export default class EventBus {
     this.listeners = {};
   }
 
-  public on(event: string, callback: IListener) {
+  public on(event: string, callback: IListener): void {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
@@ -19,7 +19,7 @@ export default class EventBus {
     this.listeners[event].push(callback);
   }
 
-  public off(event: string, callback: IListener) {
+  public off(event: string, callback: IListener): void {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
@@ -29,7 +29,7 @@ export default class EventBus {
     });
   }
 
-  public emit(event: string, ...args: IStringObject[]) {
+  public emit(event: string, ...args: IStringObject[]): void {
     if (!this.listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }

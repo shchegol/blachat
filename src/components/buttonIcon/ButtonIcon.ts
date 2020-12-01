@@ -1,5 +1,6 @@
 import Component from "../Component";
-const tempFn = require("pug-loader!./buttonIcon.templ.pug");
+
+const tempFn: Function = require("./buttonIcon.templ.pug");
 
 /**
  * Button with icon

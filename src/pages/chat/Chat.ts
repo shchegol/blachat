@@ -8,7 +8,7 @@ import ChatDropdown     from "../../components/chatDropdown/ChatDropdown";
 import ChatDropdownItem from "../../components/chatDropdownItem/ChatDropdownItem";
 import {IAnyObject}     from "../../utils/ts/interfaces";
 
-const tempFn = require("pug-loader!./chat.templ.pug");
+const tempFn = require("./chat.templ.pug");
 
 export default class PageChat extends Component {
   props: IAnyObject;

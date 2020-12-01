@@ -1,4 +1,4 @@
-import {IRequestOptions, IAnyObject} from "../utils/ts/interfaces";
+import {IRequestOptions, IAnyObject, IRequestResult} from "../utils/ts/interfaces";
 import {queryStringify}              from "../utils/helpers";
 import settings                      from "../settings/base";
 
@@ -17,7 +17,7 @@ class HTTP {
   host: string;
   options: IHTTPOptions;
 
-  constructor(host: string = "", options: IHTTPOptions = {}) {
+  constructor(host = "", options: IHTTPOptions = {}) {
     const _defaults: IHTTPOptions = {
       headers: {
         "accept": "application/json",
@@ -32,34 +32,34 @@ class HTTP {
     };
   }
 
-  get(url: string, options: IRequestOptions = {}) {
+  get(url: string, options: IRequestOptions = {}): Promise<IRequestResult> {
     return this._request(url, {
       ...options,
     }, options.timeout);
   }
 
-  post(url: string, options: IRequestOptions = {}) {
+  post(url: string, options: IRequestOptions = {}): Promise<IRequestResult> {
     return this._request(url, {
       ...options,
       method: HTTP.METHODS.POST,
     }, options.timeout);
   }
 
-  put(url: string, options: IAnyObject = {}) {
+  put(url: string, options: IAnyObject = {}): Promise<IRequestResult> {
     return this._request(url, {
       ...options,
       method: HTTP.METHODS.PUT,
     }, options.timeout);
   }
 
-  delete(url: string, options: IRequestOptions = {}) {
+  delete(url: string, options: IRequestOptions = {}): Promise<IRequestResult> {
     return this._request(url, {
       ...options,
       method: HTTP.METHODS.DELETE,
     }, options.timeout);
   }
 
-  protected _request(url: string, options: IRequestOptions, timeout: number = 5000) {
+  _request(url: string, options: IRequestOptions, timeout = 5000): Promise<IRequestResult> {
     const {method = HTTP.METHODS.GET, headers, body} = options;
     const mergedHeaders = {...this.options.headers, ...headers};
     url = `${this.host}${url}`;
@@ -93,7 +93,7 @@ class HTTP {
       xhr.onabort = reject;
       xhr.onerror = reject;
 
-      for (let header in mergedHeaders) {
+      for (const header in mergedHeaders) {
         xhr.setRequestHeader(header, mergedHeaders[header]);
       }
 

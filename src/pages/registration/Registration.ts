@@ -8,7 +8,7 @@ import {inputValidation, formValidation} from "../../utils/validation";
 import {IAnyObject}                      from "../../utils/ts/interfaces";
 import {getFormData}                     from "../../utils/helpers";
 
-const tempFn = require("pug-loader!../../layouts/Auth/auth.templ.pug");
+const tempFn = require("../../layouts/Auth/auth.templ.pug");
 const inputCommonProps = {
   classes: "input_color_white mt-20",
   type: "text",

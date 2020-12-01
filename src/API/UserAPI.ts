@@ -1,26 +1,26 @@
-import {IStringObject}   from "../utils/ts/interfaces";
+import {IStringObject, IRequestResult}   from "../utils/ts/interfaces";
 import {userAPIInstance} from "./HTTP";
 
 class UserApi {
-  change(body: IStringObject) {
+  change(body: IStringObject): Promise<IRequestResult> {
     return userAPIInstance.put("/profile", {body});
   }
 
-  changeAvatar(body: FormData) {
+  changeAvatar(body: FormData): Promise<IRequestResult> {
     const headers = {"Content-Type": "multipart/form-data"};
     return userAPIInstance.put("/profile/avatar", {body, headers});
   }
 
-  changePassword(oldPassword: string, newPassword: string) {
+  changePassword(oldPassword: string, newPassword: string): Promise<IRequestResult> {
     return userAPIInstance.put("/password", {body: {oldPassword, newPassword}});
 
   }
 
-  getById(id: string) {
+  getById(id: string): Promise<IRequestResult> {
     return userAPIInstance.get(`/${id}`);
   }
 
-  search(login: string) {
+  search(login: string): Promise<IRequestResult> {
     return userAPIInstance.post("/search", {body: {login}});
   }
 }

@@ -6,7 +6,7 @@ import Button       from "../../components/button/Button";
 import ButtonIcon   from "../../components/buttonIcon/ButtonIcon";
 import {logout}     from "../../store/actionCreators/auth";
 
-const tempFn = require("pug-loader!./profile.templ.pug");
+const tempFn = require("./profile.templ.pug");
 
 export default class Profile extends Component {
   props: IAnyObject;

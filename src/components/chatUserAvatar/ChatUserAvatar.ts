@@ -1,6 +1,6 @@
 import Component from "../Component";
 
-const tempFn = require("pug-loader!./chatUserAvatar.templ.pug");
+const tempFn = require("./chatUserAvatar.templ.pug");
 
 /**
  * Chat avatar

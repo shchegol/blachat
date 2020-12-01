@@ -1,7 +1,7 @@
 import Component    from "../../components/Component";
 import {IAnyObject} from "../../utils/ts/interfaces";
 
-const tempFn = require("pug-loader!./errors.templ.pug");
+const tempFn = require("./errors.templ.pug");
 
 export default class Errors extends Component {
   props: IAnyObject;

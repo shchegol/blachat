@@ -9,7 +9,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "alwaysStrict": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "strictNullChecks": true
   }
 }

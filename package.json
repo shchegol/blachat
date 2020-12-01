@@ -4,14 +4,12 @@
   "description": "A simple messenger to test my skills",
   "main": "index.js",
   "scripts": {
+    "prestart": "npm run build",
+    "start": "node server.js",
     "webpack:dev": "webpack serve --config ./webpack/webpack.dev.js",
     "webpack:prod": "webpack --config ./webpack/webpack.prod.js",
-    "prestart": "npm run build",
-    "start": "npm run server",
-    "build": "npm run clear && npm run ts && npm run sass",
-    "ts": "tsc && node importer.js",
-    "server": "node server.js",
-    "sass": "sass src/styles/index.scss static/build/styles/main.css",
+    "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx src",
+    "eslint:dump": "eslint --print-config ./.eslintrc.json",
     "test": "jest"
   },
   "repository": {
@@ -33,8 +31,13 @@
     "url": "https://github.com/shchegol/mf.messenger.praktikum.yandex/issues"
   },
   "directories": {
-    "src": "./src",
-    "test": "./test"
+    "src": "./src"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest",
+      "\\.(pug)$": "jest-transform-pug"
+    }
   },
   "homepage": "https://github.com/shchegol/mf.messenger.praktikum.yandex#readme",
   "dependencies": {},
@@ -47,6 +50,9 @@
     "@types/jest": "26.0.15",
     "@types/node": "14.14.8",
     "@types/pug": "2.0.4",
+    "@types/webpack-env": "^1.16.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
     "autoprefixer": "10.0.4",
     "babel-loader": "8.2.2",
     "babel-plugin-transform-class-properties": "6.24.1",
@@ -54,13 +60,15 @@
     "copy-webpack-plugin": "6.3.2",
     "css-loader": "5.0.1",
     "cssnano": "4.1.10",
+    "eslint": "^7.14.0",
+    "eslint-loader": "^4.0.2",
     "express": "4.17.1",
     "file-loader": "6.2.0",
-    "filehound": "1.17.4",
     "html-loader": "1.3.2",
     "html-webpack-plugin": "4.5.0",
     "image-webpack-loader": "^7.0.1",
     "jest": "26.6.3",
+    "jest-transform-pug": "^0.1.0",
     "mini-css-extract-plugin": "1.3.1",
     "node-sass": "5.0.0",
     "postcss-loader": "4.1.0",
@@ -71,13 +79,12 @@
     "sass": "^1.29.0",
     "sass-loader": "10.1.0",
     "style-loader": "2.0.0",
-    "ts-loader": "8.0.11",
-    "tslint": "6.1.3",
-    "tslint-loader": "3.5.4",
+    "ts-jest": "^26.4.4",
+    "ts-loader": "^8.0.11",
     "typescript": "4.0.3",
     "webpack": "5.9.0",
     "webpack-cli": "4.2.0",
-    "webpack-dev-server": "3.11.0",
+    "webpack-dev-server": "^3.11.0",
     "webpack-merge": "5.4.0"
   },
   "engines": {

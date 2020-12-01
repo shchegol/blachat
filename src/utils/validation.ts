@@ -21,7 +21,7 @@ export function formValidation(event: Event): boolean {
 
   if (event.target instanceof HTMLFormElement) {
     const inputs: HTMLCollection = event.target.getElementsByTagName("input");
-    let check: string[] = [];
+    const check: string[] = [];
 
     Array.from(inputs, function(elem: HTMLInputElement) {
       check.push(inputValidation(elem));
@@ -30,8 +30,7 @@ export function formValidation(event: Event): boolean {
     return check.every(answer => answer === "");
   }
 
-  throw new Error(
-      `Event.target in formValidation must be the HTMLFormElement, but it is ${event.target}`);
+  throw new Error(`Event.target in formValidation must be the HTMLFormElement`);
 }
 
 /**
@@ -44,8 +43,7 @@ export function inputValidation(input: HTMLInputElement | EventTarget | null): s
 
   const value: string = input.value;
   const validationType: string = input.dataset.validationType || "text";
-  const errMessage: string = validation((<any>ValidationTypes)[validationType],
-      value);
+  const errMessage: string = validation((<any>ValidationTypes)[validationType], value);
   const inputBlock: Element | null = input.parentElement;
   const errorBlock: Element | null = input.nextElementSibling;
 
@@ -73,13 +71,13 @@ export function inputValidation(input: HTMLInputElement | EventTarget | null): s
 export function validation(
     type: ValidationTypes, value: string, value2?: string): string {
   const patterns: IRegExpObject = {
-    text: /[^<>\[\]%'`]+$/,
+    text: /[^<>[\]%'`]+$/,
     name: /^[а-яёА-ЯЁ]+$/,
-    password: /[^<>\[\]%'`]+$/,
+    password: /[^<>[\]%'`]+$/,
     email: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-    phone: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+    phone: /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/,
   };
-  let answer: string = "";
+  let answer = "";
 
   switch (type) {
     case "text":

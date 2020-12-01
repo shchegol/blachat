@@ -1,32 +1,33 @@
+import {IRequestResult}   from "../utils/ts/interfaces";
 import {authAPIInstance, chatAPIInstance} from "./HTTP";
 
 class ChatAPI {
-  getAll() {
+  getAll(): Promise<IRequestResult> {
     return chatAPIInstance.get("/chats");
   }
 
-  create(title: string) {
+  create(title: string): Promise<IRequestResult> {
     return authAPIInstance.post("/chats", {body: {title}});
   }
 
-  getUsers(chatId: string) {
+  getUsers(chatId: string): Promise<IRequestResult> {
     return chatAPIInstance.get(`/chats/${chatId}/users`);
   }
 
-  getNewMessageCount(chatId: string) {
+  getNewMessageCount(chatId: string): Promise<IRequestResult> {
     return chatAPIInstance.get(`/chats/new/${chatId}`);
   }
 
-  addAvatar(body: FormData) {
+  addAvatar(body: FormData): Promise<IRequestResult> {
     const headers = {"Content-Type": "multipart/form-data"};
     return chatAPIInstance.put("/chats/avatar", {body, headers});
   }
 
-  addUser(users: number[], chatId: string) {
+  addUser(users: number[], chatId: string): Promise<IRequestResult> {
     return chatAPIInstance.put("/users", {body: {users, chatId}});
   }
 
-  deleteUser(chatId: string) {
+  deleteUser(chatId: string): Promise<IRequestResult> {
     return chatAPIInstance.delete("/users", {body: {chatId}});
   }
 }

@@ -1,7 +1,7 @@
 import ChatDropdownItem from "../chatDropdownItem/ChatDropdownItem";
 import Component        from "../Component";
 
-const tempFn = require("pug-loader!./chatDropdown.templ.pug");
+const tempFn = require("./chatDropdown.templ.pug");
 
 /**
  * Chat dropdown

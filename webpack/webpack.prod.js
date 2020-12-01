@@ -9,17 +9,17 @@ const util = require("./webpack.utils");
 
 module.exports = merge(common, {
   mode: "production",
-  // optimization: {
-  //   splitChunks: {
-  //     cacheGroups: {
-  //       vendors: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         name: "vendors",
-  //         chunks: "all",
-  //       },
-  //     },
-  //   },
-  // },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
+  },
   module: {
     rules: [
       {
@@ -30,14 +30,14 @@ module.exports = merge(common, {
           "css-loader",
           {
             loader: "postcss-loader",
-            options: {
-              plugins: [
-                require("cssnano"),
-                // require('autoprefixer')({
-                //   browsers: ['last 2 versions'],
-                // }),
-              ],
-            },
+            // options: {
+            //   plugins: [
+            //     require("cssnano"),
+            //     // require('autoprefixer')({
+            //     //   browsers: ['last 2 versions'],
+            //     // }),
+            //   ],
+            // },
           },
           "resolve-url-loader",
           "sass-loader",

@@ -1,6 +1,6 @@
 import Component from "../Component";
 
-const tempFn = require("pug-loader!./input.templ.pug");
+const tempFn = require("./input.templ.pug");
 
 /**
  * Input

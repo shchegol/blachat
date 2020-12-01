@@ -66,5 +66,5 @@ export interface IFormProps {
   _key?: number;
   id?: string;
   items?: (Input | Button)[];
-  listeners?: { event: string, fn: Function }[]
+  listeners?: { event: string, fn: <T>() => T }[]
 }

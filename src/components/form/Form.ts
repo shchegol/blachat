@@ -3,7 +3,7 @@ import {IAnyObject} from "../../utils/ts/interfaces";
 import Input        from "../input/Input";
 import Button       from "../button/Button";
 
-const tempFn = require("pug-loader!./form.templ.pug");
+const tempFn = require("./form.templ.pug");
 
 /**
  * Form
@@ -36,7 +36,6 @@ export default class Form extends Component {
       });
     }
 
-    // return pug.render(template, {renderedItems, ...this.props});
     return tempFn({renderedItems, ...this.props});
   }
 }

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import HTTP          from "./HTTP";
 import {APIInstance} from "./HTTP";
 import settings      from "../settings/base";
@@ -19,7 +18,6 @@ describe("HTTP", () => {
     const APIInstance = new HTTP(`${settings.API.HOST}`);
     APIInstance._request = jest.fn().mockImplementation((opts) => Promise.resolve(opts));
     APIInstance.post("/user");
-    expect(APIInstance._request)
-        .toBeCalledWith("/user", {method: "POST"}, undefined);
+    expect(APIInstance._request).toBeCalledWith("/user", {method: "POST"}, undefined);
   });
 });

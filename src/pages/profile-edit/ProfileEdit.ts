@@ -7,7 +7,8 @@ import {IAnyObject}     from "../../utils/ts/interfaces";
 import {appRouter}      from "../../router/Router";
 import ButtonIcon       from "../../components/buttonIcon/ButtonIcon";
 
-const tempFn = require("pug-loader!./profileEdit.templ.pug");
+const tempFn = require("./profileEdit.templ.pug");
+
 
 export default class ProfileEdit extends Component {
   props: IAnyObject;

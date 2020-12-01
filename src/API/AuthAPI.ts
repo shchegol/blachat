@@ -1,20 +1,20 @@
-import {IStringObject}   from "../utils/ts/interfaces";
+import {IStringObject, IRequestResult}   from "../utils/ts/interfaces";
 import {authAPIInstance} from "./HTTP";
 
 class AuthApi {
-  signup(body: IStringObject) {
+  signup(body: IStringObject): Promise<IRequestResult> {
     return authAPIInstance.post("/signup", {body});
   }
 
-  signin(body: IStringObject) {
+  signin(body: IStringObject): Promise<IRequestResult> {
     return authAPIInstance.post("/signin", {body});
   }
 
-  fetchtUser() {
+  fetchtUser(): Promise<IRequestResult> {
     return authAPIInstance.get("/user");
   }
 
-  logout() {
+  logout(): Promise<IRequestResult> {
     return authAPIInstance.post("/logout");
   }
 }

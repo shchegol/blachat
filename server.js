@@ -1,23 +1,19 @@
+const path = require("path");
+const settings = require("./settings/common");
 const express = require("express");
 const app = express();
 const PORT = 4000;
 const serverInfo = `
   \x1b[32m###### server success ####### 
-  listen: http://localhost:${PORT}/
+  listen: http://localhost:${settings.server.port}/
   #############################\x1b[0m
   `;
-const getPage = (pageName) => {
-  return `${__dirname}/dist/${pageName}.html`;
-};
+const HTML_FILE = path.join(__dirname, "dist/index.html");
 
-app.use(express.static("./dist"));
 app.get("*", (req, res) => {
-  res.sendFile(getPage("/index"));
+  res.sendFile(HTML_FILE);
 });
 
-app.listen(PORT, function() {
+app.listen(settings.server.port, function() {
   console.log(serverInfo);
 });
-
-
-

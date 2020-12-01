@@ -1,7 +1,7 @@
 import Component        from "../Component";
 import ChatUserListItem from "../chatUserListItem/ChatUserListItem";
 
-const tempFn = require("pug-loader!./chatUserList.templ.pug");
+const tempFn = require("./chatUserList.templ.pug");
 
 /**
  * Chat user list
