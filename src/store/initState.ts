@@ -1,3 +1,5 @@
+const defaultImg = require('@/img/bg.jpg').default;
+
 export default {
   isLoading: false,
   auth: {
@@ -16,20 +18,20 @@ export default {
   // todo очистить после написания логики
   chats: [
     {
-      "_chatId": 0,
-      "title": "Саша",
-      "text": "Текст Саши",
-      "date": "20:00",
-      "avatar": "/img/ava1.png",
-      "messageCount": 2,
+      _chatId: 0,
+      title: 'Саша',
+      text: 'Текст Саши',
+      date: '20:00',
+      avatar: defaultImg,
+      messageCount: 2,
     },
     {
-      "_chatId": 1,
-      "title": "Паша",
-      "text": "Текст Паши",
-      "date": "20:20",
-      "avatar": "/img/bg.jpg",
-      "messageCount": 0,
+      _chatId: 1,
+      title: 'Паша',
+      text: 'Текст Паши',
+      date: '20:20',
+      avatar: defaultImg,
+      messageCount: 0,
     },
   ],
 };

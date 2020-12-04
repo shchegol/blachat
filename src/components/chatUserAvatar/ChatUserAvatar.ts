@@ -1,6 +1,4 @@
-import Component from "../Component";
-
-const tempFn = require("./chatUserAvatar.templ.pug");
+import Component from '@utils/Component';
 
 /**
  * Chat avatar
@@ -20,14 +18,16 @@ interface IChatUserAvatarProps {
   title?: string;
   src?: string;
   alt?: string;
-  listeners?: { event: string, fn: Function }[]
+  listeners?: { event: string, fn: () => void }[]
 }
+
+const tempFn: (props: IChatUserAvatarProps) => string = require('@components/chatUserAvatar/chatUserAvatar.templ.pug');
 
 export default class ChatUserAvatar extends Component {
   props: IChatUserAvatarProps;
 
   constructor(props: IChatUserAvatarProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render(): string {

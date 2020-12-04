@@ -1,7 +1,5 @@
-import Component        from "../Component";
-import ChatUserListItem from "../chatUserListItem/ChatUserListItem";
-
-const tempFn = require("./chatUserList.templ.pug");
+import Component from '@utils/Component';
+import ChatUserListItem from '@components/chatUserListItem/ChatUserListItem';
 
 /**
  * Chat user list
@@ -17,25 +15,26 @@ interface IChatUserlistProps {
   id?: string;
   classes?: string;
   items?: ChatUserListItem[];
+  renderedItems?: string[];
   listeners?: { event: string, fn: Function }[]
 }
+
+const tempFn: (props: IChatUserlistProps) => string = require('@components/chatUserList/chatUserList.templ.pug');
 
 export default class ChatUserList extends Component {
   props: IChatUserlistProps;
 
   constructor(props: IChatUserlistProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render(): string {
-    let renderedItems: string[] = [];
+    let renderedItems:string[] = [];
 
     if (this.props.items) {
-      this.props.items.forEach((el: any) => {
-        renderedItems.push(el.render());
-      });
+      renderedItems = this.props.items.map((el) => el.render());
     }
 
-    return tempFn({renderedItems, ...this.props});
+    return tempFn({ renderedItems, ...this.props });
   }
 }

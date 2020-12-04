@@ -1,6 +1,6 @@
-import {IRequestOptions, IAnyObject, IRequestResult} from "../utils/ts/interfaces";
-import {queryStringify}              from "../utils/helpers";
-import settings                      from "../settings/base";
+import { IRequestOptions, IAnyObject, IRequestResult } from '@utils/ts/interfaces';
+import { queryStringify } from '@utils/helpers';
+import settings from '@/settings/base';
 
 interface IHTTPOptions {
   headers?: { [key: string]: string; }
@@ -8,26 +8,27 @@ interface IHTTPOptions {
 
 class HTTP {
   static METHODS = {
-    GET: "GET",
-    POST: "POST",
-    PUT: "PUT",
-    DELETE: "DELETE",
+    GET: 'GET',
+    POST: 'POST',
+    PUT: 'PUT',
+    DELETE: 'DELETE',
   };
 
   host: string;
+
   options: IHTTPOptions;
 
-  constructor(host = "", options: IHTTPOptions = {}) {
-    const _defaults: IHTTPOptions = {
+  constructor(host = '', options: IHTTPOptions = {}) {
+    const defaults: IHTTPOptions = {
       headers: {
-        "accept": "application/json",
-        "Content-Type": "application/json",
+        accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     };
 
     this.host = host;
     this.options = {
-      ..._defaults,
+      ...defaults,
       ...options,
     };
   }
@@ -60,19 +61,19 @@ class HTTP {
   }
 
   _request(url: string, options: IRequestOptions, timeout = 5000): Promise<IRequestResult> {
-    const {method = HTTP.METHODS.GET, headers, body} = options;
-    const mergedHeaders = {...this.options.headers, ...headers};
-    url = `${this.host}${url}`;
+    const { method = HTTP.METHODS.GET, headers, body } = options;
+    const mergedHeaders = { ...this.options.headers, ...headers };
+    let fullUrl = `${this.host}${url}`;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
 
       if (method === HTTP.METHODS.GET && body) {
-        url += queryStringify(body);
+        fullUrl += queryStringify(body);
       }
 
-      xhr.open(method, url);
-      xhr.onload = function() {
+      xhr.open(method, fullUrl);
+      xhr.onload = () => {
         resolve({
           ok: xhr.status === 200,
           status: xhr.status,
@@ -93,16 +94,16 @@ class HTTP {
       xhr.onabort = reject;
       xhr.onerror = reject;
 
-      for (const header in mergedHeaders) {
+      Object.keys(mergedHeaders).forEach((header) => {
         xhr.setRequestHeader(header, mergedHeaders[header]);
-      }
+      });
 
       if (
-          (
-              method === HTTP.METHODS.POST
+        (
+          method === HTTP.METHODS.POST
               || method === HTTP.METHODS.PUT
               || method === HTTP.METHODS.DELETE
-          )
+        )
           && body
       ) {
         xhr.send(JSON.stringify(body));

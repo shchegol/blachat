@@ -1,6 +1,4 @@
-import Component from "../Component";
-
-const tempFn = require("./input.templ.pug");
+import Component from '@utils/Component';
 
 /**
  * Input
@@ -31,11 +29,13 @@ interface IInputProps {
   listeners?: { event: string, fn: Function }[]
 }
 
+const tempFn: (props: IInputProps) => string = require('@components/input/input.templ.pug');
+
 class Input extends Component {
   props: IInputProps;
 
   constructor(props: IInputProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render(): string {

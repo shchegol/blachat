@@ -1,6 +1,4 @@
-import Component from "../Component";
-
-const tempFn: Function = require("./buttonIcon.templ.pug");
+import Component from '@utils/Component';
 
 /**
  * Button with icon
@@ -18,14 +16,16 @@ interface IButtonIconProps {
   classes?: string;
   type?: string;
   iconName?: string;
-  listeners?: { event: string, fn: Function }[]
+  listeners?: { event: string, fn: () => void }[]
 }
+
+const tempFn: (props: IButtonIconProps) => string = require('@components/buttonIcon/buttonIcon.templ.pug');
 
 export default class ButtonIcon extends Component {
   props: IButtonIconProps;
 
   constructor(props: IButtonIconProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render(): string {

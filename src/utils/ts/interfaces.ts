@@ -1,14 +1,9 @@
-import {TRequestData} from "./types";
-import EventBus       from "../../components/EventBus";
-import Input          from "../../components/input/Input";
-import Button         from "../../components/button/Button";
+import { TRequestData } from '@utils/ts/types';
+import Input from '@components/input/Input';
+import Button from '@components/button/Button';
 
 export interface IStringObject {
   [key: string]: string;
-}
-
-export interface IEventBusFunction {
-  (): EventBus;
 }
 
 export interface IRegExpObject {
@@ -31,7 +26,7 @@ export interface IRequestOptions {
   method?: string;
   ignoreCache?: boolean;
   headers?: { [key: string]: string; };
-  body?: any; // todo разобраться с any
+  body?: IRequestData;
   timeout?: number;
 }
 
@@ -66,5 +61,5 @@ export interface IFormProps {
   _key?: number;
   id?: string;
   items?: (Input | Button)[];
-  listeners?: { event: string, fn: <T>() => T }[]
+  listeners?: { event: string, fn: () => void }[]
 }

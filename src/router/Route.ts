@@ -1,11 +1,14 @@
-import Component                       from "../components/Component";
-import {isEqual, renderTo, removeFrom} from "../utils/helpers";
-import {IAnyObject}                    from "../utils/ts/interfaces";
+import Component from '@utils/Component';
+import { isEqual, renderTo, removeFrom } from '@utils/helpers';
+import { IAnyObject } from '@utils/ts/interfaces';
 
 export default class Route {
   protected _pathname: string;
+
   protected _componentClass: new () => Component;
+
   protected _component: Component | null;
+
   protected _props: IAnyObject;
 
   constructor(pathname: string, view: new () => Component, props: IAnyObject = {}) {

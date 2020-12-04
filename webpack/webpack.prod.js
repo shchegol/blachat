@@ -1,21 +1,18 @@
-const {merge} = require("webpack-merge");
-const common = require("./webpack.common.js");
-
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-const util = require("./webpack.utils");
+const { merge } = require('webpack-merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-  mode: "production",
+  mode: 'production',
   optimization: {
     splitChunks: {
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
+          name: 'vendors',
+          chunks: 'all',
         },
       },
     },
@@ -27,20 +24,22 @@ module.exports = merge(common, {
         exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
-          "css-loader",
+          'css-loader',
           {
-            loader: "postcss-loader",
-            // options: {
-            //   plugins: [
-            //     require("cssnano"),
-            //     // require('autoprefixer')({
-            //     //   browsers: ['last 2 versions'],
-            //     // }),
-            //   ],
-            // },
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    require('autoprefixer'),
+                    require('cssnano'),
+                  ],
+                ],
+              },
+            },
           },
-          "resolve-url-loader",
-          "sass-loader",
+          'resolve-url-loader',
+          'sass-loader',
         ],
       },
     ],
@@ -48,9 +47,9 @@ module.exports = merge(common, {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: util.resolve("dist/index.html"),
-      template: "src/index.html",
-      favicon: "src/favicon.ico",
+      template: 'src/index.html',
+      filename: './index.html',
+      favicon: 'src/favicon.ico',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -58,8 +57,8 @@ module.exports = merge(common, {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].[hash].css",
-      chunkFilename: "[id].[hash].css",
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
     }),
   ],
 });

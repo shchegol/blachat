@@ -1,10 +1,7 @@
-if !classes
-  - classes = ""
-
 div(
     id=id
     _key=_key
-    class="dropdown " + classes
+    class="dropdown " + classes || ""
 )
     button(
         type="button"

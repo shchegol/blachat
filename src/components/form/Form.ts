@@ -1,9 +1,6 @@
-import Component    from "../Component";
-import {IAnyObject} from "../../utils/ts/interfaces";
-import Input        from "../input/Input";
-import Button       from "../button/Button";
-
-const tempFn = require("./form.templ.pug");
+import Component from '@utils/Component';
+import Input from '@components/input/Input';
+import Button from '@components/button/Button';
 
 /**
  * Form
@@ -17,25 +14,28 @@ interface IFormProps {
   _key?: number;
   id?: string;
   items?: (Input | Button)[];
+  renderedItems?: string[];
   listeners?: { event: string, fn: Function }[]
 }
 
-export default class Form extends Component {
+const tempFn: (props: IFormProps) => string = require('@components/form/form.templ.pug');
+
+class Form extends Component {
   props: IFormProps;
 
-  constructor(props: IAnyObject) {
-    super("div", props);
+  constructor(props: IFormProps) {
+    super('div', props);
   }
 
   render(): string {
-    let renderedItems: string[] = [];
+    let renderedItems:string[] = [];
 
     if (this.props.items) {
-      this.props.items.forEach((el: any) => {
-        renderedItems.push(el.render());
-      });
+      renderedItems = this.props.items.map((el) => el.render());
     }
 
-    return tempFn({renderedItems, ...this.props});
+    return tempFn({ renderedItems, ...this.props });
   }
 }
+
+export default Form;

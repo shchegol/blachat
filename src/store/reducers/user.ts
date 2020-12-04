@@ -1,9 +1,9 @@
-import initState   from "../initState";
-import * as ACTION from "../actions/user";
+import initState from '../initState';
+import * as ACTION from '../actions/user';
 
 export default function userReducer(
-    state = initState,
-    action: { type: string, payload: any },
+  state = initState,
+  action: { type: string, payload: any },
 ) {
   switch (action.type) {
     case ACTION.USER_FETCH:
@@ -13,9 +13,8 @@ export default function userReducer(
     case ACTION.USER_GET_BY_ID:
     case ACTION.USER_SEARCH: {
       const data = action.payload;
-      return Object.assign({}, state, data);
+      return { ...state, ...data };
     }
+    default: return state;
   }
-
-  return state;
 }

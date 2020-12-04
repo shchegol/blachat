@@ -1,11 +1,13 @@
 class Store {
   private state: { [key: string]: any };
+
   private reducers: { [key: string]: any };
+
   private subscribers: Function[];
 
   constructor(
-      reducers: { [key: string]: any } = {},
-      initialState: { [key: string]: any } = {},
+    reducers: { [key: string]: any } = {},
+    initialState: { [key: string]: any } = {},
   ) {
     this.reducers = reducers;
     this.subscribers = [];
@@ -18,7 +20,7 @@ class Store {
 
   dispatch(action: { [key: string]: any }) {
     this.state = this.reduce(this.state, action);
-    this.subscribers.forEach(fn => fn(this.props));
+    this.subscribers.forEach((fn) => fn(this.props));
   }
 
   subscribe(fn: Function) {
@@ -27,21 +29,21 @@ class Store {
 
     // for unsubscribe
     return () => {
-      this.subscribers = this.subscribers.filter(sub => sub !== fn);
+      this.subscribers = this.subscribers.filter((sub) => sub !== fn);
     };
   }
 
   private reduce(
-      state: { [key: string]: any },
-      action: { [key: string]: any },
+    state: { [key: string]: any },
+    action: { [key: string]: any },
   ) {
     const newState: { [key: string]: any } = {};
 
-    for (const prop in this.reducers) {
+    Object.keys(this.reducers).forEach((prop) => {
       newState[prop] = this.reducers[prop](state[prop], action);
-    }
+    });
 
-    return {...state, ...newState};
+    return { ...state, ...newState };
   }
 }
 

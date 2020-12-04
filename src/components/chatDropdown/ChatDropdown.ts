@@ -1,7 +1,5 @@
-import ChatDropdownItem from "../chatDropdownItem/ChatDropdownItem";
-import Component        from "../Component";
-
-const tempFn = require("./chatDropdown.templ.pug");
+import ChatDropdownItem from '@components/chatDropdownItem/ChatDropdownItem';
+import Component from '@utils/Component';
 
 /**
  * Chat dropdown
@@ -21,25 +19,26 @@ interface IChatDropdownProps {
   iconName?: string;
   text?: string;
   items?: ChatDropdownItem[];
+  renderedItems?: string[];
   listeners?: { event: string, fn: Function }[]
 }
+
+const tempFn: (props: IChatDropdownProps) => string = require('@components/chatDropdown/chatDropdown.templ.pug');
 
 export default class ChatDropdown extends Component {
   props: IChatDropdownProps;
 
   constructor(props: IChatDropdownProps) {
-    super("div", props);
+    super('div', props);
   }
 
   render(): string {
-    let renderedItems: string[] = [];
+    let renderedItems:string[] = [];
 
     if (this.props.items) {
-      this.props.items.forEach((el: any) => {
-        renderedItems.push(el.render());
-      });
+      renderedItems = this.props.items.map((el) => el.render());
     }
 
-    return tempFn({renderedItems, ...this.props});
+    return tempFn({ renderedItems, ...this.props });
   }
 }

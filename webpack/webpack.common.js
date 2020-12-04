@@ -1,4 +1,3 @@
-const CopyPlugin = require("copy-webpack-plugin");
 const util = require("./webpack.utils");
 
 module.exports = {
@@ -12,6 +11,11 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
       "@": util.resolve("src"),
+      "@components": util.resolve("src/components"),
+      "@pages": util.resolve("src/pages"),
+      "@router": util.resolve("src/router"),
+      "@store": util.resolve("src/store"),
+      "@utils": util.resolve("src/utils"),
     },
   },
   module: {
@@ -25,7 +29,7 @@ module.exports = {
       {
         test: /\.ts$/,
         exclude: /node_modules/,
-        loader: 'ts-loader',
+        loader: "ts-loader",
       },
       {
         test: /\.js$/,

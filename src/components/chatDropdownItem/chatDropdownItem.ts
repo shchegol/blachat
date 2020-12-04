@@ -1,6 +1,4 @@
-import Component from "../Component";
-
-const tempFn = require("./chatDropdownItem.templ.pug");
+import Component from '@utils/Component';
 
 /**
  * Chat dropdown item
@@ -21,11 +19,13 @@ interface IChatDropdownItem {
   listeners?: { event: string, fn: Function }[]
 }
 
+const tempFn: (props: IChatDropdownItem) => string = require('@components/chatDropdownItem/chatDropdownItem.templ.pug');
+
 export default class ChatDropdownItem extends Component {
   props: IChatDropdownItem;
 
   constructor(props: IChatDropdownItem) {
-    super("div", props);
+    super('div', props);
   }
 
   render(): string {

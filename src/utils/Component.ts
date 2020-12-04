@@ -1,28 +1,37 @@
-/* eslint no-empty-function: false */
+/* eslint no-empty-function: 0 */
+/* eslint class-methods-use-this: 0 */
 
-import EventBus                        from "./EventBus";
-import {IAnyObject, IEventBusFunction} from "../utils/ts/interfaces";
+import EventBus from '@utils/EventBus';
+import { IAnyObject } from '@utils/ts/interfaces';
+
+export interface IEventBusFunction {
+  (): EventBus;
+}
 
 export default class Component {
   static EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_CDU: "flow:component-did-update",
-    FLOW_CDR: "flow:component-did-render",
-    FLOW_RENDER: "flow:render",
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_CDR: 'flow:component-did-render',
+    FLOW_RENDER: 'flow:render',
   };
 
   props: IAnyObject;
+
   eventBus: IEventBusFunction;
+
   protected _element: HTMLElement;
+
   protected _id: string;
+
   protected _meta: { tagName: string, props: IAnyObject };
 
-  constructor(tagName = "div", props: IAnyObject) {
+  constructor(tagName = 'div', props: IAnyObject) {
     const eventBus: EventBus = new EventBus();
 
-    this._id = `uniq${parseInt(String(Math.random() * 1000000))}`;
-    this.props = this._makePropsProxy({_key: this._id, ...props});
+    this._id = `uniq${parseInt(String(Math.random() * 1000000), 10)}`;
+    this.props = this._makePropsProxy({ _key: this._id, ...props });
     this._registerEvents(eventBus);
     this._meta = {
       tagName,
@@ -45,11 +54,13 @@ export default class Component {
 
   componentDidMount(): void {}
 
-  componentDidUpdate(): boolean {
-    return true;
-  }
+  componentDidUpdate(): boolean { return true; }
 
   componentDidRender(): void {}
+
+  render(): string {
+    return '';
+  }
 
   getContent(): HTMLElement {
     return this.element;
@@ -63,16 +74,12 @@ export default class Component {
     Object.assign(this.props, nextProps);
   };
 
-  render(): string {
-    return "";
-  }
-
   show(): void {
-    this.getContent().style.display = "block";
+    this.getContent().style.display = 'block';
   }
 
   hide(): void {
-    this.getContent().style.display = "none";
+    this.getContent().style.display = 'none';
   }
 
   protected _init(): void {
@@ -90,7 +97,7 @@ export default class Component {
   }
 
   protected _createResources(): void {
-    const {tagName} = this._meta;
+    const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName);
   }
 
@@ -127,7 +134,7 @@ export default class Component {
 
     if (!el) return;
 
-    this.props.listeners.forEach((listener: { event: string, fn: () => Record<string, unknown> }) => {
+    this.props.listeners.forEach((listener: { event: string, fn: <T>() => T }): void => {
       el.addEventListener(listener.event, listener.fn);
     });
   }
@@ -135,9 +142,10 @@ export default class Component {
   protected _makePropsProxy(props: IAnyObject): IAnyObject {
     return new Proxy(props, {
       set: (target: IAnyObject, prop: keyof IAnyObject, value: keyof IAnyObject): boolean => {
-        const oldProps = {...this._meta.props};
+        const oldProps = { ...this._meta.props };
 
         if (target[prop] !== value) {
+          // eslint-disable-next-line
           target[prop] = value;
           this.eventBus().emit(Component.EVENTS.FLOW_CDU, oldProps, target);
           return true;
@@ -145,13 +153,13 @@ export default class Component {
 
         return false;
       },
-      get(target: IAnyObject, prop: keyof IAnyObject): boolean {
-        const value = target[prop];
+      get(target: IAnyObject, prop: keyof IAnyObject): unknown {
+        const value: unknown = target[prop];
 
-        return typeof value === "function" ? value.bind(target) : value;
+        return typeof value === 'function' ? value.bind(target) : value;
       },
       deleteProperty(): boolean {
-        throw new Error("Нет прав");
+        throw new Error('Нет прав');
       },
     });
   }
