@@ -8,7 +8,7 @@ import ChatDropdown from '@components/chatDropdown/ChatDropdown';
 import ChatDropdownItem from '@components/chatDropdownItem/ChatDropdownItem';
 import { IAnyObject } from '@utils/ts/interfaces';
 
-const defaultImg = require('@/img/bg.jpg').default;
+const defaultImg = require('@root/img/bg.jpg').default;
 const tempFn = require('@pages/chat/chat.templ.pug');
 
 export default class PageChat extends Component {

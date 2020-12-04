@@ -8,7 +8,7 @@ import { inputValidation, formValidation } from '@utils/validation';
 import { getFormData } from '@utils/helpers';
 import { signin } from '@store/actionCreators/auth';
 
-const tempFn = require('@/layouts/Auth/auth.templ.pug');
+const tempFn = require('@root/layouts/Auth/auth.templ.pug');
 
 const inputCommonProps = {
   classes: 'input_color_white mt-20',

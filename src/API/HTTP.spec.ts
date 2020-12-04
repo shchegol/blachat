@@ -1,6 +1,5 @@
-import HTTP, { APIInstance } from './HTTP';
-
-import settings from '../settings/base';
+import HTTP, { APIInstance } from '@root/API/HTTP';
+import settings from '@root/settings/base';
 
 describe('HTTP', () => {
   it('should has required keys in METHODS', () => {

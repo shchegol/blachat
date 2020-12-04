@@ -1,7 +1,7 @@
 import Component from '@utils/Component';
 import { IAnyObject } from '@utils/ts/interfaces';
 
-const tempFn = require('@/layouts/Errors/errors.templ.pug');
+const tempFn = require('@root/layouts/Errors/errors.templ.pug');
 
 export default class Errors extends Component {
   props: IAnyObject;

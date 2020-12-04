@@ -13,7 +13,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "paths": {
-      "@/*": ["src/*"],
+      "@root/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@router/*": ["src/router/*"],

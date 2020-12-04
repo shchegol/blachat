@@ -1,4 +1,4 @@
-const defaultImg = require('@/img/bg.jpg').default;
+const defaultImg = require('@root/img/bg.jpg').default;
 
 export default {
   isLoading: false,

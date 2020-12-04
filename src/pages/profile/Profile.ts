@@ -7,6 +7,7 @@ import ButtonIcon from '@components/buttonIcon/ButtonIcon';
 import { logout } from '@store/actionCreators/auth';
 
 const tempFn = require('@pages/profile/profile.templ.pug');
+const defaultImg = require('@root/img/bg.jpg').default;
 
 export default class Profile extends Component {
   props: IAnyObject;
@@ -15,6 +16,7 @@ export default class Profile extends Component {
     super(tagName, {
       ...props,
       ...store.props.user,
+      avatar: defaultImg,
       buttonBack: new ButtonIcon({
         classes: 'btn-icon btn-icon_size_l mt-20',
         type: 'button',
@@ -47,6 +49,7 @@ export default class Profile extends Component {
   render(): string {
     return tempFn({
       _key: this.props._key,
+      avatar: this.props.avatar,
       first_name: this.props.first_name,
       second_name: this.props.second_name,
       login: this.props.login,

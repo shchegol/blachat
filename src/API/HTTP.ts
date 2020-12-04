@@ -1,6 +1,6 @@
 import { IRequestOptions, IAnyObject, IRequestResult } from '@utils/ts/interfaces';
 import { queryStringify } from '@utils/helpers';
-import settings from '@/settings/base';
+import settings from '@root/settings/base';
 
 interface IHTTPOptions {
   headers?: { [key: string]: string; }

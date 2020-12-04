@@ -38,6 +38,20 @@
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest",
       "\\.(pug)$": "jest-transform-pug"
+    },
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy",
+      "^@root(.*)$": "<rootDir>/src/$1",
+      "^@components(.*)$": "<rootDir>/src/components$1",
+      "^@pages(.*)$": "<rootDir>/src/pages$1",
+      "^@router(.*)$": "<rootDir>/src/router$1",
+      "^@store(.*)$": "<rootDir>/src/store$1",
+      "^@utils(.*)$": "<rootDir>/src/utils$1"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint && npm run test"
     }
   },
   "homepage": "https://github.com/shchegol/mf.messenger.praktikum.yandex#readme",
@@ -76,6 +90,8 @@
     "file-loader": "6.2.0",
     "html-loader": "1.3.2",
     "html-webpack-plugin": "4.5.0",
+    "husky": "^4.3.0",
+    "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "7.0.1",
     "jest": "26.6.3",
     "jest-transform-pug": "0.1.0",

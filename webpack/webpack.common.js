@@ -10,7 +10,7 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
-      "@": util.resolve("src"),
+      "@root": util.resolve("src"),
       "@components": util.resolve("src/components"),
       "@pages": util.resolve("src/pages"),
       "@router": util.resolve("src/router"),
