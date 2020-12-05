@@ -1,9 +1,9 @@
 import { IStringObject, IRequestResult } from '@utils/ts/interfaces';
 import { appRouter } from '@router/Router';
-import AuthAPI from '../../API/AuthAPI';
-import store from '../initStore';
-import * as ACTION from '../actions/auth';
-import * as ACTION_USER from '../actions/user';
+import AuthAPI from '@root/API/AuthAPI';
+import store from '@store/initStore';
+import * as ACTION from '@store/actions/auth';
+import * as ACTION_USER from '@store/actions/user';
 
 export const fetchtUser = (): Promise<void> => new Promise((resolve) => {
   AuthAPI

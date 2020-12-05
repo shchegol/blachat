@@ -1,7 +1,8 @@
 label(
     class="input " + classes
 )
-    span.input__label #{labelText}
+    if labelText
+        span.input__label #{labelText}
     input(
         id=id
         _key=_key

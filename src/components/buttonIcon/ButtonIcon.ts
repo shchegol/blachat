@@ -15,6 +15,7 @@ interface IButtonIconProps {
   id?: string;
   classes?: string;
   type?: string;
+  title?: string;
   iconName?: string;
   listeners?: { event: string, fn: () => void }[]
 }

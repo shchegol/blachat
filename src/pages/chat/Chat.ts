@@ -5,8 +5,6 @@ import ChatWindow from '@components/ChatWindow/ChatWindow';
 import ChatUserList from '@components/chatUserList/ChatUserList';
 import ChatUserListItem from '@components/chatUserListItem/ChatUserListItem';
 import ChatUserAvatar from '@components/chatUserAvatar/ChatUserAvatar';
-import ChatDropdown from '@components/chatDropdown/ChatDropdown';
-import ChatDropdownItem from '@components/chatDropdownItem/ChatDropdownItem';
 import { IAnyObject } from '@utils/ts/interfaces';
 
 const defaultImg = require('@root/img/bg.jpg').default;
@@ -18,40 +16,7 @@ export default class PageChat extends Component {
   constructor(props?: IAnyObject) {
     super('div', {
       ...props,
-      chatWindow: new ChatWindow({
-        dropdownOptions: new ChatDropdown({
-          iconName: 'more_vert',
-          classes: 'dropdown_open_bl',
-          items: [
-            new ChatDropdownItem({
-              iconName: 'edit',
-              text: 'Переименовать',
-            }),
-            new ChatDropdownItem({
-              iconName: 'delete',
-              text: 'Удалить',
-            }),
-          ],
-        }),
-        dropdownAdd: new ChatDropdown({
-          iconName: 'attach_file',
-          classes: 'dropdown_open_tr',
-          items: [
-            new ChatDropdownItem({
-              iconName: 'insert_photo',
-              text: 'Фото или Видео',
-            }),
-            new ChatDropdownItem({
-              iconName: 'insert_drive_file',
-              text: 'Файл',
-            }),
-            new ChatDropdownItem({
-              iconName: 'location_on',
-              text: 'Локация',
-            }),
-          ],
-        }),
-      }),
+      chatWindow: new ChatWindow(),
       userAvatar: new ChatUserAvatar({
         title: 'Показать профиль',
         src: store.props.user.avatar || defaultImg,

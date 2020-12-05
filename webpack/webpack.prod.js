@@ -1,4 +1,6 @@
 const { merge } = require('webpack-merge');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -31,8 +33,8 @@ module.exports = merge(common, {
               postcssOptions: {
                 plugins: [
                   [
-                    require('autoprefixer'),
-                    require('cssnano'),
+                    autoprefixer,
+                    cssnano,
                   ],
                 ],
               },

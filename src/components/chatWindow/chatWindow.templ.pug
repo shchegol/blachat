@@ -118,23 +118,23 @@ main.chat__main
 
                             time.message__date 10:00
 
-
-    div.chat__bottom-bar
-        div
-            | !{dropdownAdd}
-
-        div.col
-            form
-                label.input.input_inline
-                    input(
-                        class="input__field"
-                        data-validation-type="text"
-                    )
-
-        div
-            button(
-                type="button"
-                class="btn-icon"
-                title="Отправить"
-            )
-                i.material-icons send
+    | !{chatBottomBar}
+    //div.chat__bottom-bar
+    //    div
+    //        | !{dropdownAdd}
+    //
+    //    div.col
+    //        form
+    //            label.input.input_inline
+    //                input(
+    //                    class="input__field"
+    //                    data-validation-type="text"
+    //                )
+    //
+    //    div
+    //        button(
+    //            type="button"
+    //            class="btn-icon"
+    //            title="Отправить"
+    //        )
+    //            i.material-icons send

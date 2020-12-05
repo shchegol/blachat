@@ -1,7 +1,7 @@
-import Store from './Store';
-import authReducer from './reducers/auth';
-import userReducer from './reducers/user';
-import initState from './initState';
+import Store from '@store/Store';
+import authReducer from '@store/reducers/auth';
+import userReducer from '@store/reducers/user';
+import initState from '@store/initState';
 
 const reducers = {
   auth: authReducer,

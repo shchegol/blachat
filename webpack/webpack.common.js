@@ -1,9 +1,11 @@
 const util = require('./webpack.utils');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    main: util.resolve('src/index.ts'),
+  },
   output: {
-    filename: 'bundle-[hash].js',
+    filename: '[name].[contenthash].js',
     path: util.resolve('dist'),
     publicPath: '/',
   },
@@ -51,7 +53,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               outputPath: 'images/',
-              name: '[name][hash].[ext]',
+              name: '[name][contenthash].[ext]',
             },
           },
           {
@@ -81,7 +83,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               outputPath: 'svg/',
-              name: '[name][hash].[ext]',
+              name: '[name][contenthash].[ext]',
             },
           },
           {
@@ -105,7 +107,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               outputPath: 'fonts/',
-              name: '[name][hash].[ext]',
+              name: '[name][contenthash].[ext]',
             },
           },
         ],

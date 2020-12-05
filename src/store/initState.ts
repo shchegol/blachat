@@ -23,7 +23,7 @@ export default {
       text: 'Текст Саши',
       date: '20:00',
       avatar: defaultImg,
-      messageCount: 2,
+      messageCount: 3,
     },
     {
       _chatId: 1,

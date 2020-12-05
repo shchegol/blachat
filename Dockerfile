@@ -1,7 +1,7 @@
 FROM node:13
 
-COPY dist /dist
-COPY server.js ./
+COPY ../dist /dist
+COPY ../server.js ./
 COPY package*.json ./
 
 RUN npm i --production
