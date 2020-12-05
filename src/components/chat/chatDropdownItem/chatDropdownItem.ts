@@ -19,7 +19,7 @@ interface IChatDropdownItem {
   listeners?: { event: string, fn: Function }[]
 }
 
-const tempFn: (props: IChatDropdownItem) => string = require('@components/chatDropdownItem/chatDropdownItem.templ.pug');
+const tempFn: (props: IChatDropdownItem) => string = require('@components/chat/chatDropdownItem/chatDropdownItem.templ.pug');
 
 export default class ChatDropdownItem extends Component {
   props: IChatDropdownItem;

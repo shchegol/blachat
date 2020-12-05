@@ -21,7 +21,7 @@ interface IChatUserAvatarProps {
   listeners?: { event: string, fn: () => void }[]
 }
 
-const tempFn: (props: IChatUserAvatarProps) => string = require('@components/chatUserAvatar/chatUserAvatar.templ.pug');
+const tempFn: (props: IChatUserAvatarProps) => string = require('@components/chat/chatUserAvatar/chatUserAvatar.templ.pug');
 
 export default class ChatUserAvatar extends Component {
   props: IChatUserAvatarProps;

@@ -1,6 +1,6 @@
 import Component from '@utils/Component';
-import ChatDropdown from '@components/chatDropdown/ChatDropdown';
-import ChatDropdownItem from '@components/chatDropdownItem/chatDropdownItem';
+import ChatDropdown from '@components/chat/chatDropdown/ChatDropdown';
+import ChatDropdownItem from '@components/chat/chatDropdownItem/chatDropdownItem';
 import Input from '@components/input/Input';
 import ButtonIcon from '@components/buttonIcon/ButtonIcon';
 
@@ -32,7 +32,7 @@ interface IChatBottomBarClass extends IChatBottomBar {
   chatInputButton: ButtonIcon;
 }
 
-const tempFn: (props: IChatBottomBarRender) => string = require('@components/chatBottomBar/chatBottomBar.templ.pug');
+const tempFn: (props: IChatBottomBarRender) => string = require('@components/chat/chatBottomBar/chatBottomBar.templ.pug');
 
 export default class ChatBottomBar extends Component {
   props: IChatBottomBarClass;

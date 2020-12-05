@@ -1,10 +1,10 @@
 import { appRouter } from '@router/Router';
 import store from '@store/initStore';
 import Component from '@utils/Component';
-import ChatWindow from '@components/ChatWindow/ChatWindow';
-import ChatUserList from '@components/chatUserList/ChatUserList';
-import ChatUserListItem from '@components/chatUserListItem/ChatUserListItem';
-import ChatUserAvatar from '@components/chatUserAvatar/ChatUserAvatar';
+import ChatWindow from '@components/chat/chatWindow/ChatWindow';
+import ChatUserList from '@components/chat/chatUserList/ChatUserList';
+import ChatUserListItem from '@components/chat/chatUserListItem/ChatUserListItem';
+import ChatUserAvatar from '@components/chat/chatUserAvatar/ChatUserAvatar';
 import { IAnyObject } from '@utils/ts/interfaces';
 
 const defaultImg = require('@root/img/bg.jpg').default;

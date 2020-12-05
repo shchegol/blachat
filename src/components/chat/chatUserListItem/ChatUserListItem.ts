@@ -27,7 +27,7 @@ interface IChatUserListItemProps {
   listeners?: { event: string, fn: Function }[]
 }
 
-const tempFn: (props: IChatUserListItemProps) => string = require('@components/chatUserListItem/chatUserListItem.templ.pug');
+const tempFn: (props: IChatUserListItemProps) => string = require('@components/chat/chatUserListItem/chatUserListItem.templ.pug');
 
 export default class ChatUserListItem extends Component {
   props: IChatUserListItemProps;

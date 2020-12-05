@@ -1,10 +1,7 @@
-if !classes
-  - classes = ""
-
 li(
     id=id
     _key=_key
-    class="user-list__item " + classes
+    class="user-list__item " + classes || ''
     data-chat-id=_chatId
 )
     img(

@@ -1,35 +1,39 @@
 import Component from '@utils/Component';
-import ChatBottomBar from '@components/chatBottomBar/ChatBottomBar';
-import ChatDropdown from '@components/chatDropdown/ChatDropdown';
-import ChatDropdownItem from '@components/chatDropdownItem/chatDropdownItem';
+import ChatDropdown from '@components/chat/chatDropdown/ChatDropdown';
+import ChatDropdownItem from '@components/chat/chatDropdownItem/chatDropdownItem';
 
 /**
- * Main window of chat
+ * Chat bottom bar
  * @prop _key - uniq key
  * @prop id - id
  * @prop listeners - attached listeners
- * @prop chatTopBar - top bar
- * @prop chatMessages - messages window
- * @prop chatBottomBar - bottom bar
+ * @prop chatInputDropdown - dropdown options
+ * @prop chatInput - main input
+ * @prop chatInputButton - send button
  */
 
-interface IChatWindow {
+interface IChatTopBar {
   _key?: number;
   id?: string;
   listeners?: { event: string, fn: Function }[],
-  chatBottomBar?: any;
-  dropdownOptions?: any;
 }
 
-const tempFn: (props: IChatWindow) => string = require('@components/chatWindow/chatWindow.templ.pug');
+interface IChatTopBarRender extends IChatTopBar {
+  dropdownOptions: string;
+}
 
-export default class ChatWindow extends Component {
-  props: IChatWindow;
+interface IChatTopBarClass extends IChatTopBar {
+  dropdownOptions: ChatDropdown;
+}
 
-  constructor(props?: IChatWindow) {
+const tempFn: (props: IChatTopBarRender) => string = require('@components/chat/chatTopBar/chatTopBar.templ.pug');
+
+export default class ChatTopBar extends Component {
+  props: IChatTopBarClass;
+
+  constructor(props?: IChatTopBarClass) {
     super('div', {
       ...props,
-      chatBottomBar: new ChatBottomBar(),
       dropdownOptions: new ChatDropdown({
         iconName: 'more_vert',
         classes: 'dropdown_open_bl',
@@ -50,7 +54,6 @@ export default class ChatWindow extends Component {
   render(): string {
     return tempFn({
       dropdownOptions: this.props.dropdownOptions.render(),
-      chatBottomBar: this.props.chatBottomBar.render(),
     });
   }
 }

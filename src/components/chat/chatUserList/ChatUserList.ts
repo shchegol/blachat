@@ -1,5 +1,5 @@
 import Component from '@utils/Component';
-import ChatUserListItem from '@components/chatUserListItem/ChatUserListItem';
+import ChatUserListItem from '@components/chat/chatUserListItem/ChatUserListItem';
 
 /**
  * Chat user list
@@ -19,7 +19,7 @@ interface IChatUserlistProps {
   listeners?: { event: string, fn: Function }[]
 }
 
-const tempFn: (props: IChatUserlistProps) => string = require('@components/chatUserList/chatUserList.templ.pug');
+const tempFn: (props: IChatUserlistProps) => string = require('@components/chat/chatUserList/chatUserList.templ.pug');
 
 export default class ChatUserList extends Component {
   props: IChatUserlistProps;

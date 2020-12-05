@@ -1,0 +1,13 @@
+section.chat__messages
+    .message-date
+        time.message-date__container 7 октября
+
+        article.message-pack
+            img(
+                src=require("@root/img/bg.jpg").default
+                alt="Александр Щеголь"
+                class="message-pack__avatar"
+            )
+
+            .message-pack__content
+                | !{chatMessage}

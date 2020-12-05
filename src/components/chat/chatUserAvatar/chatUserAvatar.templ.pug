@@ -1,10 +1,7 @@
-if !classes
-  - classes = ""
-
 div(
     id=id
     _key=_key
-    class="avatar " + classes
+    class="avatar " + classes || ''
     title=title
 )
     img(

@@ -1,4 +1,4 @@
-import ChatDropdownItem from '@components/chatDropdownItem/ChatDropdownItem';
+import ChatDropdownItem from '@components/chat/chatDropdownItem/chatDropdownItem';
 import Component from '@utils/Component';
 
 /**
@@ -23,7 +23,7 @@ interface IChatDropdownProps {
   listeners?: { event: string, fn: Function }[]
 }
 
-const tempFn: (props: IChatDropdownProps) => string = require('@components/chatDropdown/chatDropdown.templ.pug');
+const tempFn: (props: IChatDropdownProps) => string = require('@components/chat/chatDropdown/chatDropdown.templ.pug');
 
 export default class ChatDropdown extends Component {
   props: IChatDropdownProps;
