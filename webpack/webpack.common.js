@@ -1,21 +1,21 @@
-const util = require("./webpack.utils");
+const util = require('./webpack.utils');
 
 module.exports = {
-  entry: "./src/index.ts",
+  entry: './src/index.ts',
   output: {
-    filename: "bundle-[hash].js",
-    path: util.resolve("dist"),
-    publicPath: "/",
+    filename: 'bundle-[hash].js',
+    path: util.resolve('dist'),
+    publicPath: '/',
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      "@root": util.resolve("src"),
-      "@components": util.resolve("src/components"),
-      "@pages": util.resolve("src/pages"),
-      "@router": util.resolve("src/router"),
-      "@store": util.resolve("src/store"),
-      "@utils": util.resolve("src/utils"),
+      '@root': util.resolve('src'),
+      '@components': util.resolve('src/components'),
+      '@pages': util.resolve('src/pages'),
+      '@router': util.resolve('src/router'),
+      '@store': util.resolve('src/store'),
+      '@utils': util.resolve('src/utils'),
     },
   },
   module: {
@@ -29,40 +29,40 @@ module.exports = {
       {
         test: /\.ts$/,
         exclude: /node_modules/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
       },
       {
         test: /\.html$/,
-        loader: "html-loader",
+        loader: 'html-loader',
       },
       {
         test: /\.pug$/,
-        loader: "pug-loader",
+        loader: 'pug-loader',
       },
       {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              outputPath: "images/",
-              name: "[name][hash].[ext]",
+              outputPath: 'images/',
+              name: '[name][hash].[ext]',
             },
           },
           {
-            loader: "image-webpack-loader",
+            loader: 'image-webpack-loader',
             options: {
               mozjpeg: {
                 progressive: true,
                 quality: 80,
               },
               pngquant: {
-                quality: "65-90",
+                quality: '65-90',
                 speed: 4,
               },
               gifsicle: {
@@ -75,22 +75,22 @@ module.exports = {
       },
       {
         test: /\.(svg)$/,
-        exclude: util.resolve("src/fonts"),
+        exclude: util.resolve('src/fonts'),
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              outputPath: "svg/",
-              name: "[name][hash].[ext]",
+              outputPath: 'svg/',
+              name: '[name][hash].[ext]',
             },
           },
           {
-            loader: "image-webpack-loader",
+            loader: 'image-webpack-loader',
             options: {
               svgo: {
                 plugins: [
-                  {removeViewBox: false},
-                  {removeEmptyAttrs: false},
+                  { removeViewBox: false },
+                  { removeEmptyAttrs: false },
                 ],
               },
             },
@@ -99,13 +99,13 @@ module.exports = {
       },
       {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        exclude: util.resolve("src/svg"),
+        exclude: util.resolve('src/svg'),
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              outputPath: "fonts/",
-              name: "[name][hash].[ext]",
+              outputPath: 'fonts/',
+              name: '[name][hash].[ext]',
             },
           },
         ],
