@@ -2,7 +2,7 @@ import Component from '@utils/Component';
 import ChatDropdown from '@components/chat/chatDropdown/ChatDropdown';
 import ChatDropdownItem from '@components/chat/chatDropdownItem/chatDropdownItem';
 import Input from '@components/input/Input';
-import ButtonIcon from '@components/buttonIcon/ButtonIcon';
+import Button from '@components/button/Button';
 
 /**
  * Chat bottom bar
@@ -29,10 +29,49 @@ interface IChatBottomBarRender extends IChatBottomBar {
 interface IChatBottomBarClass extends IChatBottomBar {
   chatInputDropdown: ChatDropdown;
   chatInput: Input;
-  chatInputButton: ButtonIcon;
+  chatInputButton: Button;
 }
 
 const tempFn: (props: IChatBottomBarRender) => string = require('@components/chat/chatBottomBar/chatBottomBar.templ.pug');
+
+const innerProps = () => ({
+  chatInputDropdown: new ChatDropdown({
+    iconName: 'attach_file',
+    classes: 'dropdown_open_tr',
+    items: [
+      new ChatDropdownItem({
+        iconName: 'insert_photo',
+        text: 'Фото или Видео',
+      }),
+      new ChatDropdownItem({
+        iconName: 'insert_drive_file',
+        text: 'Файл',
+      }),
+      new ChatDropdownItem({
+        iconName: 'location_on',
+        text: 'Локация',
+      }),
+    ],
+  }),
+  chatInput: new Input({
+    classes: 'input_inline',
+    type: 'text',
+  }),
+  chatInputButton: new Button({
+    type: 'button',
+    title: 'Отправить',
+    iconName: 'send',
+    listeners: [
+      {
+        event: 'click',
+        fn: () => {
+          // todo дописать логику отправки сообщения
+          // console.log('send message');
+        },
+      },
+    ],
+  }),
+});
 
 export default class ChatBottomBar extends Component {
   props: IChatBottomBarClass;
@@ -40,33 +79,7 @@ export default class ChatBottomBar extends Component {
   constructor(props?: IChatBottomBarClass) {
     super('div', {
       ...props,
-      chatInputDropdown: new ChatDropdown({
-        iconName: 'attach_file',
-        classes: 'dropdown_open_tr',
-        items: [
-          new ChatDropdownItem({
-            iconName: 'insert_photo',
-            text: 'Фото или Видео',
-          }),
-          new ChatDropdownItem({
-            iconName: 'insert_drive_file',
-            text: 'Файл',
-          }),
-          new ChatDropdownItem({
-            iconName: 'location_on',
-            text: 'Локация',
-          }),
-        ],
-      }),
-      chatInput: new Input({
-        classes: 'input_inline',
-        type: 'text',
-      }),
-      chatInputButton: new ButtonIcon({
-        type: 'button',
-        title: 'Отправить',
-        iconName: 'send',
-      }),
+      ...innerProps(),
     });
   }
 

@@ -1,22 +1,10 @@
 import { IStringObject, IRequestResult } from '@utils/ts/interfaces';
 import { authAPIInstance } from './HTTP';
 
-class AuthApi {
-  static signup(body: IStringObject): Promise<IRequestResult> {
-    return authAPIInstance.post('/signup', { body });
-  }
+export const signup = (body: IStringObject): Promise<IRequestResult> => authAPIInstance.post('/signup', { body });
 
-  static signin(body: IStringObject): Promise<IRequestResult> {
-    return authAPIInstance.post('/signin', { body });
-  }
+export const signin = (body: IStringObject): Promise<IRequestResult> => authAPIInstance.post('/signin', { body });
 
-  static fetchtUser(): Promise<IRequestResult> {
-    return authAPIInstance.get('/user');
-  }
+export const fetchtUser = (): Promise<IRequestResult> => authAPIInstance.get('/user');
 
-  static logout(): Promise<IRequestResult> {
-    return authAPIInstance.post('/logout');
-  }
-}
-
-export default AuthApi;
+export const logout = (): Promise<IRequestResult> => authAPIInstance.post('/logout');

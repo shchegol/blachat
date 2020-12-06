@@ -1,9 +1,13 @@
-if !classes
-  - classes = ""
+- const btnType = iconName ? "btn-icon" : "btn"
+- const classNames = classes || "";
 
 button(
     id=id
     _key=_key
     type=type
-    class="btn " + classes
-) #{text}
+    title=title
+    class=`${btnType} ${classNames}`
+)
+    if iconName
+        i.material-icons #{iconName}
+    | #{text}

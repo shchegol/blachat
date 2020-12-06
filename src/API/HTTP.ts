@@ -69,7 +69,7 @@ class HTTP {
       const xhr = new XMLHttpRequest();
 
       if (method === HTTP.METHODS.GET && body) {
-        fullUrl += queryStringify(body);
+        fullUrl += `${queryStringify(body)}`;
       }
 
       xhr.open(method, fullUrl);

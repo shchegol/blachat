@@ -28,26 +28,30 @@ interface IChatTopBarClass extends IChatTopBar {
 
 const tempFn: (props: IChatTopBarRender) => string = require('@components/chat/chatTopBar/chatTopBar.templ.pug');
 
+const innerProps = () => ({
+  dropdownOptions: new ChatDropdown({
+    iconName: 'more_vert',
+    classes: 'dropdown_open_bl',
+    items: [
+      new ChatDropdownItem({
+        iconName: 'edit',
+        text: 'Переименовать',
+      }),
+      new ChatDropdownItem({
+        iconName: 'delete',
+        text: 'Удалить',
+      }),
+    ],
+  }),
+});
+
 export default class ChatTopBar extends Component {
   props: IChatTopBarClass;
 
   constructor(props?: IChatTopBarClass) {
     super('div', {
       ...props,
-      dropdownOptions: new ChatDropdown({
-        iconName: 'more_vert',
-        classes: 'dropdown_open_bl',
-        items: [
-          new ChatDropdownItem({
-            iconName: 'edit',
-            text: 'Переименовать',
-          }),
-          new ChatDropdownItem({
-            iconName: 'delete',
-            text: 'Удалить',
-          }),
-        ],
-      }),
+      ...innerProps(),
     });
   }
 

@@ -15,21 +15,33 @@ interface IChatMessages {
   _key?: number;
   id?: string;
   listeners?: { event: string, fn: Function }[],
-  chatMessage?: any,
 }
 
-const tempFn: (props: IChatMessages) => string = require('@components/chat/chatMessages/chatMessages.templ.pug');
+interface IChatMessagesRender extends IChatMessages {
+  chatMessage: string,
+}
+
+interface IChatMessagesClass extends IChatMessages {
+  chatMessage: ChatMessage,
+}
+
+const tempFn: (props: IChatMessagesRender) => string = require('@components/chat/chatMessages/chatMessages.templ.pug');
+
+// todo временные данные
+const innerProps = () => ({
+  chatMessage: new ChatMessage({
+    text: '123',
+    date: '10:00',
+  }),
+});
 
 export default class ChatMessages extends Component {
-  props: IChatMessages;
+  props: IChatMessagesClass;
 
-  constructor(props?: IChatMessages) {
+  constructor(props?: IChatMessagesClass) {
     super('div', {
       ...props,
-      chatMessage: new ChatMessage({
-        text: '123',
-        date: '10:00',
-      }),
+      ...innerProps(),
     });
   }
 

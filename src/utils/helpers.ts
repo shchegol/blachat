@@ -1,6 +1,5 @@
 import Component from '@utils/Component';
-import { IRequestData, IStringObject, IAnyObject } from '@utils/ts/interfaces';
-import { TRequestData } from '@utils/ts/types';
+import { IStringObject, IAnyObject } from '@utils/ts/interfaces';
 
 export function getType(value: any): string {
   const regex = /^\[object (\S+?)\]$/;
@@ -35,45 +34,31 @@ export function merge(lhs: IAnyObject, rhs: IAnyObject): IAnyObject {
   return lhs;
 }
 
-export function queryStringify(data: IRequestData): string | never {
-  if (getType(data) !== 'object') {
-    throw new Error('Query data must be an object');
+type TQuery = string | number | [] | IAnyObject;
+
+export function queryStringify(data: TQuery, dataKey?: TQuery): string | never {
+  if (!data) {
+    throw new Error('Query object must contain strings, numbers, arrays and objects only');
   }
 
-  return Object.entries(data)
-    .reduce((prev: string, curr: (string | TRequestData)[]) => {
-      let arrIndex = 0;
-      const ampers: string = prev ? '&' : '?';
-      let arrAmpers = '';
+  function valueHandler(acc: string, key: TQuery, value: TQuery) {
+    if (dataKey) {
+      const newKey = `[${key}]`;
+      return `${acc}${dataKey}${queryStringify(value, newKey)}`;
+    }
 
-      function expand(value: any[], queryString = ''): string {
-        let queryStringInner = queryString;
-        if (getType(value[1]) === 'array') {
-          arrAmpers = arrIndex ? '&' : '';
-          queryStringInner = `${queryStringInner}${arrAmpers}${value[0]}[${arrIndex}]=${value[1][arrIndex]}`;
-          arrIndex += 1;
+    return `${acc}${queryStringify(value, key)}`;
+  }
 
-          return arrIndex <= value.length
-            ? expand(value, queryStringInner)
-            : queryStringInner;
-        }
+  if (getType(data) === 'array' && data instanceof Array) {
+    return data.reduce((acc: string, value: TQuery, i: number) => valueHandler(acc, i, value), '');
+  }
 
-        if (getType(value[1]) === 'object') {
-          const key: string = Object.keys(value[1])[0];
-          queryStringInner = `${queryStringInner}[${key}]`;
+  if (getType(data) === 'object') {
+    return Object.entries(data).reduce((acc, [key, value]) => valueHandler(acc, key, value), '');
+  }
 
-          if (getType(value[1][key]) === 'object') {
-            return expand([key, value[1][key]], queryStringInner);
-          }
-
-          return `${curr[0]}${queryStringInner}=${value[1][key]}`;
-        }
-
-        return `${value[0]}=${value[1]}`;
-      }
-
-      return `${prev}${ampers}${expand(curr)}`;
-    }, '');
+  return `${dataKey}=${data}&`;
 }
 
 export function renderTo(query: string, component: Component) {
@@ -83,7 +68,7 @@ export function renderTo(query: string, component: Component) {
     throw new Error(`Элемента ${query} не существует`);
   }
 
-  root.appendChild(component.getContent());
+  root.appendChild(component.element);
   return root;
 }
 
@@ -94,7 +79,7 @@ export function removeFrom(query: string, component: Component) {
     throw new Error(`Элемента ${query} не существует`);
   }
 
-  root.removeChild(component.getContent());
+  root.removeChild(component.element);
   return root;
 }
 

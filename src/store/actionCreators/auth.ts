@@ -1,12 +1,12 @@
 import { IStringObject, IRequestResult } from '@utils/ts/interfaces';
 import { appRouter } from '@router/Router';
-import AuthAPI from '@root/API/AuthAPI';
+import * as API from '@root/API/AuthAPI';
 import store from '@store/initStore';
 import * as ACTION from '@store/actions/auth';
 import * as ACTION_USER from '@store/actions/user';
 
 export const fetchtUser = (): Promise<void> => new Promise((resolve) => {
-  AuthAPI
+  API
     .fetchtUser()
     .then((res: IRequestResult) => {
       if (res.ok) {
@@ -28,7 +28,7 @@ export const fetchtUser = (): Promise<void> => new Promise((resolve) => {
 });
 
 export const signup = (props: IStringObject): void => {
-  AuthAPI
+  API
     .signup(props)
     .then((res: IRequestResult) => {
       if (res.ok) {
@@ -41,7 +41,7 @@ export const signup = (props: IStringObject): void => {
 };
 
 export const signin = (props: IStringObject): void => {
-  AuthAPI
+  API
     .signin(props)
     .then((res: IRequestResult) => {
       if (res.ok) {
@@ -54,7 +54,7 @@ export const signin = (props: IStringObject): void => {
 };
 
 export const logout = (): void => {
-  AuthAPI
+  API
     .logout()
     .then((res: IRequestResult) => {
       if (res.ok) {

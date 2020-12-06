@@ -62,24 +62,12 @@ export default class Component {
     return '';
   }
 
-  getContent(): HTMLElement {
-    return this.element;
-  }
-
-  setProps = (nextProps: IAnyObject): void => {
-    if (!nextProps) {
-      return;
-    }
-
-    Object.assign(this.props, nextProps);
-  };
-
   show(): void {
-    this.getContent().style.display = 'block';
+    this.element.style.display = 'block';
   }
 
   hide(): void {
-    this.getContent().style.display = 'none';
+    this.element.style.display = 'none';
   }
 
   protected _init(): void {
@@ -116,8 +104,8 @@ export default class Component {
 
   protected _componentDidRender(): void {
     setTimeout(() => {
-      this.componentDidRender();
       this._setListeners();
+      this.componentDidRender();
     }, 0);
   }
 
@@ -126,7 +114,6 @@ export default class Component {
     this.eventBus().emit(Component.EVENTS.FLOW_CDR);
   }
 
-  // todo вариант не идеальный но нет времени. Переписать
   protected _setListeners(): void {
     if (!this.props.listeners) return;
 

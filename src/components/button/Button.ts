@@ -7,6 +7,8 @@ import Component from '@utils/Component';
  * @prop {string} classes - additional classes
  * @prop {string} type - button type
  * @prop {string} text - text in button
+ * @prop {string} title - title of button
+ * @prop {string} iconName - material design icon name
  * @prop listeners - attached listeners
  */
 
@@ -15,7 +17,9 @@ interface IButtonProps {
   id?: string;
   classes?: string;
   type?: string;
+  title?: string;
   text?: string;
+  iconName?: string;
   listeners?: { event: string, fn: () => void }[]
 }
 

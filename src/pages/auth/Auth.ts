@@ -18,6 +18,50 @@ const inputCommonProps = {
     { event: 'blur', fn: (e: Event) => inputValidation(e.target) },
   ],
 };
+const authProps = () => ({
+  form: new Form({
+    listeners: [
+      {
+        event: 'submit',
+        fn: (e: Event) => {
+          if (formValidation(e)) {
+            signin(getFormData(e));
+          }
+        },
+      },
+    ],
+    items: [
+      new Input({
+        ...inputCommonProps,
+        labelText: 'Логин',
+        name: 'login',
+        placeholder: 'Ваш логин',
+        dataValidation: 'text',
+      }),
+      new Input({
+        ...inputCommonProps,
+        labelText: 'Пароль',
+        type: 'password',
+        name: 'password',
+        placeholder: 'Ваш пароль',
+        dataValidation: 'password',
+      }),
+      new Button({
+        classes: 'btn_type_outline btn_color_white mt-40',
+        type: 'submit',
+        text: 'ВОЙТИ',
+      }),
+      new Button({
+        classes: 'btn_type_link btn_color_white mt-20',
+        type: 'button',
+        text: 'Зарегистрироваться',
+        listeners: [
+          { event: 'click', fn: () => appRouter.go('/registration') },
+        ],
+      }),
+    ],
+  }),
+});
 
 export default class Auth extends Component {
   props: IAnyObject;
@@ -25,48 +69,7 @@ export default class Auth extends Component {
   constructor(tagName?: string, props?: IAnyObject) {
     super(tagName, {
       ...props,
-      form: new Form({
-        listeners: [
-          {
-            event: 'submit',
-            fn: (e: Event) => {
-              if (formValidation(e)) {
-                signin(getFormData(e));
-              }
-            },
-          },
-        ],
-        items: [
-          new Input({
-            ...inputCommonProps,
-            labelText: 'Логин',
-            name: 'login',
-            placeholder: 'Ваш логин',
-            dataValidation: 'text',
-          }),
-          new Input({
-            ...inputCommonProps,
-            labelText: 'Пароль',
-            type: 'password',
-            name: 'password',
-            placeholder: 'Ваш пароль',
-            dataValidation: 'password',
-          }),
-          new Button({
-            classes: 'btn_type_outline btn_color_white mt-40',
-            type: 'submit',
-            text: 'ВОЙТИ',
-          }),
-          new Button({
-            classes: 'btn_type_link btn_color_white mt-20',
-            type: 'button',
-            text: 'Зарегистрироваться',
-            listeners: [
-              { event: 'click', fn: () => appRouter.go('/registration') },
-            ],
-          }),
-        ],
-      }),
+      ...authProps(),
     });
   }
 

@@ -17,22 +17,35 @@ interface IChatWindow {
   _key?: number;
   id?: string;
   listeners?: { event: string, fn: Function }[],
-  chatTopBar?: any;
-  chatMessages?: any;
-  chatBottomBar?: any;
 }
 
-const tempFn: (props: IChatWindow) => string = require('@components/chat/chatWindow/chatWindow.templ.pug');
+interface IChatWindowRender extends IChatWindow {
+  chatTopBar: string;
+  chatMessages: string;
+  chatBottomBar: string;
+}
+
+interface IChatWindowClass extends IChatWindow {
+  chatTopBar: ChatTopBar;
+  chatMessages: ChatMessages;
+  chatBottomBar: ChatBottomBar;
+}
+
+const tempFn: (props: IChatWindowRender) => string = require('@components/chat/chatWindow/chatWindow.templ.pug');
+
+const innerProps = () => ({
+  chatTopBar: new ChatTopBar(),
+  chatMessages: new ChatMessages(),
+  chatBottomBar: new ChatBottomBar(),
+});
 
 export default class ChatWindow extends Component {
-  props: IChatWindow;
+  props: IChatWindowClass;
 
-  constructor(props?: IChatWindow) {
+  constructor(props?: IChatWindowClass) {
     super('div', {
       ...props,
-      chatTopBar: new ChatTopBar(),
-      chatMessages: new ChatMessages(),
-      chatBottomBar: new ChatBottomBar(),
+      ...innerProps(),
     });
   }
 
